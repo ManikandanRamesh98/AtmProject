@@ -3,34 +3,37 @@ package com.bank.login;
 import java.util.Objects;
 
 public class Loginpojo {
-private int Id;
+private int id;
 private String username;
 private String logged_at;
-private String Role;
+private String role;
 
 
 public Loginpojo(int id, String username, String logged_at, String role) {
 	
-	Id = id;
+	id = id;
 	this.username = username;
 	this.logged_at = logged_at;
-	Role = role;
+	role = role;
 }
 
 public Loginpojo(String username) {
-	
+	this.username = username;
 }
 
-
+public Loginpojo(String username,String role) {
+	this.username = username;
+	this.role = role;
+}
 
 
 
 public int getId() {
-	return Id;
+	return id;
 }
 
 public void setId(int id) {
-	Id = id;
+	id = id;
 }
 
 
@@ -56,17 +59,17 @@ public void setLogged_at(String logged_at) {
 
 
 public String getRole() {
-	return Role;
+	return role;
 }
 
 
 public void setRole(String role) {
-	Role = role;
+	role = role;
 }
 
 @Override
 public String toString() {
-	return "Loginpojo [Id=" + Id + ", username=" + username + ", logged_at=" + logged_at + ", Role=" + Role + "]";
+	return "Loginpojo [Id=" + id + ", username=" + username + ", logged_at=" + logged_at + ", Role=" + role + "]";
 }
 
 
@@ -77,7 +80,7 @@ public String toString() {
 
 @Override
 public int hashCode() {
-	return Objects.hash(Id, Role, logged_at, username);
+	return Objects.hash(id, role, logged_at, username);
 }
 
 
@@ -95,7 +98,7 @@ public boolean equals(Object obj) {
 	if (getClass() != obj.getClass())
 		return false;
 	Loginpojo other = (Loginpojo) obj;
-	return Id == other.Id && Objects.equals(Role, other.Role) && Objects.equals(logged_at, other.logged_at)
+	return id == other.id && Objects.equals(role, other.role) && Objects.equals(logged_at, other.logged_at)
 			&& Objects.equals(username, other.username);
 }
 

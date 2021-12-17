@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Remove Account</title>
+<title>User Details - Admin</title>
 <style>
 legend{
 font-size : 20px;
@@ -17,6 +17,10 @@ width : 300px;
 height : 150px;
 left: 500px;
 }
+form{
+position : relative;
+top : 30px;
+}
 label{
 font-size : 20px;
 }
@@ -24,12 +28,11 @@ font-size : 20px;
 </head>
 <body bgcolor = "blue">
 <fieldset>
-<legend>Remove User : </legend>
-<form action = "removeaccserv" method = "post">
-<label>Enter User : </label><br>
-<input type = "text" name = "remusername" pattern = "[A-Z][a-zA-Z]{3,20}" title = "Start with A-Z and use A-Z or a-z or 0-9 minimum 3 character maximum 20 character">
+<legend>User Details : </legend>
+<form action = "Userdetailadmin.jsp">
+<label>Enter Username : </label><br>
+<input type = "text" name = "userdetadmin" pattern = "[A-Z][a-zA-Z]{3,20}" title = "Start with A-Z and use A-Z or a-z or 0-9 minimum 3 character maximum 20 character">
 <input type = "submit">
-
 </form>
 </fieldset>
 </body>

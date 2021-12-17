@@ -39,7 +39,7 @@ if(session.getAttribute("user") == null){
 <legend>Generate New Pin</legend>
 <h1 id = "pinchangehead1">Enter The New Pin!!</h1>
 <form action = "pinchangeserv" method = "post">
-<input type = "text" name = "pininp" id = "pininpid">
+<input type = "text" name = "pininp" id = "pininpid" pattern = "[A-Za-z0-9!@#$%^&*_+=-~`/|\]{6,20}" minlength = "6" title = "minimum 6 character and special characters allowed">
 <input type = "submit">
 </form>
 </fieldset>

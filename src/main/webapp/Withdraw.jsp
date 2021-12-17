@@ -49,7 +49,7 @@ if(session.getAttribute("user") == null){
 <label id ="labwith">Enter Amount To Withdraw</label>
 <form action = "withdrawserv" id = "formwith">
 <br>
-<input type = "text" name = "inpwith" id = "withinp" required><button type = "submit" id = "withbt">Withdraw</button>
+<input type = "text" name = "inpwith" id = "withinp" required pattern = "[0-9]{3,7}" maxlength = "7" title = "Enter Valid Amount"><button type = "submit" id = "withbt" >Withdraw</button>
 </form>
 </body>
 </html>

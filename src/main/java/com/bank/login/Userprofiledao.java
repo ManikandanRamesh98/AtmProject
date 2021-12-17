@@ -24,7 +24,7 @@ return res;
 }
 	
 	//insert balance:
-	public int insbal(Integer bal,String username)throws Exception {
+	public int insbal(int bal,String username)throws Exception {
 		Connection con = Connect.getConnection();
 
 		String query = "update userprofile set balance = ? where username in ?";

@@ -45,6 +45,15 @@ color:yellow;
 border-color:white;
 left : 370px;
 }
+#logoutatag{
+text-decoration : none;
+font-size:70px;
+position : absolute;
+color:yellow;
+border-color:white;
+right:0px;
+top:0px;
+}
 
 </style>
 </head>
@@ -62,7 +71,8 @@ admin = session.getAttribute("admin").toString();
 <a href = "Register.jsp" id = "adminregus">Register New User</a><br><br>
 
 <a href = "Removeacc.jsp" id = "adminremuser">Remove User</a><br><br>
-<a href = "Userdetailadmin.jsp" id = "adminuserdet">User Details</a>
+<a href = "Userdetailsadmingetuser.jsp" id = "adminuserdet">User Details</a>
+<a href = "Logoutadmin.jsp" id = "logoutatag">LogOut</a>
 </body>
 
 </html>

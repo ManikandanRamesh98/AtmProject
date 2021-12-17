@@ -30,18 +30,20 @@ Long accno;
 int bal;
 Long mobno;
 %>
+<% String username = request.getParameter("userdetadmin");
+%>
 
 <% 
 
-if(session.getAttribute("user") == null){
+if(session.getAttribute("admin") == null){
 	response.sendRedirect("Login.html");
 }else{
- user = session.getAttribute("user").toString();
+ user = session.getAttribute("admin").toString();
 }
 %>
 
 <%
-ResultSet rs = userprofiledao.getuserdetails(user);
+ResultSet rs = userprofiledao.getuserdetails(username);
 while(rs.next()){
 	 id = rs.getInt(1);
 	 uname = rs.getString(2);
@@ -58,5 +60,6 @@ while(rs.next()){
 <label>Balance : <%=" " +bal %></label><br><br>
 <label>Mobile No : <%=" " +mobno %></label><br><br>
 </fieldset>
+
 </body>
 </html>

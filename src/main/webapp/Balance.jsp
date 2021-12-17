@@ -47,6 +47,6 @@ if(session.getAttribute("user") == null){
 <h1 id = "headbal">Welcome&ensp;<%= user %></h1>
 <hr id = "hrbal">
 <h1 id = "headbal1">Your Balance :</h1><br>
-<label id = "ballab"><%=userprofiledao.getbal(user) %></label>
+<label id = "ballab"><%=userprofiledao.getbal(user)%></label>
 </body>
 </html>

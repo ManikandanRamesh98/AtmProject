@@ -1,0 +1,119 @@
+--user list--username and password
+drop table usernamepass;
+create table usernamepass(
+id int GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
+username varchar(80) not null,
+password varchar(80) not null
+);
+alter table usernamepass add created_at timestamp  default current_timestamp not null;
+alter table usernamepass add constraint pk_user primary key(username);
+alter table usernamepass add role varchar(80) not null;
+select * from usernamepass;
+desc usernamepass;
+delete from usernamepass;
+insert into usernamepass(username,password,role) values('Hari','hari@123','admin');
+
+--profilebank--unique yet
+create table userprofile(
+id int GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
+username varchar(80) not null,
+user_acc_no int not null,
+balance number(20,2) not null,
+mob_no int not null);
+alter table userprofile drop column mob_no;
+commit;
+alter table userprofile add constraint fk_user foreign key(username) references usernamepass(username);
+alter table userprofile add constraint pk_useracc primary key(user_acc_no);
+alter table userprofile modify acc_created_at not null;
+alter table userprofile add acc_created_at timestamp default current_timestamp;
+alter table userprofile modify balance default 500;
+desc userprofile;
+select * from userprofile;
+insert into userprofile(username,user_acc_no,mob_no,user_pin) values('Hari',12345678902,9789674836,1235);
+
+--deposit table--
+create table deposit(
+id int GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
+user_acc_no int not null,
+dep_amount number(20,2) not null);
+
+alter table deposit add dep_at timestamp default current_timestamp;
+alter table deposit add constraint fk_userdep foreign key(user_acc_no) references userprofile(user_acc_no);
+
+delete from deposit;
+--withdraw table--
+create table withdraw(
+id int GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1),
+user_acc_no int not null,
+with_amount number(20,2) not null);
+alter table withdraw modify withdraw_at timestamp default current_timestamp not null;
+alter table withdraw add constraint fk_userwith foreign key(user_acc_no) references userprofile(user_acc_no);
+desc withdraw; 
+delete from withdraw;
+
+--login table--
+create table login(
+id int generated always as identity(start with 1 increment by 1),
+username varchar(80),
+logged_at timestamp default current_timestamp);
+
+alter table login add constraint fk_userlogin foreign key(username) references usernamepass(username);
+delete from login;
+--insert usernamepass--
+select * from usernamepass;
+desc usernamepass;
+
+commit;
+--update usernamepass
+--set role = 'admin'
+--where id in 3;
+--select role from usernamepass where username in 'suresh';
+--select * from login;
+--alter table login add role varchar(80);
+--delete 
+--from login;
+
+desc userprofile;
+select * from userprofile;
+insert into usernamepass(username,password,role) values('Hari','hari@123','admin');
+insert into userprofile(username,user_acc_no,balance,mob_no) values('Hari',1234567,1234,978967);
+commit;
+select * from withdraw;
+desc deposit;
+select * from deposit;
+desc usernamepass;
+select with_amount trans,withdraw_at trans_at from withdraw where user_acc_no in 123456 union all select dep_amount trans,dep_at trans_at from deposit where user_acc_no in 123456;
+rollback;
+select * from usernamepass;
+select * from userprofile;
+delete from usernamepass where id in 37;
+commit;
+update usernamepass
+set role = 'user'
+where id in 23;
+select * from login;
+select max(user_acc_no) from userprofile;
+select max(user_pin) from userprofile;
+select with_amount trans,withdraw_at trans_at from withdraw where user_acc_no in 12345678903 union all select dep_amount trans,dep_at trans_at from deposit where user_acc_no in 12345678903 order by trans_at desc;
+
+select * from usernamepass; 
+select * from userprofile;
+select * from withdraw;
+select * from deposit;
+select * from login;
+
+desc  usernamepass;
+desc userprofile;
+desc withdraw;
+desc deposit;
+desc login;
+delete from usernamepass;
+insert into userprofile(username,user_acc_no,mob_no,user_pin) values('Mani',12345678901,9789674835,1234);
+commit;
+insert into usernamepass(username,password,role) values('Hari','hari@123','admin');
+update userprofile
+set balance = 500
+where id in 24;
+
+
+      
