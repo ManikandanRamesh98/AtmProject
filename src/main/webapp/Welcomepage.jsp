@@ -17,8 +17,6 @@ if(session.getAttribute("user") == null){
 }else{
  user = session.getAttribute("user").toString();
 }
-
-
 %>
 
 

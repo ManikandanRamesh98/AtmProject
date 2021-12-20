@@ -68,7 +68,7 @@ if(session.getAttribute("user") == null){
 <label id ="labwith">Enter Amount To Withdraw</label>
 <form action = "Enterpin.jsp" id = "formwith">
 <br>
-<input type = "text" name = "inpwith" id = "withinp" required pattern = "[0-9]{3,7}" maxlength = "7" title = "Enter Valid Amount" onclick = "invalabfn()" autofocus>
+<input type = "text" name = "inpwith" id = "withinp" required pattern = "[0-9]{3,7}" maxlength = "7" title = "Enter Valid Amount" onclick = "invalabfn()">
 </form>
 </body>
 <script>

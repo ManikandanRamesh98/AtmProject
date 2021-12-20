@@ -14,7 +14,7 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
 	Depositdao depositdao = new Depositdao();
 	HttpSession session = req.getSession();
 	String uname = session.getAttribute("user").toString();
-	int eamount = Integer.parseInt(req.getParameter("inpdep"));
+	int eamount = (int)session.getAttribute("depamount");
 	try {
 		Userprofilepojo userprofilepojo = new Userprofilepojo(uname);
 		if(userprofiledao.getbal(userprofilepojo) > 0) {
@@ -29,8 +29,8 @@ if(eamount > 0 && eamount < 30000) {
 				if(acc > 0) {
 					Depositpojo depositpojo = new Depositpojo(acc,eamount);
 					depositdao.insdep(depositpojo);
-				session.setAttribute("depamount", eamount);
-				session.setAttribute("depbal", newbal);
+				session.setAttribute("depsuccamount", eamount);
+				session.setAttribute("depsuccbal", newbal);
 				res.sendRedirect("Depsucc.jsp");
 				}else {
 					System.out.println("cant get useracc");

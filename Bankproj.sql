@@ -116,4 +116,4 @@ set balance = 500
 where id in 24;
 commit;
 
- select * from usernamepass where username in 'Mani' and password in 'mani@123';     
+   

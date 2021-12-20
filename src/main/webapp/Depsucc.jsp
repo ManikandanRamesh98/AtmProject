@@ -32,8 +32,8 @@ if(session.getAttribute("user") == null){
  user = session.getAttribute("user").toString();
 }
 %>
-<%int succamount = (int)session.getAttribute("depamount");
-int succbal = (int)session.getAttribute("depbal");%>
+<%int succamount = (int)session.getAttribute("depsuccamount");
+int succbal = (int)session.getAttribute("depsuccbal");%>
 <label id = "withsucclab">You have successfully Deposited amount <%=succamount %></label> 
 <h1 id = "succhead">BALANCE:<%=succbal %></h1>
 
