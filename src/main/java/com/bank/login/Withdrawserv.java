@@ -15,18 +15,21 @@ public void service(HttpServletRequest req,HttpServletResponse res){
 	Withdrawdao withdrawdao = new Withdrawdao();
 	HttpSession session = req.getSession();
 	String uname = session.getAttribute("user").toString();
-	int eamount = Integer.parseInt(req.getParameter("inpwith"));
+	int eamount =(int) session.getAttribute("withamount");
 	try {
-		if(userprofiledao.getbal(uname) > 0) {
-		 int bal= userprofiledao.getbal(uname);
+		Userprofilepojo userprofilepojo = new Userprofilepojo(uname);
+		if(userprofiledao.getbal(userprofilepojo) > 0) {
+		 int bal= userprofiledao.getbal(userprofilepojo);
 if(eamount <= bal && eamount > 0) {
 	int newbal = bal-eamount;
-			int i = userprofiledao.insbal(newbal, uname);
+	Userprofilepojo userprofilepojo2 = new Userprofilepojo(uname,newbal);
+			int i = userprofiledao.insbal(userprofilepojo2);
 			if(i > 0) {
-				Long acc =userprofiledao.getaccno(uname);
+				Userprofilepojo userprofilepojo3 = new Userprofilepojo(uname, newbal);
+				Long acc =userprofiledao.getaccno(userprofilepojo3);
 				if(acc > 0) {
-
-					withdrawdao.inswith(acc, -eamount);
+Withdrawpojo withdrawpojo = new Withdrawpojo(acc, -eamount);
+					withdrawdao.inswith(withdrawpojo);
 				session.setAttribute("withamount", eamount);
 				session.setAttribute("withbal", newbal);
 				res.sendRedirect("Withdrawsucc.jsp");
@@ -37,7 +40,7 @@ if(eamount <= bal && eamount > 0) {
 				res.getWriter().println("something went wrong!!");
 			}
 		 }else {
-			 res.getWriter().println("enter the valid amount!!");
+			 res.getWriter().println("enter the valid amount!!");	
 		 }
 		}else {
 			res.sendRedirect("Invaliduser.jsp");

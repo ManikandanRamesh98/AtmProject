@@ -25,6 +25,7 @@ public class Loginval extends HttpServlet {
 		String pass = request.getParameter("password");
 		boolean flag = false;
 		Userdao userdao = new Userdao();
+		Logindetailsdao logindetailsdao = new Logindetailsdao();
 		HttpSession session = request.getSession();
 		
 		
@@ -39,10 +40,12 @@ public class Loginval extends HttpServlet {
 		
 		
 	try {
-		String role = userdao.getrole(uname, pass);
+		Usernamepasspojo usernamepasspojo = new Usernamepasspojo(uname,pass);
+		String role = userdao.getrole(usernamepasspojo);
 			if(role != null) {
 				if(role.equals("user")) {
-					userdao.insertdata(uname,role);
+					Loginpojo loginpojo = new Loginpojo(uname,role);
+					logindetailsdao.insertdata(loginpojo);
 					flag = true;
 					session.setAttribute("user", uname);
 					response.sendRedirect("Welcomepage.jsp");
@@ -55,7 +58,8 @@ public class Loginval extends HttpServlet {
 //					response.sendRedirect("Agent.jsp");
 //				}
 					else if(role.equals("admin")) {
-					userdao.insertdata(uname,role);
+						Loginpojo loginpojo = new Loginpojo(uname,role);
+						logindetailsdao.insertdata(loginpojo);
 					System.out.println("this is admin");
 					flag = true;
 					session.setAttribute("admin", uname);

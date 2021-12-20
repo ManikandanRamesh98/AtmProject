@@ -3,12 +3,15 @@ package com.bank.login;
 import java.io.IOException;
 import java.sql.ResultSet;
 
+import org.apache.catalina.connector.Response;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
 @WebServlet("/registersucc")
 public class Registerserv extends HttpServlet{
 @Override
@@ -36,13 +39,21 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	String role = req.getParameter("rolereg");
 	Long mobno = Long.parseLong(req.getParameter("mobnoreg"));
 	try {
-		int ins = userdao.insusernamepass(username, password, role);
+		Usernamepasspojo usernamepasspojo = new Usernamepasspojo(username,password,role);
+		int ins = userdao.insusernamepass(usernamepasspojo);
 		if(ins > 0) {
-			int profins = userprofiledao.insuserprofile(username, accno, mobno, userpin);
+			if(role.equals("admin")) {
+				HttpSession session = req.getSession();
+				session.setAttribute("adminreg", username);
+				resp.sendRedirect("Adminregsucc.jsp");
+			}else {
+				Userprofilepojo userprofilepojo = new Userprofilepojo(username,accno,mobno,userpin);
+			int profins = userprofiledao.insuserprofile(userprofilepojo);
 			if(profins > 0) {
 				HttpSession session = req.getSession();
 				session.setAttribute("reguser", username);
 				resp.sendRedirect("Registeruserprofilesucc.jsp");
+			}
 			}
 			
 		}else {

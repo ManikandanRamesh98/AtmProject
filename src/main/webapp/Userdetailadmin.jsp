@@ -1,3 +1,4 @@
+<%@page import="com.bank.login.Userprofilepojo"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.sql.ResultSet"%>
@@ -18,7 +19,12 @@ font-size:50px;
 legend{
 font-size:30px;
 }
-
+#headinval{
+position : absolute;
+font-size : 80px;
+left:400px;
+top : 200px;
+}
 </style>
 </head>
 <body bgcolor = "blue">
@@ -43,7 +49,8 @@ if(session.getAttribute("admin") == null){
 %>
 
 <%
-ResultSet rs = userprofiledao.getuserdetails(username);
+Userprofilepojo userprofilepojo = new Userprofilepojo(username);
+ResultSet rs = userprofiledao.getuserdetails(userprofilepojo);
 while(rs.next()){
 	 id = rs.getInt(1);
 	 uname = rs.getString(2);
@@ -52,6 +59,7 @@ while(rs.next()){
 	 mobno = rs.getLong(5);
 }
 %>
+
 <fieldset id = "userdetailfield">
 <legend>User Details</legend>
  <label>User Id : <%=" " +id %></label><br><br>
@@ -60,6 +68,7 @@ while(rs.next()){
 <label>Balance : <%=" " +bal %></label><br><br>
 <label>Mobile No : <%=" " +mobno %></label><br><br>
 </fieldset>
+
 
 </body>
 </html>

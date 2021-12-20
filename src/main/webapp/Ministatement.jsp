@@ -3,7 +3,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.bank.login.Ministatementdao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import = "com.bank.login.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +17,9 @@ th {
            
             text-align:center;
         }
-
+table{
+border : 1px solid;
+}
         
       
 </style>
@@ -39,7 +41,8 @@ Userprofiledao userprofiledao = new Userprofiledao();
 String transtype = null;
 %>
 <%
-Long accno = userprofiledao.getaccno(user);
+Userprofilepojo userprofilepojo = new Userprofilepojo(user);
+Long accno = userprofiledao.getaccno(userprofilepojo);
 ResultSet rSet = ministatementdao.getministatement(accno);
 /* while(rSet.next()){
 	response.getWriter().println(rSet.getString(1) + " " + rSet.getString(2));

@@ -13,25 +13,25 @@ public void setId(int id) {
 	this.id = id;
 }
 public String getUsername() {
-	return username;
+	return this.username;
 }
 public void setUsername(String username) {
 	this.username = username;
 }
 public String getPassword() {
-	return password;
+	return this.password;
 }
 public void setPassword(String password) {
 	this.password = password;
 }
 public String getCreated_at() {
-	return created_at;
+	return this.created_at;
 }
 public void setCreated_at(String created_at) {
 	this.created_at = created_at;
 }
 public String getRole() {
-	return role;
+	return this.role;
 }
 public void setRole(String role) {
 	this.role = role;
@@ -50,6 +50,7 @@ public Usernamepasspojo(String username, String password) {
 	this.username = username;
 	this.password = password;
 }
+
 public Usernamepasspojo(String username) {
 	
 	this.username = username;

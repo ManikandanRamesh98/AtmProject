@@ -16,15 +16,19 @@ public void service(HttpServletRequest req,HttpServletResponse res) {
 	String uname = session.getAttribute("user").toString();
 	int eamount = Integer.parseInt(req.getParameter("inpdep"));
 	try {
-		if(userprofiledao.getbal(uname) > 0) {
-		 int bal= userprofiledao.getbal(uname);
+		Userprofilepojo userprofilepojo = new Userprofilepojo(uname);
+		if(userprofiledao.getbal(userprofilepojo) > 0) {
+		 int bal= userprofiledao.getbal(userprofilepojo);
 if(eamount > 0 && eamount < 30000) {
 	int newbal = bal+eamount;
-			int i = userprofiledao.insbal(newbal, uname);
+	Userprofilepojo userprofilepojo2 = new Userprofilepojo(uname, newbal);
+			int i = userprofiledao.insbal(userprofilepojo2);
 			if(i > 0) {
-				Long acc =userprofiledao.getaccno(uname);
+				Userprofilepojo userprofilepojo3 = new Userprofilepojo(uname);
+				Long acc =userprofiledao.getaccno(userprofilepojo3);
 				if(acc > 0) {
-					depositdao.insdep(acc, eamount);
+					Depositpojo depositpojo = new Depositpojo(acc,eamount);
+					depositdao.insdep(depositpojo);
 				session.setAttribute("depamount", eamount);
 				session.setAttribute("depbal", newbal);
 				res.sendRedirect("Depsucc.jsp");

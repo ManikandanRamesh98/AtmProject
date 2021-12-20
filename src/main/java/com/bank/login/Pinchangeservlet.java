@@ -19,7 +19,8 @@ public class Pinchangeservlet extends HttpServlet{
 		String user = session.getAttribute("user").toString();
 		int i = -1;
 		try {
-			 i = userdao.pinchange(user, pass);
+			Usernamepasspojo usernamepasspojo = new Usernamepasspojo(user, pass);
+			 i = userdao.pinchange(usernamepasspojo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

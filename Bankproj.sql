@@ -107,13 +107,13 @@ desc userprofile;
 desc withdraw;
 desc deposit;
 desc login;
-delete from usernamepass;
+
 insert into userprofile(username,user_acc_no,mob_no,user_pin) values('Mani',12345678901,9789674835,1234);
 commit;
 insert into usernamepass(username,password,role) values('Hari','hari@123','admin');
 update userprofile
 set balance = 500
 where id in 24;
+commit;
 
-
-      
+ select * from usernamepass where username in 'Mani' and password in 'mani@123';     

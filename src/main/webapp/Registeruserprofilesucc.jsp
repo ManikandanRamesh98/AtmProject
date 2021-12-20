@@ -7,6 +7,12 @@
 <title>Registered Sucessfully!!</title>
 </head>
 <body>
+<%if(session.getAttribute("admin") != null){
+	String admin = session.getAttribute("admin").toString();
+}else{
+	response.sendRedirect("Login.html");
+}
+	%>
 <%!String reguser; %>
 <%reguser = session.getAttribute("reguser").toString(); %>
 <h1>User <%=" " +reguser+" " %>Registered Sucessfully!!</h1>

@@ -21,23 +21,39 @@ HttpSession session = req.getSession();
 String user = req.getParameter("remusername");
 Long accno = -1l;
 try {
-	accno = userprofiledao.getaccno(user);
+	Userprofilepojo userprofilepojo = new Userprofilepojo(user);
+	accno = userprofiledao.getaccno(userprofilepojo);
 } catch (Exception e1) {
 	// TODO Auto-generated catch block
 	e1.printStackTrace();
 }
 	try {
-		int lrem = logindetailsdao.removelogindetail(user);
+		Loginpojo loginpojo = new Loginpojo(user);
+		int lrem = logindetailsdao.removelogindetail(loginpojo);
 		if(lrem >= 0) {
-			int withrem = withdrawdao.removewith(accno);
+			Withdrawpojo withdrawpojo = new Withdrawpojo(accno);
+			int withrem = withdrawdao.removewith(withdrawpojo);
 			if(withrem >= 0) {
-				int deprem = depositdao.removedep(accno);
+				Depositpojo depositpojo = new Depositpojo(accno);
+				int deprem = depositdao.removedep(depositpojo);
 				if(deprem >= 0) {
-					int userprofrem = userprofiledao.removeuserprof(accno);
+					Userprofilepojo userprofilepojo = new Userprofilepojo(accno);
+					int userprofrem = userprofiledao.removeuserprof(userprofilepojo);
 					if(userprofrem > 0) {
-						int userrem = userdao.removeuser(user);
+						Usernamepasspojo usernamepasspojo = new Usernamepasspojo(user);
+						int userrem = userdao.removeuser(usernamepasspojo);
 						if(userrem > 0) {
 							resp.sendRedirect("Userrem.jsp");
+						}else {
+							resp.getWriter().println("Invalid UserName");
+						}
+					}else {
+						Usernamepasspojo usernamepasspojo = new Usernamepasspojo(user);
+						int userrem = userdao.removeuser(usernamepasspojo);
+						if(userrem > 0) {
+							resp.sendRedirect("Userrem.jsp");
+						}else {
+							resp.getWriter().println("Invalid UserName");
 						}
 					}
 				}

@@ -1,3 +1,4 @@
+<%@page import="com.bank.login.Userprofilepojo"%>
 <%@page import="jakarta.security.auth.message.callback.PrivateKeyCallback.Request"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.bank.login.Userprofiledao"%>
@@ -44,7 +45,8 @@ if(session.getAttribute("user") == null){
 %>
 
 <%
-ResultSet rs = userprofiledao.getuserdetails(user);
+Userprofilepojo userprofilepojo = new Userprofilepojo(user);
+ResultSet rs = userprofiledao.getuserdetails(userprofilepojo);
 while(rs.next()){
 	 id = rs.getInt(1);
 	 uname = rs.getString(2);

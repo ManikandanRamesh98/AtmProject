@@ -1,3 +1,4 @@
+<%@page import="com.bank.login.Userprofilepojo"%>
 <%@page import="com.bank.login.Userprofiledao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -47,6 +48,7 @@ if(session.getAttribute("user") == null){
 <h1 id = "headbal">Welcome&ensp;<%= user %></h1>
 <hr id = "hrbal">
 <h1 id = "headbal1">Your Balance :</h1><br>
-<label id = "ballab"><%=userprofiledao.getbal(user)%></label>
+<%Userprofilepojo userprofilepojo = new Userprofilepojo(user); %>
+<label id = "ballab"><%=userprofiledao.getbal(userprofilepojo)%></label>
 </body>
 </html>
