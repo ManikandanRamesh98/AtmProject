@@ -40,11 +40,20 @@ position : absolute;
 top : 300px;
 left : 550px;
 }
-
+button{
+position : relative;
+width:80px;
+height:50px;
+background-color:red;
+right:-700px;
+border-radius:10px;
+top:-280px;
+}
 </style>
 </head>
 <body bgcolor = "blue">
 <%
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 if(session.getAttribute("invaliddeppin") != null){
 boolean flag =(boolean) session.getAttribute("invaliddeppin");
 if(flag){%>
@@ -70,6 +79,9 @@ if(session.getAttribute("user") == null){
 <form action = "Enterpindep.jsp" id = "formwith">
 <br>
 <input type = "text" name = "inpdep" id = "withinp"  required pattern = "[0-9]{3,7}" maxlength = "7"  title = "Enter Valid Amount" onclick = "invalabfn()">
+</form>
+<form action = "Welcomepage.jsp">
+<button type = "submit">Home</button>
 </form>
 </body>
 <script>

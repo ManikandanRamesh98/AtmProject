@@ -1,9 +1,9 @@
 <%@page import="org.apache.catalina.connector.Response"%>
-<%@page import="com.bank.login.Userprofiledao"%>
+<%@page import="com.atm.dao.Userprofiledao"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.bank.login.Ministatementdao"%>
+<%@page import="com.atm.dao.Ministatementdao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import = "com.bank.login.*"%>
+    pageEncoding="ISO-8859-1" import = "com.atm.login.*" import = "com.atm.models.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,14 +13,18 @@
 td{
 color:yellow;
 }
-th {
-           
-            text-align:center;
-        }
+
 table{
 border : 1px solid;
 }
-        
+#transamount{
+position : relative;
+left:70px;
+}
+#transtime{
+position : relative;
+left:150px;
+}        
       
 </style>
 </head>
@@ -28,7 +32,7 @@ border : 1px solid;
 <%!String user; %>
 
 <% 
-
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 if(session.getAttribute("user") == null){
 	response.sendRedirect("Login.html");
 }else{
@@ -52,8 +56,8 @@ ResultSet rSet = ministatementdao.getministatement(accno);
 <table>
 <tr>
 <th>Transaction_type</th>
-<th>Transaction<th>
-<th>Transaction Time<th>
+<th id = "transamount">Transaction</th>
+<th id = "transtime">Transaction Time</th>
 </tr>
 <%while(rSet.next()){%>
 <%if(Integer.parseInt(rSet.getString(1)) > 0){

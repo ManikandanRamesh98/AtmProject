@@ -27,6 +27,9 @@ font-size : 20px;
 </style>
 </head>
 <body bgcolor = "blue">
+<%
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+%>
 <fieldset>
 <legend>User Details : </legend>
 <form action = "Userdetailadmin.jsp">

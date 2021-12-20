@@ -1,7 +1,7 @@
-<%@page import="com.bank.login.Userprofilepojo"%>
+<%@page import="com.atm.models.Userprofilepojo"%>
 <%@page import="jakarta.security.auth.message.callback.PrivateKeyCallback.Request"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.bank.login.Userprofiledao"%>
+<%@page import="com.atm.dao.Userprofiledao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ Long mobno;
 
 
 <% 
-
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 if(session.getAttribute("user") == null){
 	response.sendRedirect("Login.html");
 }else{

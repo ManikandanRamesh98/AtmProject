@@ -1,8 +1,8 @@
-<%@page import="com.bank.login.Userprofilepojo"%>
+<%@page import="com.atm.models.Userprofilepojo"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.sql.ResultSet"%>
-<%@page import="com.bank.login.Userprofiledao"%>
+<%@page import="com.atm.dao.Userprofiledao"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +36,9 @@ Long accno;
 int bal;
 Long mobno;
 %>
-<% String username = request.getParameter("userdetadmin");
+<% 
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+String username = request.getParameter("userdetadmin");
 %>
 
 <% 

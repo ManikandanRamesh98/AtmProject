@@ -60,6 +60,7 @@ top:0px;
 <body bgcolor = "blue">
 <%! String admin; %>
 <%
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 if(session.getAttribute("admin") == null){
 	response.sendRedirect("Login.html");
 }else{

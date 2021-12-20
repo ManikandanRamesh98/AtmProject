@@ -1,5 +1,5 @@
-<%@page import="com.bank.login.Userprofilepojo"%>
-<%@page import="com.bank.login.Userprofiledao"%>
+<%@page import="com.atm.models.Userprofilepojo"%>
+<%@page import="com.atm.dao.Userprofiledao"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -27,8 +27,17 @@ top:80px;
 color:yellow;
 position:relative;
 top:160px;
-left:800px;
+left:850px;
 font-size:70px;
+}
+button{
+position: relative;
+background-color:red;
+height:50px;
+width:140px;
+float:right;
+top:-100px;
+border-radius: 10px;
 }
 </style>
 </head>
@@ -38,7 +47,7 @@ Userprofiledao userprofiledao = new Userprofiledao();
 %>
 
 <% 
-
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 if(session.getAttribute("user") == null){
 	response.sendRedirect("Login.html");
 }else{
@@ -50,5 +59,8 @@ if(session.getAttribute("user") == null){
 <h1 id = "headbal1">Your Balance :</h1><br>
 <%Userprofilepojo userprofilepojo = new Userprofilepojo(user); %>
 <label id = "ballab"><%=userprofiledao.getbal(userprofilepojo)%></label>
+<form action = "Welcomepage.jsp">
+<button type = "submit">Home</button>
+</form>
 </body>
 </html>

@@ -23,7 +23,9 @@ font-size : 20px;
 </style>
 </head>
 <body bgcolor = "blue">
-<%if(session.getAttribute("admin") != null){
+<%
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+if(session.getAttribute("admin") != null){
 	String admin = session.getAttribute("admin").toString();
 }else{
 	response.sendRedirect("Login.html");
