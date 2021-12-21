@@ -1,10 +1,11 @@
 package com.atm.impl;
 
-import com.atm.models.Loginpojo;
+import com.atm.models.Loginmodel;
 
 public interface Loginimpl {
-	//remove login details:
-	public int removelogindetail(Loginpojo loginpojo) throws Exception;
-	//Insert Data in to login table:
-    public void insertdata(Loginpojo loginpojo) throws Exception;
+	// remove login details:
+	public int removelogindetail(Loginmodel loginpojo) throws Exception;
+
+	// Insert Data in to login table:
+	public void insertdata(Loginmodel loginpojo) throws Exception;
 }

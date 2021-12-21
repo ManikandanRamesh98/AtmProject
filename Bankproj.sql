@@ -115,5 +115,7 @@ update userprofile
 set balance = 500
 where id in 24;
 commit;
-
+select * from userprofile;
+select * from withdraw;
+select with_amount trans,withdraw_at trans_at from withdraw where user_acc_no in 12345678901 and rownum < 6 union all select dep_amount trans,dep_at trans_at from deposit where user_acc_no in 12345678901 and rownum < 6 order by trans_at;
    

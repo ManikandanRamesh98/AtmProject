@@ -5,12 +5,13 @@ import java.sql.PreparedStatement;
 
 import com.atm.connection.Connect;
 import com.atm.impl.Loginimpl;
-import com.atm.models.Loginpojo;
+import com.atm.models.Loginmodel;
 
 import jakarta.servlet.http.HttpServlet;
 
-public class Logindetailsdao implements Loginimpl{
-	public int removelogindetail(Loginpojo loginpojo) throws Exception{
+public class Logindetailsdao implements Loginimpl {
+	// Remove Account:
+	public int removelogindetail(Loginmodel loginpojo) throws Exception {
 		Connection con = Connect.getConnection();
 
 		String query = "delete from login where username in ?";
@@ -21,24 +22,22 @@ public class Logindetailsdao implements Loginimpl{
 		statement.executeUpdate(query1);
 		return i;
 	}
-	
-	//Insert Data in to login table:
-    public void insertdata(Loginpojo loginpojo) throws Exception {
 
+	// Insert Data in to login table:
+	public void insertdata(Loginmodel loginpojo) throws Exception {
 
+		Connection con = Connect.getConnection();
 
-        Connection con = Connect.getConnection();
-
-        String query = "insert into login(username,role) values(?,?)";
-        PreparedStatement st = con.prepareStatement(query);
-        st.setString(1,loginpojo.getUsername());
-     st.setString(2, loginpojo.getRole());
-        int res = st.executeUpdate();
-        if(res > 0) {
-        	System.out.println(res +" is affected!!");
-        }
-        st.close();
-        con.close();
-    }
+		String query = "insert into login(username,role) values(?,?)";
+		PreparedStatement st = con.prepareStatement(query);
+		st.setString(1, loginpojo.getUsername());
+		st.setString(2, loginpojo.getRole());
+		int res = st.executeUpdate();
+		if (res > 0) {
+			System.out.println(res + " is affected!!");
+		}
+		st.close();
+		con.close();
+	}
 
 }

@@ -1,16 +1,20 @@
 package com.atm.impl;
 
-import com.atm.models.Usernamepasspojo;
+import com.atm.models.Usernamepasswordmodel;
 
 public interface Userimpl {
-	//get role:
-	public String getrole(Usernamepasspojo usernamepasspojo) throws Exception;
-	  //get role1:
-    public String getrole1(Usernamepasspojo usernamepasspojo) throws Exception;
-  //passchange:
-  	public int pinchange(Usernamepasspojo usernamepasspojo) throws Exception;
-  //insusernamepass:
-    public int insusernamepass(Usernamepasspojo usernamepasspojo) throws Exception;
-  //removeacc:
-    public int removeuser(Usernamepasspojo usernamepasspojo) throws Exception;
+	// get role:
+	public String getrole(Usernamepasswordmodel usernamepasspojo) throws Exception;
+
+	// get role1:
+	public String getrole1(Usernamepasswordmodel usernamepasspojo) throws Exception;
+
+	// password change:
+	public int pinchange(Usernamepasswordmodel usernamepasspojo) throws Exception;
+
+	// insert user name password:
+	public int insusernamepass(Usernamepasswordmodel usernamepasspojo) throws Exception;
+
+	// remove account:
+	public int removeuser(Usernamepasswordmodel usernamepasspojo) throws Exception;
 }

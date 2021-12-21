@@ -12,26 +12,26 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/Enterpinservlet")
-public class Enterpinwithdrawserv extends HttpServlet{
-@Override
-protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-	HttpSession session = req.getSession();
-	String user = session.getAttribute("user").toString();
-	int pin = Integer.parseInt(req.getParameter("withpin"));
-	Userprofiledao userprofiledao = new Userprofiledao();
-	try {
-		int userpin = userprofiledao.getuserpin(user);
-		if(userpin > 0) {
-			if(userpin == pin) {
-			res.sendRedirect("withdrawserv");
-			}else {
-				session.setAttribute("invalidpin", true);
-				res.sendRedirect("Withdraw.jsp");
+public class Enterpinwithdrawserv extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		String user = session.getAttribute("user").toString();
+		int pin = Integer.parseInt(req.getParameter("withpin"));
+		Userprofiledao userprofiledao = new Userprofiledao();
+		try {
+			int userpin = userprofiledao.getuserpin(user);
+			if (userpin > 0) {
+				if (userpin == pin) {
+					res.sendRedirect("withdrawserv");
+				} else {
+					session.setAttribute("invalidpin", true);
+					res.sendRedirect("Withdraw.jsp");
+				}
 			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
 	}
-}
 }

@@ -1,12 +1,12 @@
 <%@page import="com.atm.dao.Userprofiledao"%>
-<%@page import="com.atm.models.Userprofilepojo"%>
+<%@page import="com.atm.models.Userprofilemodel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Money Transfer Sucess!!</title>
+<title>Money Transfer Success!!</title>
 <style>
 h1{
 position : absolute;
@@ -35,13 +35,12 @@ border-radius:10px;
 <%!String username;
 int eamount;
 String user;
-int userbal;
-%>
+int userbal;%>
 <%
 username = session.getAttribute("moneytransfname").toString();
 eamount = (int)session.getAttribute("moneytransfamount");
 user = session.getAttribute("user").toString();
-Userprofilepojo userprofilepojo = new Userprofilepojo(user);
+Userprofilemodel userprofilepojo = new Userprofilemodel(user);
 Userprofiledao userprofiledao = new Userprofiledao();
 userbal = userprofiledao.getbal(userprofilepojo);
 %>

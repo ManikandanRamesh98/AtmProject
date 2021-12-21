@@ -2,27 +2,36 @@ package com.atm.impl;
 
 import java.sql.ResultSet;
 
-import com.atm.models.Userprofilepojo;
+import com.atm.models.Userprofilemodel;
 
 public interface Userprofileimpl {
-	//get bal:
-	public int getbal(Userprofilepojo userprofilepojo)throws Exception;
-	//ins bal:
-	public int insbal(Userprofilepojo userprofilepojo)throws Exception;
-	//getaccnof
-		public Long getaccno(Userprofilepojo userprofilepojo)throws Exception;
-		//getuserdetails
-		public ResultSet getuserdetails(Userprofilepojo userprofilepojo) throws Exception;
-		//insuserprofile details:
-		 public int insuserprofile(Userprofilepojo userprofilepojo) throws Exception;
-		//getuserdetails All
-			public ResultSet getuserdetails() throws Exception;
-			//removeacc:
-			public int removeuserprof(Userprofilepojo userprofilepojo) throws Exception;
-			//get max acc:
-			public ResultSet getusermaxacc() throws Exception;
-			//get max pin:
-			public ResultSet getusermaxpin() throws Exception;
-			//get user_pin:
-			public int getuserpin(String username)throws Exception;
+	// get balance:
+	public int getbal(Userprofilemodel userprofilepojo) throws Exception;
+
+	// ins balance:
+	public int insbal(Userprofilemodel userprofilepojo) throws Exception;
+
+	// get account no:
+	public Long getaccno(Userprofilemodel userprofilepojo) throws Exception;
+
+	// get user details:
+	public ResultSet getuserdetails(Userprofilemodel userprofilepojo) throws Exception;
+
+	// insert user profile details:
+	public int insuserprofile(Userprofilemodel userprofilepojo) throws Exception;
+
+	// get user details All
+	public ResultSet getuserdetails() throws Exception;
+
+	// remove account:
+	public int removeuserprof(Userprofilemodel userprofilepojo) throws Exception;
+
+	// get max account:
+	public ResultSet getusermaxacc() throws Exception;
+
+	// get max pin:
+	public ResultSet getusermaxpin() throws Exception;
+
+	// get user pin:
+	public int getuserpin(String username) throws Exception;
 }

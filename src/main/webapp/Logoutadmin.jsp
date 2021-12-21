@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,17 +7,18 @@
 <title>Logout</title>
 </head>
 <body>
-<%!String admin; %>
+	<%!String admin;%>
 
-<% 
-
-if(session.getAttribute("admin") == null){
+	<%
+	if (session.getAttribute("admin") == null) {
+		response.sendRedirect("Login.html");
+	} else {
+		admin = session.getAttribute("admin").toString();
+	}
+	%>
+	<%
+	session.invalidate();
 	response.sendRedirect("Login.html");
-}else{
- admin = session.getAttribute("admin").toString();
-}
-%>
-<%session.invalidate();
-response.sendRedirect("Login.html"); %>
+	%>
 </body>
 </html>
