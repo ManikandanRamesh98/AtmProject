@@ -101,10 +101,11 @@ return resLong;
 		public int removeuserprof(Userprofilemodel userprofilepojo) throws Exception{
 			Connection con = Connect.getConnection();
 
-			String query = "delete from userprofile where user_acc_no in ?";
+			String query = "delete from userprofile where user_acc_no in ? and id in ?";
 			String query1 = "commit";
 			PreparedStatement statement = con.prepareStatement(query);
 			statement.setLong(1, userprofilepojo.getUser_acc_no());
+			statement.setInt(2, userprofilepojo.getId());
 			int i = statement.executeUpdate();
 			statement.executeUpdate(query1);
 			return i;

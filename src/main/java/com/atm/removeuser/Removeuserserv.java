@@ -1,14 +1,17 @@
 package com.atm.removeuser;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 
 import com.atm.dao.Depositdao;
 import com.atm.dao.Logindetailsdao;
+import com.atm.dao.Removedusersdao;
 import com.atm.dao.Usernamepassworddao;
 import com.atm.dao.Userprofiledao;
 import com.atm.dao.Withdrawdao;
 import com.atm.models.Depositmodel;
 import com.atm.models.Loginmodel;
+import com.atm.models.Removedusersmodel;
 import com.atm.models.Usernamepasswordmodel;
 import com.atm.models.Userprofilemodel;
 import com.atm.models.Withdrawmodel;
@@ -27,9 +30,11 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	Withdrawdao withdrawdao = new Withdrawdao();
 	Depositdao depositdao = new Depositdao();
 	Userprofiledao userprofiledao = new Userprofiledao();
+	Removedusersdao removedusersdao = new Removedusersdao();
 	Usernamepassworddao userdao = new Usernamepassworddao();
 HttpSession session = req.getSession();
 String user = req.getParameter("remusername");
+int id = Integer.parseInt(req.getParameter("remuserid"));
 Long accno = -1l;
 try {
 	Userprofilemodel userprofilepojo = new Userprofilemodel(user);
@@ -48,12 +53,23 @@ try {
 				Depositmodel depositpojo = new Depositmodel(accno);
 				int deprem = depositdao.removedep(depositpojo);
 				if(deprem >= 0) {
-					Userprofilemodel userprofilepojo = new Userprofilemodel(accno);
+					Userprofilemodel userprofilepojo = new Userprofilemodel(user);
+					ResultSet resultSet = userprofiledao.getuserdetails(userprofilepojo);
+					while (resultSet.next()) {
+						int lastbalance = resultSet.getInt(4);
+						Long mobno = resultSet.getLong(5);
+						int userpin = resultSet.getInt(6);
+						Removedusersmodel removedusersmodel = new Removedusersmodel(accno, user, lastbalance, mobno, userpin);
+						removedusersdao.insremoveusers(removedusersmodel);
+					}
+					}
+					Userprofilemodel userprofilepojo = new Userprofilemodel(accno,id);
 					int userprofrem = userprofiledao.removeuserprof(userprofilepojo);
 					if(userprofrem > 0) {
 						Usernamepasswordmodel usernamepasspojo = new Usernamepasswordmodel(user);
 						int userrem = userdao.removeuser(usernamepasspojo);
 						if(userrem > 0) {
+						     
 							resp.sendRedirect("Userrem.jsp");
 						}else {
 							resp.getWriter().println("Invalid UserName");
@@ -69,7 +85,8 @@ try {
 					}
 				}
 			}
-		}
+		
+
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

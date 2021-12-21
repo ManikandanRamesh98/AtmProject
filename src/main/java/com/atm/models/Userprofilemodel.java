@@ -100,12 +100,18 @@ public class Userprofilemodel {
 
 		this.user_acc_no = acc_no;
 	}
+	public Userprofilemodel(Long acc_no,int id) {
+
+		this.user_acc_no = acc_no;
+		this.id = id;
+	}
 
 	public Userprofilemodel(String username, Long user_acc_no) {
 
 		this.username = username;
 		this.user_acc_no = user_acc_no;
 	}
+	
 
 	@Override
 	public String toString() {

@@ -101,12 +101,14 @@ select * from userprofile;
 select * from withdraw;
 select * from deposit;
 select * from login;
+select * from removedusers;
 
 desc  usernamepass;
 desc userprofile;
 desc withdraw;
 desc deposit;
 desc login;
+desc removedusers;
 
 insert into userprofile(username,user_acc_no,mob_no,user_pin) values('Mani',12345678901,9789674835,1234);
 commit;
@@ -117,5 +119,19 @@ where id in 24;
 commit;
 select * from userprofile;
 select * from withdraw;
-select with_amount trans,withdraw_at trans_at from withdraw where user_acc_no in 12345678901 and rownum < 6 union all select dep_amount trans,dep_at trans_at from deposit where user_acc_no in 12345678901 and rownum < 6 order by trans_at;
+commit;
+select *from(select with_amount trans,withdraw_at trans_at from withdraw where user_acc_no in 12345678901 union all select dep_amount trans,dep_at trans_at from deposit where user_acc_no in 12345678901  order by trans_at desc)where rownum <8;
    
+create table removedusers(
+id int generated always as identity(start with 1 increment by 1),
+user_acc_no number(11) not null,
+username varchar(80) not null,
+last_balance number(20,2) not null,
+mob_no number(10) not null,
+user_pin number(4) not null,
+acc_removed_at timestamp default current_timestamp);
+
+select * from removedusers;
+delete from removedusers;
+commit;
+drop table removedusers;
