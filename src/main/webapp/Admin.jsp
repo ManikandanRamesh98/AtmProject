@@ -62,7 +62,18 @@
 text-decoration: none;
 	font-size: 50px;
 	position: absolute;
-	top: 500px;
+	top: 380px;
+	border: 3px solid white;
+	border-radius: 10px;
+	color: yellow;
+	border-color: white;
+	left: 0px;
+}
+#logindetails{
+text-decoration: none;
+	font-size: 50px;
+	position: absolute;
+	top: 480px;
 	border: 3px solid white;
 	border-radius: 10px;
 	color: yellow;
@@ -93,7 +104,8 @@ text-decoration: none;
 	<a href="Userdetailsadmingetuser.jsp" id="adminuserdet">User
 		Details</a>
 	<a href="Logoutadmin.jsp" id="logoutatag">LogOut</a><br>
-	<a href = "Removedusers.jsp" id = "removedusers">Removed Users List</a>
+	<a href = "Removedusers.jsp" id = "removedusers">Removed Users List</a><br>
+	<a href = "Logindetails.jsp" id = "logindetails">Login Details</a>
 </body>
 
 </html>

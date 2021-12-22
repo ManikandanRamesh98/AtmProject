@@ -40,10 +40,10 @@ button {
 #reglab {
 	font-size: 20px;
 	position: relative;
-	top: -180px;
+	top: -320px;
 	left: 150px;
 	color: blue;
-	visibility: hidden;
+	visibility: visible;
 }
 
 label {

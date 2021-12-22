@@ -83,7 +83,7 @@ button {
 	<form action="Enterpindep.jsp" id="formwith">
 		<br> <input type="text" name="inpdep" id="withinp" required
 			pattern="[0-9]{3,7}" maxlength="7" title="Enter Valid Amount"
-			onclick="invalabfn()">
+			onclick="invalabfn()" autofocus>
 	</form>
 	<form action="Welcomepage.jsp">
 		<button type="submit">Home</button>

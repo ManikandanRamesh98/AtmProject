@@ -82,6 +82,7 @@ String transtype = null;%>
 		}
 		%>
 	</table>
+	
 </body>
 <script>
 	

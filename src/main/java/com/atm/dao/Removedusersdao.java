@@ -6,9 +6,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import com.atm.connection.Connect;
+import com.atm.impl.Removedusersimpl;
 import com.atm.models.Removedusersmodel;
 
-public class Removedusersdao {
+public class Removedusersdao implements Removedusersimpl{
 	// Insert data into removed users:
 	public int insremoveusers(Removedusersmodel removedusersmodel) throws Exception {
 		Connection con = Connect.getConnection();

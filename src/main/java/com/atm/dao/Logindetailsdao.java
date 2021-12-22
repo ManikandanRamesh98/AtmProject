@@ -2,6 +2,8 @@ package com.atm.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import com.atm.connection.Connect;
 import com.atm.impl.Loginimpl;
@@ -29,15 +31,28 @@ public class Logindetailsdao implements Loginimpl {
 		Connection con = Connect.getConnection();
 
 		String query = "insert into login(username,role) values(?,?)";
+		String query1 = "commit";
 		PreparedStatement st = con.prepareStatement(query);
 		st.setString(1, loginpojo.getUsername());
 		st.setString(2, loginpojo.getRole());
 		int res = st.executeUpdate();
+		st.executeUpdate(query1);
 		if (res > 0) {
 			System.out.println(res + " is affected!!");
 		}
-		st.close();
-		con.close();
+		
+	}
+	
+	//fetch login details:
+	public ResultSet fetchlogin()throws Exception {
+		Connection con = Connect.getConnection();
+
+		String query = "select * from login";
+		Statement statement = con.createStatement();
+		ResultSet rSet = statement.executeQuery(query);
+		
+		
+		return rSet;
 	}
 
 }
