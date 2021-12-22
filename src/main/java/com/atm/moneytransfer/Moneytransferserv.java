@@ -1,12 +1,11 @@
 package com.atm.moneytransfer;
 
-import java.io.IOException;
-
-import com.atm.dao.Depositdao;
-import com.atm.dao.Userprofiledao;
-import com.atm.dao.Withdrawdao;
+import com.atm.impl.Depositimpl;
+import com.atm.impl.UserProfileimpl;
 import com.atm.models.Depositmodel;
+
 import com.atm.models.Userprofilemodel;
+
 import com.atm.models.Withdrawmodel;
 
 import jakarta.servlet.ServletException;
@@ -16,6 +15,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import java.io.IOException;
+
+import com.atm.impl.*;
+
 @WebServlet("/moneytransferserv")
 public class Moneytransferserv extends HttpServlet {
 	@Override
@@ -24,35 +27,35 @@ public class Moneytransferserv extends HttpServlet {
 		Long accountno = Long.parseLong(req.getParameter("moneytransfaccno"));
 		int eamount = Integer.parseInt(req.getParameter("moneytransfamount"));
 
-		Userprofilemodel userprofilepojo = new Userprofilemodel(username, accountno);
-		Userprofiledao userprofiledao = new Userprofiledao();
-		Withdrawdao withdrawdao = new Withdrawdao();
-		Depositdao depositdao = new Depositdao();
+		Userprofilemodel userprofilemodel = new Userprofilemodel(username, accountno);
+		UserProfileimpl userprofileimpl = new UserProfileimpl();
+		Withdrawimpl withdrawimpl = new Withdrawimpl();
+		Depositimpl depositimpl = new Depositimpl();
 		HttpSession session = req.getSession();
 		String user = session.getAttribute("user").toString();
 		try {
-			int bal = userprofiledao.moneytransf(userprofilepojo);
+			int bal = userprofileimpl.moneytransf(userprofilemodel);
 			if (bal >= 0) {
-				Userprofilemodel userprofilepojo1 = new Userprofilemodel(user);
-				int userbal = userprofiledao.getbal(userprofilepojo1);
+				Userprofilemodel userprofilemodel1 = new Userprofilemodel(user);
+				int userbal = userprofileimpl.getbal(userprofilemodel1);
 				System.out.println(userbal);
 				if (eamount <= userbal && eamount > 0 && eamount <= 30000) {
 					int withamount = userbal - eamount;
-					Userprofilemodel userprofilepojo2 = new Userprofilemodel(user, withamount);
-					int upduserbal = userprofiledao.insbal(userprofilepojo2);
+					Userprofilemodel userprofilemodel2 = new Userprofilemodel(user, withamount);
+					int upduserbal = userprofileimpl.insbal(userprofilemodel2);
 					if (upduserbal > 0) {
-						Long useraccountno = userprofiledao.getaccno(userprofilepojo1);
-						Withdrawmodel withdrawpojo = new Withdrawmodel(useraccountno, -eamount);
-						int inswithuser = withdrawdao.inswith(withdrawpojo);
+						Long useraccountno = userprofileimpl.getaccno(userprofilemodel1);
+						Withdrawmodel withdrawmodel = new Withdrawmodel(useraccountno, -eamount);
+						int inswithuser = withdrawimpl.inswith(withdrawmodel);
 						if (inswithuser > 0) {
-							Userprofilemodel userprofilepojo3 = new Userprofilemodel(username);
-							int userbal2 = userprofiledao.getbal(userprofilepojo3);
+							Userprofilemodel userprofilemodel3 = new Userprofilemodel(username);
+							int userbal2 = userprofileimpl.getbal(userprofilemodel3);
 							int depamount = userbal2 + eamount;
-							Userprofilemodel userprofilepojo4 = new Userprofilemodel(username, depamount);
-							int upduserbal2 = userprofiledao.insbal(userprofilepojo4);
+							Userprofilemodel userprofilemodel4 = new Userprofilemodel(username, depamount);
+							int upduserbal2 = userprofileimpl.insbal(userprofilemodel4);
 							if (upduserbal2 > 0) {
-								Depositmodel depositpojo = new Depositmodel(accountno, eamount);
-								int insdepuser2 = depositdao.insdep(depositpojo);
+								Depositmodel depositmodel = new Depositmodel(accountno, eamount);
+								int insdepuser2 = depositimpl.insdep(depositmodel);
 								if (insdepuser2 > 0) {
 									session.setAttribute("moneytransfname", username);
 									session.setAttribute("moneytransfamount", eamount);

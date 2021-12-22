@@ -1,7 +1,8 @@
+<%@page import="com.atm.impl.UserProfileimpl"%>
 <%@page import="org.apache.catalina.connector.Response"%>
-<%@page import="com.atm.dao.Userprofiledao"%>
+
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.atm.dao.Ministatementdao"%>
+<%@page import="com.atm.impl.Ministatementimpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.atm.login.*"
 	import="com.atm.models.*"%>
@@ -45,8 +46,9 @@ td {
 		user = session.getAttribute("user").toString();
 	}
 	%>
-	<%!Ministatementdao ministatementdao = new Ministatementdao();
-Userprofiledao userprofiledao = new Userprofiledao();
+	<%!Ministatementimpl ministatementdao = new Ministatementimpl();
+
+UserProfileimpl userprofiledao = new UserProfileimpl(); 
 String transtype = null;%>
 	<%
 	Userprofilemodel userprofilepojo = new Userprofilemodel(user);

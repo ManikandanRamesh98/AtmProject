@@ -1,5 +1,6 @@
+<%@page import="com.atm.impl.UserProfileimpl"%>
 <%@page import="com.atm.models.Userprofilemodel"%>
-<%@page import="com.atm.dao.Userprofiledao"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -47,7 +48,9 @@ button {
 </head>
 <body bgcolor="blue">
 	<%!String user;
-	Userprofiledao userprofiledao = new Userprofiledao();%>
+	
+	UserProfileimpl userProfiledao = new UserProfileimpl();
+	%>
 
 	<%
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
@@ -66,7 +69,7 @@ button {
 	<%
 	Userprofilemodel userprofilepojo = new Userprofilemodel(user);
 	%>
-	<label id="ballab"><%=userprofiledao.getbal(userprofilepojo)%></label>
+	<label id="ballab"><%=userProfiledao.getbal(userprofilepojo)%></label>
 	<form action="Welcomepage.jsp">
 		<button type="submit">Home</button>
 	</form>

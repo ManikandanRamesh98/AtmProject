@@ -2,7 +2,8 @@ package com.atm.pinchange;
 
 import java.io.IOException;
 
-import com.atm.dao.Usernamepassworddao;
+import com.atm.impl.UsernamePasswordimpl;
+
 import com.atm.models.Usernamepasswordmodel;
 
 import jakarta.servlet.ServletException;
@@ -17,14 +18,14 @@ public class Pinchangeservlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Usernamepassworddao userdao = new Usernamepassworddao();
+		UsernamePasswordimpl userimpl = new UsernamePasswordimpl();
 		String pass = req.getParameter("pininp");
 		HttpSession session = req.getSession();
 		String user = session.getAttribute("user").toString();
 		int i = -1;
 		try {
-			Usernamepasswordmodel usernamepasspojo = new Usernamepasswordmodel(user, pass);
-			i = userdao.pinchange(usernamepasspojo);
+			Usernamepasswordmodel usernamepassmodel = new Usernamepasswordmodel(user, pass);
+			i = userimpl.pinchange(usernamepassmodel);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

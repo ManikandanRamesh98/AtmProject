@@ -1,4 +1,4 @@
-package com.atm.dao;
+package com.atm.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 
 import com.atm.connection.Connect;
 
-public class Ministatementdao {
+public class Ministatementimpl {
 	// Get MiniStatement:
 	public ResultSet getministatement(Long accno) throws Exception {
 		Connection connection = Connect.getConnection();

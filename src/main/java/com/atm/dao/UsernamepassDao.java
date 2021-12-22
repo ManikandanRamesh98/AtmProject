@@ -1,8 +1,8 @@
-package com.atm.impl;
+package com.atm.dao;
 
 import com.atm.models.Usernamepasswordmodel;
 
-public interface Userimpl {
+public interface UsernamepassDao {
 	// get role:
 	public String getrole(Usernamepasswordmodel usernamepasspojo) throws Exception;
 

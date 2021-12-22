@@ -50,7 +50,7 @@ top:100px;
 				name="remusername" pattern="[A-Z][a-zA-Z]{3,20}"
 				title="Start with A-Z and use A-Z or a-z or 0-9 minimum 3 character maximum 20 character"><br>
 				<label>Enter user id :</label><br>
-				<input type = "text" name = "remuserid"><br>
+				<input type = "text" name = "remuserid" pattern = "[0-9]{1,5}" title = "Enter Valid User Id"><br>
 			<button type="submit">Remove</button>
 
 		</form>

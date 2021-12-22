@@ -1,8 +1,9 @@
+<%@page import="com.atm.impl.UserProfileimpl"%>
 <%@page import="com.atm.models.Userprofilemodel"%>
 <%@page
 	import="jakarta.security.auth.message.callback.PrivateKeyCallback.Request"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.atm.dao.Userprofiledao"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -27,7 +28,8 @@ legend {
 </head>
 <body bgcolor="blue">
 	<%!String user;
-	Userprofiledao userprofiledao = new Userprofiledao();
+	
+	UserProfileimpl userprofiledao = new UserProfileimpl();
 	int id;
 	String uname;
 	Long accno;

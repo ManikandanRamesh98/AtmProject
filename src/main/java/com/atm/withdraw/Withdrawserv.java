@@ -1,8 +1,10 @@
 package com.atm.withdraw;
 
-import com.atm.dao.Userprofiledao;
-import com.atm.dao.Withdrawdao;
+
+import com.atm.impl.UserProfileimpl;
+import com.atm.impl.Withdrawimpl;
 import com.atm.models.Userprofilemodel;
+
 import com.atm.models.Withdrawmodel;
 
 import jakarta.servlet.annotation.WebServlet;
@@ -14,8 +16,8 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/withdrawserv")
 public class Withdrawserv extends HttpServlet {
 	public void service(HttpServletRequest req, HttpServletResponse res) {
-		Userprofiledao userprofiledao = new Userprofiledao();
-		Withdrawdao withdrawdao = new Withdrawdao();
+		UserProfileimpl userprofiledao = new UserProfileimpl();
+		Withdrawimpl withdrawdao = new Withdrawimpl();
 		HttpSession session = req.getSession();
 		String uname = session.getAttribute("user").toString();
 		int eamount = (int) session.getAttribute("withamount");

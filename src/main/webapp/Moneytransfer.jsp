@@ -57,9 +57,10 @@ input {
 		<form action="moneytransferserv" method="post">
 			<label>Enter UserName : </label><br> <input type="text"
 				name="moneytransfname" autofocus><br> <label>Enter
-				UserAccountNo : </label><br> <input type="text" name="moneytransfaccno"><br>
+				UserAccountNo : </label><br> <input type="text" name="moneytransfaccno" ><br>
 			<label>Enter Amount : </label><br> <input type="text"
-				name="moneytransfamount"><br>
+				name="moneytransfamount" required
+			pattern="[0-9]{3,7}" maxlength="7" title="Enter Valid Amount"><br>
 			<button type="submit" id="formbt">Submit</button>
 		</form>
 	</fieldset>

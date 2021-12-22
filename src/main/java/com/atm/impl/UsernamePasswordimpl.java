@@ -1,13 +1,14 @@
-package com.atm.dao;
+package com.atm.impl;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Scanner;
 
 import com.atm.connection.Connect;
-import com.atm.impl.Userimpl;
 import com.atm.models.Usernamepasswordmodel;
 
-public class Usernamepassworddao implements Userimpl {
+public class UsernamePasswordimpl implements com.atm.dao.UsernamepassDao {
 	Scanner sc = new Scanner(System.in);
 
 	// Get Role:

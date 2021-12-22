@@ -1,14 +1,40 @@
 package com.atm.impl;
 
-import java.sql.ResultSet;
+import java.sql.*;
+import java.sql.PreparedStatement;
 
+import com.atm.connection.Connect;
+import com.atm.dao.RemovedusersDao;
 import com.atm.models.Removedusersmodel;
 
-public interface Removedusersimpl {
-//insert data in removed users table:
-	public int insremoveusers(Removedusersmodel removedusersmodel) throws Exception;
 
-	// fetch users data:
-	public ResultSet fetchremoveusers() throws Exception;
+public class RemovedUsersimpl implements RemovedusersDao {
+	// Insert data into removed users:
+	public int insremoveusers(Removedusersmodel removedusersmodel) throws Exception {
+		Connection con = Connect.getConnection();
 
+		String query = "insert into removedusers(user_acc_no,username,last_balance,mob_no,user_pin) values(?,?,?,?,?)";
+		String query1 = "commit";
+		PreparedStatement statement = con.prepareStatement(query);
+		statement.setLong(1, removedusersmodel.getUseraccno());
+		statement.setString(2, removedusersmodel.getUsername());
+		statement.setInt(3, removedusersmodel.getLastbalance());
+		statement.setLong(4, removedusersmodel.getMobno());
+		statement.setInt(5, removedusersmodel.getUserpin());
+		int i = statement.executeUpdate();
+		statement.executeUpdate(query1);
+		return i;
+	}
+
+//fetch user:
+
+	public ResultSet fetchremoveusers() throws Exception {
+		Connection con = Connect.getConnection();
+
+		String query = "select * from removedusers";
+		Statement statement = con.createStatement();
+
+		ResultSet resultSet = statement.executeQuery(query);
+		return resultSet;
+	}
 }

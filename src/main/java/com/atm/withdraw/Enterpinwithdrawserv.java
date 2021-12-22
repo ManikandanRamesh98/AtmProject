@@ -1,8 +1,12 @@
 package com.atm.withdraw;
 
+
+
+
+
 import java.io.IOException;
 
-import com.atm.dao.Userprofiledao;
+import com.atm.impl.UserProfileimpl;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,7 +22,7 @@ public class Enterpinwithdrawserv extends HttpServlet {
 		HttpSession session = req.getSession();
 		String user = session.getAttribute("user").toString();
 		int pin = Integer.parseInt(req.getParameter("withpin"));
-		Userprofiledao userprofiledao = new Userprofiledao();
+		UserProfileimpl userprofiledao = new UserProfileimpl();
 		try {
 			int userpin = userprofiledao.getuserpin(user);
 			if (userpin > 0) {

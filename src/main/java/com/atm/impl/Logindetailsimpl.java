@@ -1,17 +1,19 @@
-package com.atm.dao;
+package com.atm.impl;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+
 import com.atm.connection.Connect;
-import com.atm.impl.Loginimpl;
+import com.atm.dao.LoginDao;
 import com.atm.models.Loginmodel;
 
 import jakarta.servlet.http.HttpServlet;
 
-public class Logindetailsdao implements Loginimpl {
+public class Logindetailsimpl implements LoginDao {
 	// Remove Account:
 	public int removelogindetail(Loginmodel loginpojo) throws Exception {
 		Connection con = Connect.getConnection();

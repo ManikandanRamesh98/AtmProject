@@ -1,8 +1,8 @@
-package com.atm.impl;
+package com.atm.dao;
 
 import com.atm.models.Loginmodel;
 
-public interface Loginimpl {
+public interface LoginDao {
 	// remove login details:
 	public int removelogindetail(Loginmodel loginpojo) throws Exception;
 

@@ -1,34 +1,31 @@
 package com.atm.registeruser;
 
+
 import java.io.IOException;
 import java.sql.ResultSet;
-
-import org.apache.catalina.connector.Response;
-
-import com.atm.dao.Usernamepassworddao;
-import com.atm.dao.Userprofiledao;
+import com.atm.impl.UserProfileimpl;
+import com.atm.impl.UsernamePasswordimpl;
 import com.atm.models.Usernamepasswordmodel;
 import com.atm.models.Userprofilemodel;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.websocket.Session;
 
+		
 @WebServlet("/registersucc")
 public class Registerserv extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Usernamepassworddao userdao = new Usernamepassworddao();
-		Userprofiledao userprofiledao = new Userprofiledao();
+		UsernamePasswordimpl userimpl = new UsernamePasswordimpl();
+		UserProfileimpl userprofileimpl = new UserProfileimpl();
 		Long accno = 0l;
 		int userpin = 0;
 		try {
-			ResultSet rSet = userprofiledao.getusermaxacc();
-			ResultSet rSet1 = userprofiledao.getusermaxpin();
+			ResultSet rSet = userprofileimpl.getusermaxacc();
+			ResultSet rSet1 = userprofileimpl.getusermaxpin();
 			while (rSet.next()) {
 				accno = rSet.getLong(1) + 1;
 			}
@@ -44,16 +41,16 @@ public class Registerserv extends HttpServlet {
 		String role = req.getParameter("rolereg");
 		Long mobno = Long.parseLong(req.getParameter("mobnoreg"));
 		try {
-			Usernamepasswordmodel usernamepasspojo = new Usernamepasswordmodel(username, password, role);
-			int ins = userdao.insusernamepass(usernamepasspojo);
+			Usernamepasswordmodel usernamepassmodel = new Usernamepasswordmodel(username, password, role);
+			int ins = userimpl.insusernamepass(usernamepassmodel);
 			if (ins > 0) {
 				if (role.equals("admin")) {
 					HttpSession session = req.getSession();
 					session.setAttribute("adminreg", username);
 					resp.sendRedirect("Adminregsucc.jsp");
 				} else {
-					Userprofilemodel userprofilepojo = new Userprofilemodel(username, accno, mobno, userpin);
-					int profins = userprofiledao.insuserprofile(userprofilepojo);
+					Userprofilemodel userprofilemodel = new Userprofilemodel(username, accno, mobno, userpin);
+					int profins = userprofileimpl.insuserprofile(userprofilemodel);
 					if (profins > 0) {
 						HttpSession session = req.getSession();
 						session.setAttribute("reguser", username);

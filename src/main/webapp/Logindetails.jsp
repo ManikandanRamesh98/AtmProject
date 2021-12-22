@@ -1,4 +1,4 @@
-<%@page import="com.atm.dao.Logindetailsdao"%>
+<%@page import="com.atm.impl.Logindetailsimpl"%>
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -24,17 +24,17 @@ font-size:20px;
 </style>
 </head>
 <body bgcolor="blue">
-<% 
+<%
 if (session.getAttribute("admin") == null) {
 		response.sendRedirect("Login.html");
 	}
 	
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	%>
+%>
 	<%!ResultSet rs;%>
 	<%
-	Logindetailsdao logindetailsdao = new Logindetailsdao();
-	rs = logindetailsdao.fetchlogin();
+	Logindetailsimpl logindetailsdao = new Logindetailsimpl();
+		rs = logindetailsdao.fetchlogin();
 	%>
 	<table style="width: 80%; margin-left: 100px;">
 		<tr>

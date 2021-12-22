@@ -2,7 +2,8 @@ package com.atm.deposit;
 
 import java.io.IOException;
 
-import com.atm.dao.Userprofiledao;
+import com.atm.impl.UserProfileimpl;
+
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,9 +19,9 @@ public class Enterpindeposit extends HttpServlet {
 		HttpSession session = req.getSession();
 		String user = session.getAttribute("user").toString();
 		int pin = Integer.parseInt(req.getParameter("deppin"));
-		Userprofiledao userprofiledao = new Userprofiledao();
+		UserProfileimpl userprofileimpl = new UserProfileimpl();
 		try {
-			int userpin = userprofiledao.getuserpin(user);
+			int userpin = userprofileimpl.getuserpin(user);
 			if (userpin > 0) {
 				if (userpin == pin) {
 					res.sendRedirect("depserv");

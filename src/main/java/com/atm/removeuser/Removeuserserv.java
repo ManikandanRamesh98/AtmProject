@@ -3,17 +3,21 @@ package com.atm.removeuser;
 import java.io.IOException;
 import java.sql.ResultSet;
 
-import com.atm.dao.Depositdao;
-import com.atm.dao.Logindetailsdao;
-import com.atm.dao.Removedusersdao;
-import com.atm.dao.Usernamepassworddao;
-import com.atm.dao.Userprofiledao;
-import com.atm.dao.Withdrawdao;
+import com.atm.impl.Depositimpl;
+import com.atm.impl.Logindetailsimpl;
+import com.atm.impl.RemovedUsersimpl;
+import com.atm.impl.UserProfileimpl;
+import com.atm.impl.UsernamePasswordimpl;
+import com.atm.impl.Withdrawimpl;
 import com.atm.models.Depositmodel;
 import com.atm.models.Loginmodel;
+
 import com.atm.models.Removedusersmodel;
+
 import com.atm.models.Usernamepasswordmodel;
+
 import com.atm.models.Userprofilemodel;
+
 import com.atm.models.Withdrawmodel;
 
 import jakarta.servlet.ServletException;
@@ -26,12 +30,12 @@ import jakarta.servlet.http.HttpSession;
 public class Removeuserserv extends HttpServlet{
 @Override
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	Logindetailsdao logindetailsdao = new Logindetailsdao();
-	Withdrawdao withdrawdao = new Withdrawdao();
-	Depositdao depositdao = new Depositdao();
-	Userprofiledao userprofiledao = new Userprofiledao();
-	Removedusersdao removedusersdao = new Removedusersdao();
-	Usernamepassworddao userdao = new Usernamepassworddao();
+	Logindetailsimpl logindetailsdao = new Logindetailsimpl();
+	Withdrawimpl withdrawimpl = new Withdrawimpl();
+	Depositimpl depositdao = new Depositimpl();
+	UserProfileimpl userprofiledao = new UserProfileimpl();
+	RemovedUsersimpl removedusersdao = new RemovedUsersimpl();
+	UsernamePasswordimpl userdao = new UsernamePasswordimpl();
 HttpSession session = req.getSession();
 String user = req.getParameter("remusername");
 int id = Integer.parseInt(req.getParameter("remuserid"));
@@ -48,7 +52,7 @@ try {
 		int lrem = logindetailsdao.removelogindetail(loginpojo);
 		if(lrem >= 0) {
 			Withdrawmodel withdrawpojo = new Withdrawmodel(accno);
-			int withrem = withdrawdao.removewith(withdrawpojo);
+			int withrem = withdrawimpl.removewith(withdrawpojo);
 			if(withrem >= 0) {
 				Depositmodel depositpojo = new Depositmodel(accno);
 				int deprem = depositdao.removedep(depositpojo);

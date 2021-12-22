@@ -43,7 +43,7 @@ button {
 	top: -320px;
 	left: 150px;
 	color: blue;
-	visibility: visible;
+	visibility: hidden;
 }
 
 label {
