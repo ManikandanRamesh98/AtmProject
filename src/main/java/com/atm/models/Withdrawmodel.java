@@ -5,6 +5,7 @@ public class Withdrawmodel {
 	private Long useraccno;
 	private int withamount;
 	private String withdrawat;
+	private String moneytransfer;
 
 	public int getId() {
 		return id;
@@ -16,6 +17,10 @@ public class Withdrawmodel {
 
 	public Long getUser_acc_no() {
 		return useraccno;
+	}
+	
+	public String getmoneytransfer() {
+		return this.moneytransfer;
 	}
 
 	public void setUser_acc_no(Long user_acc_no) {
@@ -57,6 +62,13 @@ public class Withdrawmodel {
 
 		this.useraccno = user_acc_no;
 
+	}
+
+	public Withdrawmodel(Long user_acc_no, int with_amount, String moneytransfname) {
+
+		this.useraccno = user_acc_no;
+		this.withamount = with_amount;
+		this.moneytransfer = moneytransfname;
 	}
 
 	@Override

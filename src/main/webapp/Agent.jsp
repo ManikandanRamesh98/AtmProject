@@ -4,9 +4,36 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Agent</title>
+<style>
+h1{
+position: absolute;
+font-size:70px;
+left:500px;
+}
+a{
+background-color:yellow;
+text-decoration : none;
+position: absolute;
+font-size:60px;
+border:1px solid black;
+border-radius:10px;
+top:280px;
+
+}
+#depagent{
+position: absolute;
+top:200px;
+left:0px;
+}
+#historyagent{
+position: absolute;
+top:200px;
+right:0px;
+}
+</style>
 </head>
-<body>
+<body bgcolor = "blue">
 	<%!String agent;%>
 	<%
 	if (session.getAttribute("agent") == null) {
@@ -15,8 +42,9 @@
 		agent = session.getAttribute("agent").toString();
 	}
 	%>
-	welcome :
-	<%=agent%>
-
+	<h1>welcome :
+	<%=agent%></h1>
+<a href = "Depositagent.jsp" id = "depagent">Deposit Money To ATM</a><br>
+<a href = "Historyagent.jsp" id = "historyagent">View History</a>
 </body>
 </html>

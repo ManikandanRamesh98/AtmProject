@@ -5,6 +5,7 @@ public class Depositmodel {
 	private Long useraccno;
 	private int depamount;
 	private String depat;
+	private String moneytransfer;
 
 	@Override
 	public String toString() {
@@ -14,6 +15,10 @@ public class Depositmodel {
 
 	public int getId() {
 		return id;
+	}
+	
+	public String getmoneytransfer() {
+		return this.moneytransfer;
 	}
 
 	public void setId(int id) {
@@ -63,6 +68,13 @@ public class Depositmodel {
 
 		this.useraccno = user_acc_no;
 
+	}
+	
+	public Depositmodel(Long user_acc_no, int dep_amount,String moneytransfname) {
+
+		this.useraccno = user_acc_no;
+		this.depamount = dep_amount;
+this.moneytransfer = moneytransfname;
 	}
 
 }

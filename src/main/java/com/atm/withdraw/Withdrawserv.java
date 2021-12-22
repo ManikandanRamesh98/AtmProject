@@ -1,8 +1,10 @@
 package com.atm.withdraw;
 
 
+import com.atm.impl.AtmMoneyManagementimpl;
 import com.atm.impl.UserProfileimpl;
 import com.atm.impl.Withdrawimpl;
+import com.atm.models.AtmMoneyManagement;
 import com.atm.models.Userprofilemodel;
 
 import com.atm.models.Withdrawmodel;
@@ -18,10 +20,15 @@ public class Withdrawserv extends HttpServlet {
 	public void service(HttpServletRequest req, HttpServletResponse res) {
 		UserProfileimpl userprofiledao = new UserProfileimpl();
 		Withdrawimpl withdrawdao = new Withdrawimpl();
+		AtmMoneyManagementimpl atmMoneyManagementimpl = new AtmMoneyManagementimpl();
 		HttpSession session = req.getSession();
 		String uname = session.getAttribute("user").toString();
 		int eamount = (int) session.getAttribute("withamount");
+		
 		try {
+			//amount less than atm money:
+			Long dedbaL = atmMoneyManagementimpl.previousbal();
+			if(eamount <= dedbaL) {
 			Userprofilemodel userprofilepojo = new Userprofilemodel(uname);
 			if (userprofiledao.getbal(userprofilepojo) > 0) {
 				int bal = userprofiledao.getbal(userprofilepojo);
@@ -37,7 +44,15 @@ public class Withdrawserv extends HttpServlet {
 							withdrawdao.inswith(withdrawpojo);
 							session.setAttribute("withamount", eamount);
 							session.setAttribute("withbal", newbal);
+							//Atm money management:
+							Long dedbaL1 = atmMoneyManagementimpl.previousbal() - eamount;
+							AtmMoneyManagement atmMoneyManagement = new AtmMoneyManagement(dedbaL1);
+							int insatm = atmMoneyManagementimpl.updatebal(atmMoneyManagement);
+							if(insatm > 0) {
 							res.sendRedirect("Withdrawsucc.jsp");
+							}else {
+								res.getWriter().println("something went wrong!!");
+							}
 						} else {
 							System.out.println("cant get useracc");
 						}
@@ -49,6 +64,9 @@ public class Withdrawserv extends HttpServlet {
 				}
 			} else {
 				res.sendRedirect("Invaliduser.jsp");
+			}
+			}else {
+				res.sendRedirect("NoMoney.jsp");
 			}
 
 		} catch (Exception e) {

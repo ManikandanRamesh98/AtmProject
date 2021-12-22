@@ -67,8 +67,14 @@ String transtype = null;%>
 		<%
 		if (Integer.parseInt(rSet.getString(1)) > 0) {
 			transtype = "Deposit";
+			if(rSet.getString(3) != null){
+				transtype = "Money Transfer From " + rSet.getString(3);
+			}
 		} else {
 			transtype = "Withdraw";
+			if(rSet.getString(3) != null){
+				transtype = "Money Transfer To " + rSet.getString(3);
+			}
 		}
 		%>
 		<tr>

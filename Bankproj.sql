@@ -96,14 +96,14 @@ select max(user_acc_no) from userprofile;
 select max(user_pin) from userprofile;
 select with_amount trans,withdraw_at trans_at from withdraw where user_acc_no in 12345678903 union all select dep_amount trans,dep_at trans_at from deposit where user_acc_no in 12345678903 order by trans_at desc;
 
-select * from usernamepass; 
+select * from usernamepassword; 
 select * from userprofile;
 select * from withdraw;
 select * from deposit;
 select * from login;
 select * from removedusers;
-
-desc  usernamepass;
+alter table deposit add money_transfer varchar(80);
+desc  usernamepassword;
 desc userprofile;
 desc withdraw;
 desc deposit;
@@ -112,7 +112,7 @@ desc removedusers;
 
 insert into userprofile(username,user_acc_no,mob_no,user_pin) values('Mani',12345678901,9789674835,1234);
 commit;
-insert into usernamepass(username,password,role) values('Hari','hari@123','admin');
+insert into usernamepassword(username,password,role) values('Suresh','suresh@123','agent');
 update userprofile
 set balance = 500
 where id in 24;
@@ -135,3 +135,22 @@ select * from removedusers;
 delete from removedusers;
 commit;
 drop table removedusers;
+
+
+--Atm money table--
+
+create table atm_money_management(
+id int generated always as identity(start with 1 increment by 1),
+money_deposited number(15,2) not null,
+money_balance number(15,2) not null,
+deposited_at timestamp default current_timestamp,
+agent_name varchar(80) not null);
+
+insert into atm_money_management(money_deposited,money_balance,agent_name) values(100000,88000,'suresh');
+commit;
+
+update atm_money_management
+set money_balance = 200
+where id in 4;
+
+select * from atm_money_management;

@@ -46,6 +46,13 @@ public class Loginval extends HttpServlet {
 					flag = true;
 					session.setAttribute("admin", uname);
 					response.sendRedirect("Admin.jsp");
+				}else if(role.equals("agent")) {
+					Loginmodel loginmodel = new Loginmodel(uname, role);
+					logindetailsimpl.insertdata(loginmodel);
+					System.out.println("this is agent");
+					flag = true;
+					session.setAttribute("agent", uname);
+					response.sendRedirect("Agent.jsp");
 				}
 			}
 

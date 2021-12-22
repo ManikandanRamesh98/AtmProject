@@ -13,11 +13,12 @@ public class Depositimpl implements com.atm.dao.DepositDao {
 	public int insdep(Depositmodel depositpojo) throws Exception {
 		Connection con = Connect.getConnection();
 
-		String query = "insert into deposit(user_acc_no,dep_amount) values(?,?)";
+		String query = "insert into deposit(user_acc_no,dep_amount,money_transfer) values(?,?,?)";
 		String query1 = "commit";
 		PreparedStatement statement = con.prepareStatement(query);
 		statement.setLong(1, depositpojo.getUser_acc_no());
 		statement.setInt(2, depositpojo.getDep_amount());
+		statement.setString(3, depositpojo.getmoneytransfer());
 		int i = statement.executeUpdate();
 		statement.executeUpdate(query1);
 		return i;

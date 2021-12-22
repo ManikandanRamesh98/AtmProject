@@ -9,8 +9,9 @@
 #adminlab {
 	font-size: 50px;
 	position: absolute;
-	left: 480px;
-	color: yellow;
+	left: 500px;
+	
+	
 }
 
 #adminregus {
@@ -20,7 +21,7 @@
 	top: 110px;
 	border: 3px solid white;
 	border-radius: 10px;
-	color: yellow;
+	background-color: yellow;
 	border-color: white;
 	left: 0px;
 }
@@ -32,8 +33,7 @@
 	top: 210px;
 	border: 3px solid white;
 	border-radius: 10px;
-	color: yellow;
-	border-color: white;
+	background-color: yellow;
 	left: 0px;
 }
 
@@ -44,7 +44,7 @@
 	top: 300px;
 	border: 3px solid white;
 	border-radius: 10px;
-	color: yellow;
+	background-color: yellow;
 	border-color: white;
 	left: 0px;
 }
@@ -53,10 +53,11 @@
 	text-decoration: none;
 	font-size: 50px;
 	position: absolute;
-	color: yellow;
+	background-color:red;
 	border-color: white;
 	right: 0px;
 	top: 0px;
+	border-radius:10px;
 }
 #removedusers{
 text-decoration: none;
@@ -65,7 +66,7 @@ text-decoration: none;
 	top: 380px;
 	border: 3px solid white;
 	border-radius: 10px;
-	color: yellow;
+	background-color: yellow;
 	border-color: white;
 	left: 0px;
 }
@@ -76,7 +77,7 @@ text-decoration: none;
 	top: 480px;
 	border: 3px solid white;
 	border-radius: 10px;
-	color: yellow;
+	background-color: yellow;
 	border-color: white;
 	left: 0px;
 }

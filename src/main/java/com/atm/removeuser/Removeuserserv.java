@@ -30,7 +30,7 @@ import jakarta.servlet.http.HttpSession;
 public class Removeuserserv extends HttpServlet{
 @Override
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	Logindetailsimpl logindetailsdao = new Logindetailsimpl();
+	Logindetailsimpl logindetailsimpl = new Logindetailsimpl();
 	Withdrawimpl withdrawimpl = new Withdrawimpl();
 	Depositimpl depositdao = new Depositimpl();
 	UserProfileimpl userprofiledao = new UserProfileimpl();
@@ -49,7 +49,7 @@ try {
 }
 	try {
 		Loginmodel loginpojo = new Loginmodel(user);
-		int lrem = logindetailsdao.removelogindetail(loginpojo);
+		int lrem = logindetailsimpl.removelogindetail(loginpojo);
 		if(lrem >= 0) {
 			Withdrawmodel withdrawpojo = new Withdrawmodel(accno);
 			int withrem = withdrawimpl.removewith(withdrawpojo);
