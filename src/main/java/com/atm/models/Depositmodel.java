@@ -1,6 +1,6 @@
 package com.atm.models;
 
-public class Depositmodel {
+public class DepositModel {
 	private int id;
 	private Long useraccno;
 	private int depamount;
@@ -49,7 +49,7 @@ public class Depositmodel {
 		this.depat = dep_at;
 	}
 
-	public Depositmodel(int id, Long user_acc_no, int dep_amount, String dep_at) {
+	public DepositModel(int id, Long user_acc_no, int dep_amount, String dep_at) {
 
 		this.id = id;
 		this.useraccno = user_acc_no;
@@ -57,20 +57,20 @@ public class Depositmodel {
 		this.depat = dep_at;
 	}
 
-	public Depositmodel(Long user_acc_no, int dep_amount) {
+	public DepositModel(Long user_acc_no, int dep_amount) {
 
 		this.useraccno = user_acc_no;
 		this.depamount = dep_amount;
 
 	}
 
-	public Depositmodel(Long user_acc_no) {
+	public DepositModel(Long user_acc_no) {
 
 		this.useraccno = user_acc_no;
 
 	}
 	
-	public Depositmodel(Long user_acc_no, int dep_amount,String moneytransfname) {
+	public DepositModel(Long user_acc_no, int dep_amount,String moneytransfname) {
 
 		this.useraccno = user_acc_no;
 		this.depamount = dep_amount;

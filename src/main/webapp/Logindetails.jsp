@@ -1,7 +1,7 @@
-<%@page import="com.atm.impl.Logindetailsimpl"%>
+<%@page import="com.atm.impl.LoginDetailsImpl"%>
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +33,7 @@ if (session.getAttribute("admin") == null) {
 %>
 	<%!ResultSet rs;%>
 	<%
-	Logindetailsimpl logindetailsdao = new Logindetailsimpl();
+	LoginDetailsImpl logindetailsdao = new LoginDetailsImpl();
 		rs = logindetailsdao.fetchlogin();
 	%>
 	<table style="width: 80%; margin-left: 100px;">

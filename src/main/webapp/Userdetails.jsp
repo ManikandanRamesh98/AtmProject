@@ -1,11 +1,10 @@
-<%@page import="com.atm.impl.UserProfileimpl"%>
-<%@page import="com.atm.models.Userprofilemodel"%>
-<%@page
-	import="jakarta.security.auth.message.callback.PrivateKeyCallback.Request"%>
+<%@page import="com.atm.impl.UserProfileImpl"%>
+<%@page import="com.atm.models.UserProfileModel"%>
+
 <%@page import="java.sql.ResultSet"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +28,7 @@ legend {
 <body bgcolor="blue">
 	<%!String user;
 	
-	UserProfileimpl userprofiledao = new UserProfileimpl();
+	UserProfileImpl userprofiledao = new UserProfileImpl();
 	int id;
 	String uname;
 	Long accno;
@@ -39,23 +38,23 @@ legend {
 
 	<%
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("user") == null) {
-		response.sendRedirect("Login.html");
-	} else {
-		user = session.getAttribute("user").toString();
-	}
+		if (session.getAttribute("user") == null) {
+			response.sendRedirect("Login.html");
+		} else {
+			user = session.getAttribute("user").toString();
+		}
 	%>
 
 	<%
-	Userprofilemodel userprofilepojo = new Userprofilemodel(user);
-	ResultSet rs = userprofiledao.getuserdetails(userprofilepojo);
-	while (rs.next()) {
-		id = rs.getInt(1);
-		uname = rs.getString(2);
-		accno = rs.getLong(3);
-		bal = rs.getInt(4);
-		mobno = rs.getLong(5);
-	}
+	UserProfileModel userprofilepojo = new UserProfileModel(user);
+		ResultSet rs = userprofiledao.getuserdetails(userprofilepojo);
+		while (rs.next()) {
+			id = rs.getInt(1);
+			uname = rs.getString(2);
+			accno = rs.getLong(3);
+			bal = rs.getInt(4);
+			mobno = rs.getLong(5);
+		}
 	%>
 	<fieldset id="userdetailfield">
 		<legend>User Details</legend>

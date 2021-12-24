@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +53,7 @@ top:80px;
 	<legend>REFILL</legend>
 	<form action = "depagentserv" method = "post">
 	<label>Enter Amount To Refill : </label><br>
-	<input type = "text" name= "depagentamount" pattern = "[0-9]{3,7}" title = "Enter Valid Amountsa"><br>
+	<input type = "text" name= "depagentamount" pattern="[1-9][0-9]+[0][0]" maxlength="7"><br>
 	<button type = "submit">Deposit</button>
 	</form>
 	</fieldset>

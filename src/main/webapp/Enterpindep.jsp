@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +35,7 @@ input {
 	%>
 	<h1>Enter Pin</h1>
 	<form action="Enterpindepservlet">
-		<input type="password" name="deppin" id="withpinid">
+		<input type="password" name="deppin" id="withpinid" required autofocus>
 
 	</form>
 </body>

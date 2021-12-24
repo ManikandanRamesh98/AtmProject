@@ -1,8 +1,8 @@
-<%@page import="com.atm.impl.UserProfileimpl"%>
+<%@page import="com.atm.impl.UserProfileImpl"%>
 
-<%@page import="com.atm.models.Userprofilemodel"%>
+<%@page import="com.atm.models.UserProfileModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,9 +41,9 @@ int userbal;%>
 username = session.getAttribute("moneytransfname").toString();
 eamount = (int)session.getAttribute("moneytransfamount");
 user = session.getAttribute("user").toString();
-Userprofilemodel userprofilepojo = new Userprofilemodel(user);
+UserProfileModel userprofilepojo = new UserProfileModel(user);
 
-UserProfileimpl userprofiledao = new UserProfileimpl();
+UserProfileImpl userprofiledao = new UserProfileImpl();
 userbal = userprofiledao.getbal(userprofilepojo);
 %>
 <h1>You Have Sucessfully Transfered <%=" " + eamount + " " %> to <%=" " + username %></h1>

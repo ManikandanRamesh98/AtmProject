@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" import = "com.atm.controller.* "%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +10,6 @@
 	font-size: 50px;
 	position: absolute;
 	left: 500px;
-	
-	
 }
 
 #adminregus {
@@ -53,14 +51,15 @@
 	text-decoration: none;
 	font-size: 50px;
 	position: absolute;
-	background-color:red;
+	background-color: red;
 	border-color: white;
 	right: 0px;
 	top: 0px;
-	border-radius:10px;
+	border-radius: 10px;
 }
-#removedusers{
-text-decoration: none;
+
+#removedusers {
+	text-decoration: none;
 	font-size: 50px;
 	position: absolute;
 	top: 380px;
@@ -70,8 +69,9 @@ text-decoration: none;
 	border-color: white;
 	left: 0px;
 }
-#logindetails{
-text-decoration: none;
+
+#logindetails {
+	text-decoration: none;
 	font-size: 50px;
 	position: absolute;
 	top: 480px;
@@ -104,9 +104,11 @@ text-decoration: none;
 	<br>
 	<a href="Userdetailsadmingetuser.jsp" id="adminuserdet">User
 		Details</a>
-	<a href="Logoutadmin.jsp" id="logoutatag">LogOut</a><br>
-	<a href = "Removedusers.jsp" id = "removedusers">Removed Users List</a><br>
-	<a href = "Logindetails.jsp" id = "logindetails">Login Details</a>
+	<a href="Logoutadmin.jsp" id="logoutatag">LogOut</a>
+	<br>
+	<a href="Removedusers.jsp" id="removedusers">Removed Users List</a>
+	<br>
+	<a href="Logindetails.jsp" id="logindetails">Login Details</a>
 </body>
 
 </html>

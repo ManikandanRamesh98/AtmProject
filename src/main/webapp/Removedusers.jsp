@@ -1,9 +1,9 @@
-<%@page import="com.atm.impl.RemovedUsersimpl"%>
+<%@page import="com.atm.impl.RemovedUsersImpl"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.atm.models.*"%>
-<%@page import="com.atm.models.Removedusersmodel"%>
+<%@page import="com.atm.models.RemovedUsersModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,8 +27,8 @@ font-size:30px;
 <body bgcolor="blue">
 	<%!ResultSet rs;%>
 	<%
-	RemovedUsersimpl removedusersdao = new RemovedUsersimpl();
-		rs = removedusersdao.fetchremoveusers();
+	RemovedUsersImpl removedusersdao = new RemovedUsersImpl();
+			rs = removedusersdao.fetchremoveusers();
 	%>
 	<table style="width: 80%; margin-left: 100px;">
 		<tr>

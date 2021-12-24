@@ -1,6 +1,6 @@
 package com.atm.models;
 
-public class Usernamepasswordmodel {
+public class UsernamePasswordModel {
 	private int id;
 	private String username;
 	private String password;
@@ -47,7 +47,7 @@ public class Usernamepasswordmodel {
 		this.role = role;
 	}
 
-	public Usernamepasswordmodel(int id, String username, String password, String created_at, String role) {
+	public UsernamePasswordModel(int id, String username, String password, String created_at, String role) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -56,18 +56,18 @@ public class Usernamepasswordmodel {
 		this.role = role;
 	}
 
-	public Usernamepasswordmodel(String username, String password) {
+	public UsernamePasswordModel(String username, String password) {
 
 		this.username = username;
 		this.password = password;
 	}
 
-	public Usernamepasswordmodel(String username) {
+	public UsernamePasswordModel(String username) {
 
 		this.username = username;
 	}
 
-	public Usernamepasswordmodel(String username, String password, String role) {
+	public UsernamePasswordModel(String username, String password, String role) {
 
 		this.username = username;
 		this.password = password;

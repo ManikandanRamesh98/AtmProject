@@ -6,11 +6,11 @@ import java.sql.PreparedStatement;
 
 
 import com.atm.connection.Connect;
-import com.atm.models.Depositmodel;
+import com.atm.models.DepositModel;
 
-public class Depositimpl implements com.atm.dao.DepositDao {
+public class DepositImpl implements com.atm.dao.DepositDao {
 	// Insert data in Deposit:
-	public int insdep(Depositmodel depositpojo) throws Exception {
+	public int insdep(DepositModel depositpojo) throws Exception {
 		Connection con = Connect.getConnection();
 
 		String query = "insert into deposit(user_acc_no,dep_amount,money_transfer) values(?,?,?)";
@@ -25,7 +25,7 @@ public class Depositimpl implements com.atm.dao.DepositDao {
 	}
 
 	// remove account:
-	public int removedep(Depositmodel depositpojo) throws Exception {
+	public int removedep(DepositModel depositpojo) throws Exception {
 		Connection con = Connect.getConnection();
 
 		String query = "delete from deposit where user_acc_no in ?";

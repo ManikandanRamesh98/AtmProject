@@ -1,7 +1,7 @@
-<%@page import="com.atm.impl.UserProfileimpl"%>
-<%@page import="com.atm.models.Userprofilemodel"%>
+<%@page import="com.atm.impl.UserProfileImpl"%>
+<%@page import="com.atm.models.UserProfileModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
 <%@page import="java.sql.ResultSet"%>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@ legend {
 <body bgcolor="blue">
 	<%!String user;
 	
-	UserProfileimpl userprofiledao = new UserProfileimpl();
+	UserProfileImpl userprofiledao = new UserProfileImpl();
 	int id;
 	String uname;
 	Long accno;
@@ -42,27 +42,27 @@ legend {
 	Long mobno;%>
 	<%
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	String username = request.getParameter("userdetadmin");
+		String username = request.getParameter("userdetadmin");
 	%>
 
 	<%
 	if (session.getAttribute("admin") == null) {
-		response.sendRedirect("Login.html");
-	} else {
-		user = session.getAttribute("admin").toString();
-	}
+			response.sendRedirect("Login.html");
+		} else {
+			user = session.getAttribute("admin").toString();
+		}
 	%>
 
 	<%
-	Userprofilemodel userprofilepojo = new Userprofilemodel(username);
-	ResultSet rs = userprofiledao.getuserdetails(userprofilepojo);
-	while (rs.next()) {
-		id = rs.getInt(1);
-		uname = rs.getString(2);
-		accno = rs.getLong(3);
-		bal = rs.getInt(4);
-		mobno = rs.getLong(5);
-	}
+	UserProfileModel userprofilepojo = new UserProfileModel(username);
+		ResultSet rs = userprofiledao.getuserdetails(userprofilepojo);
+		while (rs.next()) {
+			id = rs.getInt(1);
+			uname = rs.getString(2);
+			accno = rs.getLong(3);
+			bal = rs.getInt(4);
+			mobno = rs.getLong(5);
+		}
 	%>
 
 	<fieldset id="userdetailfield">

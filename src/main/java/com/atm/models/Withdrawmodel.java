@@ -1,6 +1,6 @@
 package com.atm.models;
 
-public class Withdrawmodel {
+public class WithdrawModel {
 	private int id;
 	private Long useraccno;
 	private int withamount;
@@ -43,7 +43,7 @@ public class Withdrawmodel {
 		this.withdrawat = withdraw_at;
 	}
 
-	public Withdrawmodel(int id, Long user_acc_no, int with_amount, String withdraw_at) {
+	public WithdrawModel(int id, Long user_acc_no, int with_amount, String withdraw_at) {
 
 		this.id = id;
 		this.useraccno = user_acc_no;
@@ -51,20 +51,20 @@ public class Withdrawmodel {
 		this.withdrawat = withdraw_at;
 	}
 
-	public Withdrawmodel(Long user_acc_no, int with_amount) {
+	public WithdrawModel(Long user_acc_no, int with_amount) {
 
 		this.useraccno = user_acc_no;
 		this.withamount = with_amount;
 
 	}
 
-	public Withdrawmodel(Long user_acc_no) {
+	public WithdrawModel(Long user_acc_no) {
 
 		this.useraccno = user_acc_no;
 
 	}
 
-	public Withdrawmodel(Long user_acc_no, int with_amount, String moneytransfname) {
+	public WithdrawModel(Long user_acc_no, int with_amount, String moneytransfname) {
 
 		this.useraccno = user_acc_no;
 		this.withamount = with_amount;

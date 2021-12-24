@@ -154,3 +154,46 @@ set money_balance = 200
 where id in 4;
 
 select * from atm_money_management;
+select * from usernamepassword;
+
+
+
+--food order---
+CREATE TABLE user_details ( user_id int generated always as identity(start with 1 increment by 1),  
+                                user_name varchar2(30) not null,  
+                                phone_no number not null, 
+                                role varchar2(10) Default 'user',
+                                address varchar2(100) not null, 
+                                email_address varchar2(100) not null,  
+                                password varchar2(20) not null, 
+                                wallet int Default '100000',
+                                constraint con_user_id primary key(user_id),  
+                                unique(email_address), unique(phone_no));
+                                select * from user_details;
+                                
+                                
+                                CREATE TABLE order_details ( order_id int not null, 
+                             user_id int not null, 
+                             status varchar2(20) not null, 
+                             order_date timestamp default current_timestamp,
+                             constraint con_order_id1 foreign key(order_id) references order_foods(order_id),
+                             constraint con_user_id1 foreign key(user_id) references user_details(user_id));
+                             
+                             
+                             CREATE TABLE order_foods ( order_id int generated always as identity(start with 1 increment by 1), 
+                           user_id int not null,
+                           item_id int not null,  
+                           quantity int not null, 
+                           total_price decimal not null,
+                           constraint con_orderfoodsid primary key(order_id), 
+                           constraint con_userid foreign key(user_id) references user_details(user_id)
+                           );
+                           
+                           select * from order_foods;
+                           select * from order_details;
+                           desc order_details;
+                           select * 
+                           from order_foods ofd,order_details od
+                           where ofd.order_id = od.order_id;
+                           
+                           

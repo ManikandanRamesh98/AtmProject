@@ -1,6 +1,6 @@
-<%@page import="com.atm.impl.AtmMoneyManagementimpl"%>
+<%@page import="com.atm.impl.AtmMoneyManagementImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import = "java.sql.*"%>
+    pageEncoding="ISO-8859-1" import = "java.sql.*" import = "com.atm.controller.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,16 +25,16 @@ font-size:30px;
 <%!String agent;%>
 	<%
 	if (session.getAttribute("agent") == null) {
-		response.sendRedirect("Login.html");
-	} else {
-		agent = session.getAttribute("agent").toString();
-	}
+			response.sendRedirect("Login.html");
+		} else {
+			agent = session.getAttribute("agent").toString();
+		}
 	%>
 	<body bgcolor="blue">
 	<%!ResultSet rs;%>
 	<%
-	AtmMoneyManagementimpl atmMoneyManagementimpl = new AtmMoneyManagementimpl();
-		rs = atmMoneyManagementimpl.history();
+	AtmMoneyManagementImpl atmMoneyManagementimpl = new AtmMoneyManagementImpl();
+			rs = atmMoneyManagementimpl.history();
 	%>
 	<table style="width: 80%; margin-left: 100px;">
 		<tr>

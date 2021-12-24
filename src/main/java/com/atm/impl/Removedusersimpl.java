@@ -4,13 +4,13 @@ import java.sql.*;
 import java.sql.PreparedStatement;
 
 import com.atm.connection.Connect;
-import com.atm.dao.RemovedusersDao;
-import com.atm.models.Removedusersmodel;
+import com.atm.dao.RemovedUsersDao;
+import com.atm.models.RemovedUsersModel;
 
 
-public class RemovedUsersimpl implements RemovedusersDao {
+public class RemovedUsersImpl implements RemovedUsersDao {
 	// Insert data into removed users:
-	public int insremoveusers(Removedusersmodel removedusersmodel) throws Exception {
+	public int insremoveusers(RemovedUsersModel removedusersmodel) throws Exception {
 		Connection con = Connect.getConnection();
 
 		String query = "insert into removedusers(user_acc_no,username,last_balance,mob_no,user_pin) values(?,?,?,?,?)";

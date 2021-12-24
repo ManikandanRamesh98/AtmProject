@@ -8,12 +8,12 @@ import java.sql.Statement;
 import com.atm.connection.Connect;
 import com.atm.dao.UserprofileDao;
 import com.atm.models.*;
-import com.atm.models.Userprofilemodel;
+import com.atm.models.UserProfileModel;
 
-public class UserProfileimpl implements UserprofileDao {
+public class UserProfileImpl implements UserprofileDao {
 	
 	//Get Balance:
-	public int getbal(Userprofilemodel userprofilepojo)throws Exception {
+	public int getbal(UserProfileModel userprofilepojo)throws Exception {
 Connection con = Connect.getConnection();
 
 String query = "select balance from userprofile where username in ?";
@@ -29,7 +29,7 @@ return res;
 }
 	
 	//insert balance:
-	public int insbal(Userprofilemodel userprofilepojo)throws Exception {
+	public int insbal(UserProfileModel userprofilepojo)throws Exception {
 		Connection con = Connect.getConnection();
 
 		String query = "update userprofile set balance = ? where username in ?";
@@ -44,7 +44,7 @@ System.out.println(i);
 }
 	
 	//get Account number:
-	public Long getaccno(Userprofilemodel userprofilepojo)throws Exception {
+	public Long getaccno(UserProfileModel userprofilepojo)throws Exception {
 		Connection con = Connect.getConnection();
 
 		String query = "select user_acc_no from userprofile where username in ?";
@@ -59,7 +59,7 @@ return resLong;
 	}
 	
 	//get user details:
-	public ResultSet getuserdetails(Userprofilemodel userprofilepojo) throws Exception {
+	public ResultSet getuserdetails(UserProfileModel userprofilepojo) throws Exception {
 		Connection con = Connect.getConnection();
 
 		String query = "select * from userprofile where username in ?";
@@ -72,7 +72,7 @@ return resLong;
 	//insert user profile details:
 	
 	
-	  public int insuserprofile(Userprofilemodel userprofilepojo) throws Exception {
+	  public int insuserprofile(UserProfileModel userprofilepojo) throws Exception {
 		  Connection con = Connect.getConnection();
 
 			String query = "insert into userprofile(username,user_acc_no,mob_no,user_pin) values(?,?,?,?)";
@@ -98,7 +98,7 @@ return resLong;
 			return rs;
 		}
 		//remove account:
-		public int removeuserprof(Userprofilemodel userprofilepojo) throws Exception{
+		public int removeuserprof(UserProfileModel userprofilepojo) throws Exception{
 			Connection con = Connect.getConnection();
 
 			String query = "delete from userprofile where user_acc_no in ? and id in ?";
@@ -148,7 +148,7 @@ return resLong;
 					return -1;
 				}
 				
-				public int moneytransf(Userprofilemodel userprofilepojo)throws Exception {
+				public int moneytransf(UserProfileModel userprofilepojo)throws Exception {
 					Connection con = Connect.getConnection();
 
 					String query = "select balance from userprofile where username in ? and user_acc_no in ?";

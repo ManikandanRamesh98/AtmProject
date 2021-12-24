@@ -6,13 +6,13 @@ import java.sql.ResultSet;
 import java.util.Scanner;
 
 import com.atm.connection.Connect;
-import com.atm.models.Usernamepasswordmodel;
+import com.atm.models.UsernamePasswordModel;
 
-public class UsernamePasswordimpl implements com.atm.dao.UsernamepassDao {
+public class UsernamePasswordImpl implements com.atm.dao.UsernamePasswordDao {
 	Scanner sc = new Scanner(System.in);
 
 	// Get Role:
-	public String getrole(Usernamepasswordmodel usernamepasspojo) throws Exception {
+	public String getrole(UsernamePasswordModel usernamepasspojo) throws Exception {
 
 		String role = null;
 		Connection con = Connect.getConnection();
@@ -31,7 +31,7 @@ public class UsernamePasswordimpl implements com.atm.dao.UsernamepassDao {
 	}
 
 	// get role1:
-	public String getrole1(Usernamepasswordmodel usernamepasspojo) throws Exception {
+	public String getrole1(UsernamePasswordModel usernamepasspojo) throws Exception {
 		Connection con = Connect.getConnection();
 
 		String query = "select role from usernamepassword where username in ?";
@@ -44,7 +44,7 @@ public class UsernamePasswordimpl implements com.atm.dao.UsernamepassDao {
 	}
 
 	// password change:
-	public int pinchange(Usernamepasswordmodel usernamepasspojo) throws Exception {
+	public int pinchange(UsernamePasswordModel usernamepasspojo) throws Exception {
 		Connection con = Connect.getConnection();
 
 		String query = "update usernamepassword set password = ? where username in ?";
@@ -59,7 +59,7 @@ public class UsernamePasswordimpl implements com.atm.dao.UsernamepassDao {
 	}
 
 	// insert User name password:
-	public int insusernamepass(Usernamepasswordmodel usernamepasspojo) throws Exception {
+	public int insusernamepass(UsernamePasswordModel usernamepasspojo) throws Exception {
 		Connection con = Connect.getConnection();
 
 		String query = "insert into usernamepassword(username,password,role) values(?,?,?)";
@@ -74,7 +74,7 @@ public class UsernamePasswordimpl implements com.atm.dao.UsernamepassDao {
 	}
 
 	// remove account:
-	public int removeuser(Usernamepasswordmodel usernamepasspojo) throws Exception {
+	public int removeuser(UsernamePasswordModel usernamepasspojo) throws Exception {
 		Connection con = Connect.getConnection();
 
 		String query = "delete from usernamepassword where username in ?";

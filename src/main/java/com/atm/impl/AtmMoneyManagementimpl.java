@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import com.atm.connection.Connect;
-import com.atm.dao.AtmMoneyManagementdao;
-import com.atm.models.AtmMoneyManagement;
+import com.atm.dao.AtmMoneyManagementDao;
+import com.atm.models.AtmMoneyManagementModel;
 
-public class AtmMoneyManagementimpl implements AtmMoneyManagementdao{
+public class AtmMoneyManagementImpl implements AtmMoneyManagementDao{
 //Deposit money:
-	public int depositmoney(AtmMoneyManagement atmMoneyManagement) throws Exception {
+	public int depositmoney(AtmMoneyManagementModel atmMoneyManagement) throws Exception {
 		Connection con = Connect.getConnection();
 		String query = "insert into atm_money_management(money_deposited,money_balance,agent_name) values(?,?,?)";
 		String query1 = "commit";
@@ -46,7 +46,7 @@ public class AtmMoneyManagementimpl implements AtmMoneyManagementdao{
 	}
 	
 	//update balance:
-	public int updatebal(AtmMoneyManagement atmMoneyManagement) throws Exception {
+	public int updatebal(AtmMoneyManagementModel atmMoneyManagement) throws Exception {
 		Connection con = Connect.getConnection();
 		String query = "update atm_money_management set money_balance = ? where id in (select max(id) from atm_money_management)";
 		String query1 = "commit";
@@ -56,5 +56,19 @@ public class AtmMoneyManagementimpl implements AtmMoneyManagementdao{
 				int res = statement.executeUpdate();
 				statement.executeUpdate(query1);
 				return res;
+				
 	}
+				//food order:
+				public int walletbal(int id) throws Exception {
+					Connection con = Connect.getConnection();
+					String query = "select wallet from user_details where user_id = ?";
+					PreparedStatement statement = con.prepareStatement(query);
+					statement.setInt(1, id);
+					ResultSet res = statement.executeQuery();
+							while(res.next()) {
+								return res.getInt(1);
+							}
+							return -1;
+				}
+	
 }

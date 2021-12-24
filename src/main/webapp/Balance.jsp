@@ -1,8 +1,8 @@
-<%@page import="com.atm.impl.UserProfileimpl"%>
-<%@page import="com.atm.models.Userprofilemodel"%>
+<%@page import="com.atm.impl.UserProfileImpl"%>
+<%@page import="com.atm.models.UserProfileModel"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,16 +49,15 @@ button {
 <body bgcolor="blue">
 	<%!String user;
 	
-	UserProfileimpl userProfiledao = new UserProfileimpl();
-	%>
+	UserProfileImpl userProfiledao = new UserProfileImpl();%>
 
 	<%
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("user") == null) {
-		response.sendRedirect("Login.html");
-	} else {
-		user = session.getAttribute("user").toString();
-	}
+		if (session.getAttribute("user") == null) {
+			response.sendRedirect("Login.html");
+		} else {
+			user = session.getAttribute("user").toString();
+		}
 	%>
 	<h1 id="headbal">
 		Welcome&ensp;
@@ -67,7 +66,7 @@ button {
 	<h1 id="headbal1">Your Balance :</h1>
 	<br>
 	<%
-	Userprofilemodel userprofilepojo = new Userprofilemodel(user);
+	UserProfileModel userprofilepojo = new UserProfileModel(user);
 	%>
 	<label id="ballab"><%=userProfiledao.getbal(userprofilepojo)%></label>
 	<form action="Welcomepage.jsp">

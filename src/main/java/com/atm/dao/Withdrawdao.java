@@ -1,11 +1,11 @@
 package com.atm.dao;
 
-import com.atm.models.Withdrawmodel;
+import com.atm.models.WithdrawModel;
 
 public interface WithdrawDao {
 	// insert withdraw:
-	public int inswith(Withdrawmodel withdrawpojo) throws Exception;
+	public int inswith(WithdrawModel withdrawpojo) throws Exception;
 
 	// remove account
-	public int removewith(Withdrawmodel withdrawpojo) throws Exception;
+	public int removewith(WithdrawModel withdrawpojo) throws Exception;
 }

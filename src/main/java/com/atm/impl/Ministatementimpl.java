@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 
 import com.atm.connection.Connect;
 
-public class Ministatementimpl {
+public class MiniStatementImpl {
 	// Get MiniStatement:
 	public ResultSet getministatement(Long accno) throws Exception {
 		Connection connection = Connect.getConnection();

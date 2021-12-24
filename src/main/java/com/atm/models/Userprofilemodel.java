@@ -1,6 +1,6 @@
 package com.atm.models;
 
-public class Userprofilemodel {
+public class UserProfileModel {
 	private int id;
 	private String username;
 	private Long user_acc_no;
@@ -65,7 +65,7 @@ public class Userprofilemodel {
 		this.acc_created_at = acc_created_at;
 	}
 
-	public Userprofilemodel(int id, String username, Long user_acc_no, int balance, Long mob_no, int user_pin,
+	public UserProfileModel(int id, String username, Long user_acc_no, int balance, Long mob_no, int user_pin,
 			String acc_created_at) {
 		super();
 		this.id = id;
@@ -77,18 +77,18 @@ public class Userprofilemodel {
 		this.acc_created_at = acc_created_at;
 	}
 
-	public Userprofilemodel(String username, int balance) {
+	public UserProfileModel(String username, int balance) {
 
 		this.username = username;
 		this.balance = balance;
 	}
 
-	public Userprofilemodel(String username) {
+	public UserProfileModel(String username) {
 
 		this.username = username;
 	}
 
-	public Userprofilemodel(String username, Long user_acc_no, Long mob_no, int user_pin) {
+	public UserProfileModel(String username, Long user_acc_no, Long mob_no, int user_pin) {
 
 		this.username = username;
 		this.user_acc_no = user_acc_no;
@@ -96,17 +96,17 @@ public class Userprofilemodel {
 		this.user_pin = user_pin;
 	}
 
-	public Userprofilemodel(Long acc_no) {
+	public UserProfileModel(Long acc_no) {
 
 		this.user_acc_no = acc_no;
 	}
-	public Userprofilemodel(Long acc_no,int id) {
+	public UserProfileModel(Long acc_no,int id) {
 
 		this.user_acc_no = acc_no;
 		this.id = id;
 	}
 
-	public Userprofilemodel(String username, Long user_acc_no) {
+	public UserProfileModel(String username, Long user_acc_no) {
 
 		this.username = username;
 		this.user_acc_no = user_acc_no;

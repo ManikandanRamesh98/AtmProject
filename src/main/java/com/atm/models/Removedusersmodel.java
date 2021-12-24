@@ -1,6 +1,6 @@
 package com.atm.models;
 
-public class Removedusersmodel {
+public class RemovedUsersModel {
 private int id;
 private long useraccno;
 private String username;
@@ -9,7 +9,7 @@ private long mobno;
 private int userpin;
 private String accremovedat;
 
-public Removedusersmodel(int id, long useraccno, String username, int lastbalance, long mobno, int userpin,
+public RemovedUsersModel(int id, long useraccno, String username, int lastbalance, long mobno, int userpin,
 		String accremovedat) {
 	super();
 	this.id = id;
@@ -22,7 +22,7 @@ public Removedusersmodel(int id, long useraccno, String username, int lastbalanc
 }
 
 
-public Removedusersmodel(long useraccno, String username, int lastbalance, long mobno, int userpin) {
+public RemovedUsersModel(long useraccno, String username, int lastbalance, long mobno, int userpin) {
 	super();
 	this.useraccno = useraccno;
 	this.username = username;
