@@ -60,7 +60,7 @@ input {
 				UserAccountNo : </label><br> <input type="text" name="moneytransfaccno" pattern = "[0-9]{11}" title = "Enter valid Account no"><br>
 			<label>Enter Amount : </label><br> <input type="text"
 				name="moneytransfamount" required
-			pattern="[1-9][0-9]+[0][0]" maxlength="7" title="Enter Valid Amount"><br>
+			pattern="[1-9][0-9]+[0]" minlength = "3" maxlength="7" title="Enter Valid Amount"><br>
 			<button type="submit" id="formbt">Submit</button>
 		</form>
 	</fieldset>

@@ -30,7 +30,7 @@ public interface UserprofileDao {
 	public long getusermaxacc() throws Exception;
 
 	// get max pin:
-	public ResultSet getusermaxpin() throws Exception;
+	public int getusermaxpin() throws Exception;
 
 	// get user pin:
 	public int getuserpin(String username) throws Exception;

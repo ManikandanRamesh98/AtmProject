@@ -23,14 +23,15 @@ public class RegisterController extends HttpServlet {
 		int userpin = 0;
 		try {
 			accno = userprofileimpl.getusermaxacc()+1;
-			System.out.println(accno);
-			ResultSet rSet1 = userprofileimpl.getusermaxpin();
+			userpin = userprofileimpl.getusermaxpin()+1;
+//			System.out.println(accno);
+//			ResultSet rSet1 = userprofileimpl.getusermaxpin();
 //			while (rSet.next()) {
 //				accno = rSet.getLong(1) + 1;
 //			}
-			while (rSet1.next()) {
-				userpin = rSet1.getInt(1) + 1;
-			}
+//			while (rSet1.next()) {
+//				userpin = rSet1.getInt(1) + 1;
+//			}
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

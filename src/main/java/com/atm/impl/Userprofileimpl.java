@@ -158,45 +158,71 @@ public class UserProfileImpl implements UserprofileDao {
 	}
 
 	// get max pin:
-	public ResultSet getusermaxpin() throws Exception {
+	public int getusermaxpin() throws Exception {
 		Connection con = Connect.getConnection();
+//
+//		String query = "select max(user_pin) from userprofile";
+		
+//		Statement statement = con.createStatement();
+//
+//		ResultSet rs = statement.executeQuery(query);
+		String query = "{call bank.getusermaxpin(?)}";
 
-		String query = "select max(user_pin) from userprofile";
-		Statement statement = con.createStatement();
-
-		ResultSet rs = statement.executeQuery(query);
-		return rs;
+		CallableStatement statement = con.prepareCall(query);
+		statement.registerOutParameter(1, Types.INTEGER);
+		statement.execute();
+		int pin = statement.getInt(1);
+		return pin;
 	}
 
 	// get user_pin:
 	public int getuserpin(String username) throws Exception {
 		Connection con = Connect.getConnection();
 
-		String query = "select user_pin from userprofile where username in ?";
-		PreparedStatement statement = con.prepareStatement(query);
-		statement.setString(1, username);
+//		String query = "select user_pin from userprofile where username in ?";
+//		PreparedStatement statement = con.prepareStatement(query);
+//		statement.setString(1, username);
+//
+//		ResultSet rs = statement.executeQuery();
+//		while (rs.next()) {
+//			return rs.getInt(1);
+//		}
+//		return -1;
+		
+		String query = "{call bank.getuserpin(?,?)}";
 
-		ResultSet rs = statement.executeQuery();
-		while (rs.next()) {
-			return rs.getInt(1);
-		}
-		return -1;
+		CallableStatement statement = con.prepareCall(query);
+		statement.setString(1, username);
+		statement.registerOutParameter(2, Types.INTEGER);
+		statement.execute();
+		int pin = statement.getInt(2);
+		return pin;
 	}
 
 	public int moneytransf(UserProfileModel userprofilepojo) throws Exception {
 		Connection con = Connect.getConnection();
+//
+//		String query = "select balance from userprofile where username in ? and user_acc_no in ?";
+//		PreparedStatement statement = con.prepareStatement(query);
+//		statement.setString(1, userprofilepojo.getUsername());
+//		statement.setLong(2, userprofilepojo.getUser_acc_no());
+//		ResultSet rSet = statement.executeQuery();
+//
+//		int res = -1;
+//		while (rSet.next()) {
+//			res = rSet.getInt(1);
+//		}
+//		return res;
+		
+		String query = "{call bank.moneytransferbal(?,?,?)}";
 
-		String query = "select balance from userprofile where username in ? and user_acc_no in ?";
-		PreparedStatement statement = con.prepareStatement(query);
+		CallableStatement statement = con.prepareCall(query);
 		statement.setString(1, userprofilepojo.getUsername());
 		statement.setLong(2, userprofilepojo.getUser_acc_no());
-		ResultSet rSet = statement.executeQuery();
-
-		int res = -1;
-		while (rSet.next()) {
-			res = rSet.getInt(1);
-		}
-		return res;
+		statement.registerOutParameter(3, Types.INTEGER);
+		statement.execute();
+		int bal = statement.getInt(3);
+		return bal;
 	}
 
 }
