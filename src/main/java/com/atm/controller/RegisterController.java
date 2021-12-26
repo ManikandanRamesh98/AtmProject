@@ -1,6 +1,5 @@
 package com.atm.controller;
 
-
 import java.io.IOException;
 import java.sql.ResultSet;
 import com.atm.impl.UserProfileImpl;
@@ -14,7 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-		
 @WebServlet("/registersucc")
 public class RegisterController extends HttpServlet {
 	@Override
@@ -24,11 +22,12 @@ public class RegisterController extends HttpServlet {
 		Long accno = 0l;
 		int userpin = 0;
 		try {
-			ResultSet rSet = userprofileimpl.getusermaxacc();
+			accno = userprofileimpl.getusermaxacc()+1;
+			System.out.println(accno);
 			ResultSet rSet1 = userprofileimpl.getusermaxpin();
-			while (rSet.next()) {
-				accno = rSet.getLong(1) + 1;
-			}
+//			while (rSet.next()) {
+//				accno = rSet.getLong(1) + 1;
+//			}
 			while (rSet1.next()) {
 				userpin = rSet1.getInt(1) + 1;
 			}
@@ -48,11 +47,11 @@ public class RegisterController extends HttpServlet {
 					HttpSession session = req.getSession();
 					session.setAttribute("adminreg", username);
 					resp.sendRedirect("Adminregsucc.jsp");
-				}else if(role.equals("admin")) {
+				} else if (role.equals("admin")) {
 					HttpSession session = req.getSession();
 					session.setAttribute("agentreg", username);
 					resp.sendRedirect("Agentregsucc.jsp");
-				}else {
+				} else {
 					UserProfileModel userprofilemodel = new UserProfileModel(username, accno, mobno, userpin);
 					int profins = userprofileimpl.insuserprofile(userprofilemodel);
 					if (profins > 0) {

@@ -82,7 +82,7 @@ button {
 	<label id="labwith">Enter Amount To Deposit</label>
 	<form action="Enterpindep.jsp" id="formwith">
 		<br> <input type="text" name="inpdep" id="withinp" required
-			pattern="[1-9][0-9]+[0][0]" maxlength="7" title="Enter Valid Amount"
+			pattern="[1-9][0-9]+[0]" minlength = "3" maxlength="7" title="Enter Valid Amount"
 			onclick="invalabfn()" autofocus>
 	</form>
 	<form action="Welcomepage.jsp">

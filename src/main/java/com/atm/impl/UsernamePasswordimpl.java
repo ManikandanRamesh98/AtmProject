@@ -1,8 +1,10 @@
 package com.atm.impl;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.Scanner;
 
 import com.atm.connection.Connect;
@@ -17,15 +19,21 @@ public class UsernamePasswordImpl implements com.atm.dao.UsernamePasswordDao {
 		String role = null;
 		Connection con = Connect.getConnection();
 
-		String query = "select * from usernamepassword where username in ? and password in ?";
-		PreparedStatement st = con.prepareStatement(query);
+//		String query = "select * from usernamepassword where username in ? and password in ?";
+//		PreparedStatement st = con.prepareStatement(query);
+		String query = "{call bank.getrole(?,?,?)}";
+		CallableStatement st = con.prepareCall(query);
 		st.setString(1, usernamepasspojo.getUsername());
 		st.setString(2, usernamepasspojo.getPassword());
-		ResultSet rs = st.executeQuery();
-		while (rs.next()) {
-			role = rs.getString(5);
-
-		}
+		st.registerOutParameter(3, Types.VARCHAR);
+//		ResultSet rs = st.executeQuery();
+//		while (rs.next()) {
+//			role = rs.getString(5);
+//
+//		}
+		st.execute();
+		 role = st.getString(3);
+		System.out.println(role);
 
 		return role;
 	}
@@ -47,29 +55,37 @@ public class UsernamePasswordImpl implements com.atm.dao.UsernamePasswordDao {
 	public int pinchange(UsernamePasswordModel usernamepasspojo) throws Exception {
 		Connection con = Connect.getConnection();
 
-		String query = "update usernamepassword set password = ? where username in ?";
-		String query1 = "commit";
-		PreparedStatement statement = con.prepareStatement(query);
+//		String query = "update usernamepassword set password = ? where username in ?";
+//		String query1 = "commit";
+		String query = "{call bank.passchange(?,?,?)}";
+		CallableStatement statement = con.prepareCall(query);
+//		PreparedStatement statement = con.prepareStatement(query);
 		statement.setString(1, usernamepasspojo.getPassword());
 		statement.setString(2, usernamepasspojo.getUsername());
-		int i = statement.executeUpdate();
+		statement.registerOutParameter(3, Types.INTEGER);
+		statement.execute();
+		int i = statement.getInt(3);
 
-		statement.executeUpdate(query1);
+//		statement.executeUpdate(query1);
 		return i;
 	}
 
 	// insert User name password:
 	public int insusernamepass(UsernamePasswordModel usernamepasspojo) throws Exception {
 		Connection con = Connect.getConnection();
+		
+		String query = "{call bank.insertusernamepass(?,?,?,?)}";
+		CallableStatement statement = con.prepareCall(query);
 
-		String query = "insert into usernamepassword(username,password,role) values(?,?,?)";
-		String query1 = "commit";
-		PreparedStatement statement = con.prepareStatement(query);
+//		String query = "insert into usernamepassword(username,password,role) values(?,?,?)";
+//		String query1 = "commit";
+//		PreparedStatement statement = con.prepareStatement(query);
 		statement.setString(1, usernamepasspojo.getUsername());
 		statement.setString(2, usernamepasspojo.getPassword());
 		statement.setString(3, usernamepasspojo.getRole());
-		int i = statement.executeUpdate();
-		statement.executeUpdate(query1);
+		statement.registerOutParameter(4, Types.INTEGER);
+		statement.execute();
+		int i = statement.getInt(4);
 		return i;
 	}
 
@@ -77,12 +93,17 @@ public class UsernamePasswordImpl implements com.atm.dao.UsernamePasswordDao {
 	public int removeuser(UsernamePasswordModel usernamepasspojo) throws Exception {
 		Connection con = Connect.getConnection();
 
-		String query = "delete from usernamepassword where username in ?";
-		String query1 = "commit";
-		PreparedStatement statement = con.prepareStatement(query);
+//		String query = "delete from usernamepassword where username in ?";
+//		String query1 = "commit";
+		String query = "{call bank.removeuser(?,?)}";
+		CallableStatement statement = con.prepareCall(query);
+		
+//		PreparedStatement statement = con.prepareStatement(query);
 		statement.setString(1, usernamepasspojo.getUsername());
-		int i = statement.executeUpdate();
-		statement.executeUpdate(query1);
+		statement.registerOutParameter(2, Types.INTEGER);
+		statement.execute();
+		int i = statement.getInt(2);
+		
 		return i;
 	}
 }

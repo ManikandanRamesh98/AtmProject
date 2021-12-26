@@ -45,7 +45,7 @@ public class MoneyTransferController extends HttpServlet {
 					int upduserbal = userprofileimpl.insbal(userprofilemodel2);
 					if (upduserbal > 0) {
 						Long useraccountno = userprofileimpl.getaccno(userprofilemodel1);
-						WithdrawModel withdrawmodel = new WithdrawModel(useraccountno, -eamount,username);
+						WithdrawModel withdrawmodel = new WithdrawModel(useraccountno, -eamount, username);
 						int inswithuser = withdrawimpl.inswith(withdrawmodel);
 						if (inswithuser > 0) {
 							UserProfileModel userprofilemodel3 = new UserProfileModel(username);
@@ -54,7 +54,7 @@ public class MoneyTransferController extends HttpServlet {
 							UserProfileModel userprofilemodel4 = new UserProfileModel(username, depamount);
 							int upduserbal2 = userprofileimpl.insbal(userprofilemodel4);
 							if (upduserbal2 > 0) {
-								DepositModel depositmodel = new DepositModel(accountno, eamount,user);
+								DepositModel depositmodel = new DepositModel(accountno, eamount, user);
 								int insdepuser2 = depositimpl.insdep(depositmodel);
 								if (insdepuser2 > 0) {
 									session.setAttribute("moneytransfname", username);

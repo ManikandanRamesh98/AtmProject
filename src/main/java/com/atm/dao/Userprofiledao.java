@@ -27,7 +27,7 @@ public interface UserprofileDao {
 	public int removeuserprof(UserProfileModel userprofilepojo) throws Exception;
 
 	// get max account:
-	public ResultSet getusermaxacc() throws Exception;
+	public long getusermaxacc() throws Exception;
 
 	// get max pin:
 	public ResultSet getusermaxpin() throws Exception;

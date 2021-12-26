@@ -158,6 +158,9 @@ select * from usernamepassword;
 
 
 
+
+
+
 --food order---
 CREATE TABLE user_details ( user_id int generated always as identity(start with 1 increment by 1),  
                                 user_name varchar2(30) not null,  
@@ -195,5 +198,14 @@ CREATE TABLE user_details ( user_id int generated always as identity(start with 
                            select * 
                            from order_foods ofd,order_details od
                            where ofd.order_id = od.order_id;
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
                            
                            
