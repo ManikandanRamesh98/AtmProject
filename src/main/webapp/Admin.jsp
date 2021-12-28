@@ -81,6 +81,11 @@
 	border-color: white;
 	left: 0px;
 }
+#timehead{
+position : relative;
+color : black;
+top : -100px;
+}
 </style>
 </head>
 <body bgcolor="blue">
@@ -109,6 +114,35 @@
 	<a href="Removedusers.jsp" id="removedusers">Removed Users List</a>
 	<br>
 	<a href="Logindetails.jsp" id="logindetails">Login Details</a>
+	<h1 id = "timehead">00:00</h1>
 </body>
+
+<script>
+let th = document.getElementById("timehead");
+let time = 30;
+let i;
+window.addEventListener('load', () =>{
+	
+	 i= setInterval(() => {
+		if(time > 0){
+			if(time >= 10){
+				
+		th.innerHTML = "00 : " + time--;
+		
+			}else{
+				th.style.color = "red";
+				th.innerHTML = "00 : 0" + time--;
+			}
+		}else{
+			clearInterval(i);
+			window.location.assign("Login.html");
+		}
+	},1000);
+	
+});
+
+
+
+</script>
 
 </html>

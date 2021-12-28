@@ -31,6 +31,11 @@ position: absolute;
 top:200px;
 right:0px;
 }
+#timehead{
+position : relative;
+font-size:30px;
+left:0px;
+}
 </style>
 </head>
 <body bgcolor = "blue">
@@ -46,5 +51,33 @@ right:0px;
 	<%=agent%></h1>
 <a href = "Depositagent.jsp" id = "depagent">Deposit Money To ATM</a><br>
 <a href = "Historyagent.jsp" id = "historyagent">View History</a>
+<h1 id = "timehead">00:00</h1>
 </body>
+<script>
+let th = document.getElementById("timehead");
+let time = 30;
+let i;
+window.addEventListener('load', () =>{
+	
+	 i= setInterval(() => {
+		if(time > 0){
+			if(time >= 10){
+				
+		th.innerHTML = "00 : " + time--;
+		
+			}else{
+				th.style.color = "red";
+				th.innerHTML = "00 : 0" + time--;
+			}
+		}else{
+			clearInterval(i);
+			window.location.assign("Login.html");
+		}
+	},1000);
+	
+});
+
+
+
+</script>
 </html>
