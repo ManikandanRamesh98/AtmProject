@@ -151,7 +151,7 @@ commit;
 
 update atm_money_management
 set money_balance = 200
-where id in 4;
+where id in 22;
 
 select * from atm_money_management;
 select * from usernamepassword;

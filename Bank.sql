@@ -16,14 +16,28 @@ procedure insertwithdraw(accno in withdraw.user_acc_no%type,amount in  withdraw.
 procedure removewithdraw(accno in withdraw.user_acc_no%type,res out Integer);
 procedure insertdeposit(accno in deposit.user_acc_no%type,amount in  deposit.dep_amount%type,moneytransfname in deposit.money_transfer%type,res out Integer);
 procedure removedeposit(accno in deposit.user_acc_no%type,res out Integer);
-procedure removelogindetails(username1 login.username%type,res out Integer);
+procedure removelogindetails(username1 in login.username%type,res out Integer);
+procedure insertlogindetails(username1 in login.username%type,role1 in login.role%type,res out Integer);
+procedure depositmoneyagent(moneydep in atm_money_management.money_deposited%type,moneybal in atm_money_management.money_deposited%type,agentname1 in atm_money_management.agent_name%type,res out Integer);
+procedure previousbalagent(prevbal out Integer);
+procedure updatebalagent(moneybal in atm_money_management.money_balance%type,res out integer);
+procedure insertremovedusers(accno in removedusers.user_acc_no%type,username1 in removedusers.username%type,lastbal in removedusers.last_balance%type,mobno in removedusers.mob_no%type,pin in removedusers.user_pin%type,res out integer); 
 end bank;
 /
+
 select * from withdraw;
 select * from userprofile;
 select * from usernamepassword;
 select * from deposit;
 select * from login;
+select * from atm_money_management;
+select * from removedusers;
+
+
+
+
+
+--package body--
 create or replace package body bank as
 procedure getrole(username1 in usernamepassword.username%type,password1 in usernamepassword.password%type,role1  out usernamepassword.role%type) is
 begin
@@ -257,7 +271,7 @@ when others then res := 0;
 end removedeposit;
 
 --remove login details--Login table
-procedure removelogindetails(username1 login.username%type,res out Integer) is
+procedure removelogindetails(username1 in login.username%type,res out Integer) is
 begin
 delete from login where username in username1;
 
@@ -269,8 +283,95 @@ exception
 when others then res := 0;
 
 end removelogindetails;
+
+--insert login details--Login
+procedure insertlogindetails(username1 in login.username%type,role1 in login.role%type,res out Integer)is
+begin
+insert into login(username,role) values(username1,role1);
+
+if sql%rowcount > 0 then
+res := sql%rowcount;
+end if;
+
+exception
+when others then res := 0;
+
+end insertlogindetails;
+
+--deposit money agent -- Atm money management
+procedure depositmoneyagent(moneydep in atm_money_management.money_deposited%type,moneybal in atm_money_management.money_deposited%type,agentname1 in atm_money_management.agent_name%type,res out Integer)is
+begin
+insert into atm_money_management(money_deposited,money_balance,agent_name) values(moneydep,moneybal,agentname1);
+
+if sql%rowcount > 0 then
+res := sql%rowcount;
+end if;
+
+exception
+when others then res := 0;
+
+end depositmoneyagent;
+
+--previous balance--atm money management--
+procedure previousbalagent(prevbal out Integer)is
+begin
+select money_balance into prevbal
+from atm_money_management
+where id in (select max(id) from atm_money_management);
+
+exception
+when others then prevbal := -1;
+
+end previousbalagent;
+
+--update balance agent--atm_money_management
+procedure updatebalagent(moneybal in atm_money_management.money_balance%type,res out integer) is
+begin
+update atm_money_management set money_balance = moneybal where id in (select max(id) from atm_money_management);
+
+if sql%rowcount > 0 then 
+res := sql%rowcount;
+end if;
+
+commit;
+
+exception
+when others then res := 0;
+
+end updatebalagent;
+
+--insert removed users---Removed Users
+procedure insertremovedusers(accno in removedusers.user_acc_no%type,username1 in removedusers.username%type,lastbal in removedusers.last_balance%type,mobno in removedusers.mob_no%type,pin in removedusers.user_pin%type,res out integer)is
+begin
+insert into removedusers(user_acc_no,username,last_balance,mob_no,user_pin) values(accno,username1,lastbal,mobno,pin);
+
+if sql%rowcount > 0 then
+res := sql%rowcount;
+end if;
+
+exception
+when others then res := 0;
+
+end insertremovedusers;
 end;
 /
 
-select max(user_acc_no)
-from userprofile;
+
+
+select * from atm_money_management;
+desc atm_money_management;
+
+update atm_money_management
+set money_balance = 1500
+where id in 21;
+
+commit;
+
+set serveroutput on;
+declare 
+res integer;
+begin
+bank.previousbalagent(res);
+dbms_output.put_line(res);
+end;
+/

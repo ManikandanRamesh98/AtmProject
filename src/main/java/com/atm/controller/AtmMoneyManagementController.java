@@ -21,7 +21,7 @@ public class AtmMoneyManagementController extends HttpServlet {
 		HttpSession session = req.getSession();
 		String agent = session.getAttribute("agent").toString();
 		try {
-			Long prevbal = atmMoneyManagementimpl.previousbal();
+			long prevbal = atmMoneyManagementimpl.previousbal();
 
 			if (eamount >= 2000 && eamount <= 50000) {
 				if (prevbal <= 2000) {

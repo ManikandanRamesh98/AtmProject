@@ -9,7 +9,7 @@ public interface LoginDetailsDao {
 	public int removelogindetail(LoginDetailsModel loginpojo) throws Exception;
 
 	// Insert Data in to login table:
-	public void insertdata(LoginDetailsModel loginpojo) throws Exception;
+	public int insertdata(LoginDetailsModel loginpojo) throws Exception;
 	
 	//fetch login details:
 		public ResultSet fetchlogin()throws Exception;
