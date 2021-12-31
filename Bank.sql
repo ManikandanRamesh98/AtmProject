@@ -375,3 +375,36 @@ bank.previousbalagent(res);
 dbms_output.put_line(res);
 end;
 /
+
+create table balancedemo(
+id int generated always as identity(start with 1 increment by 1),
+bal int);
+
+
+create table transcdemo(
+id int generated always as identity(start with 1 increment by 1),
+trans int);
+
+--triggers--
+
+create or replace trigger baltrigger 
+after update on balancedemo for each row
+declare
+transi integer;
+begin
+ transi := (:new.bal - :old.bal); 
+insert into transcdemo(trans) values(transi);
+end;
+/
+
+insert into balancedemo(bal) values(200);
+insert into balancedemo(bal) values(400);
+
+commit;
+delete 
+from transcdemo;
+update balancedemo
+set bal = 300
+where id in 1;
+select * from balancedemo;
+select * from transcdemo;

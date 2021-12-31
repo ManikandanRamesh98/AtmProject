@@ -151,15 +151,28 @@ commit;
 
 update atm_money_management
 set money_balance = 200
-where id in 23;
+where id in 24;
 
 select * from atm_money_management;
 select * from usernamepassword;
 
 
+select * from usernamepassword; 
+select * from userprofile;
+select * from withdraw;
+select * from deposit;
+select * from login;
+select * from removedusers;
+select * from atm_money_management;
 
 
-
+desc  usernamepassword;
+desc userprofile;
+desc withdraw;
+desc deposit;
+desc login;
+desc removedusers;
+desc atm_money_management;
 
 
                            
