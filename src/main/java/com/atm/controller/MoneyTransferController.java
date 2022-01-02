@@ -1,7 +1,6 @@
 package com.atm.controller;
 
-import com.atm.impl.DepositImpl;
-import com.atm.impl.UserProfileImpl;
+import com.atm.daoimpl.*;
 import com.atm.models.DepositModel;
 
 import com.atm.models.UserProfileModel;
@@ -16,8 +15,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-
-import com.atm.impl.*;
 
 @WebServlet("/moneytransferserv")
 public class MoneyTransferController extends HttpServlet {

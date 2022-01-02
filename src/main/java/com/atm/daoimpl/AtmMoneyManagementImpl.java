@@ -1,4 +1,4 @@
-package com.atm.impl;
+package com.atm.daoimpl;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -7,14 +7,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Types;
 
-import com.atm.connection.Connect;
 import com.atm.dao.AtmMoneyManagementDao;
 import com.atm.models.AtmMoneyManagementModel;
+import com.atm.util.ConnectionUtil;
 
 public class AtmMoneyManagementImpl implements AtmMoneyManagementDao{
 //Deposit money:
 	public int depositmoney(AtmMoneyManagementModel atmMoneyManagement) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 //		String query = "insert into atm_money_management(money_deposited,money_balance,agent_name) values(?,?,?)";
 //		String query1 = "commit";
 //				PreparedStatement statement = con.prepareStatement(query);
@@ -38,7 +38,7 @@ public class AtmMoneyManagementImpl implements AtmMoneyManagementDao{
 	
 	//History Agent:
 	public ResultSet history() throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 		String query = "select * from atm_money_management";
 		Statement statement = con.createStatement();
 		ResultSet res = statement.executeQuery(query);
@@ -47,7 +47,7 @@ public class AtmMoneyManagementImpl implements AtmMoneyManagementDao{
 	
 	//previous balance:
 	public Long previousbal() throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 		String query = "select money_balance from atm_money_management where id in (select max(id) from atm_money_management)";
 		Statement statement = con.createStatement();
 		ResultSet res = statement.executeQuery(query);
@@ -59,7 +59,7 @@ public class AtmMoneyManagementImpl implements AtmMoneyManagementDao{
 	
 	//update balance:
 	public int updatebal(AtmMoneyManagementModel atmMoneyManagement) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 //		String query = "update atm_money_management set money_balance = ? where id in (select max(id) from atm_money_management)";
 //		String query1 = "commit";
 //				PreparedStatement statement = con.prepareStatement(query);

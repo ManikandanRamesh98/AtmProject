@@ -1,16 +1,16 @@
-package com.atm.impl;
+package com.atm.daoimpl;
 
 import java.sql.*;
 
-import com.atm.connection.Connect;
 import com.atm.dao.RemovedUsersDao;
 import com.atm.models.RemovedUsersModel;
+import com.atm.util.ConnectionUtil;
 
 
 public class RemovedUsersImpl implements RemovedUsersDao {
 	// Insert data into removed users:
 	public int insremoveusers(RemovedUsersModel removedusersmodel) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "insert into removedusers(user_acc_no,username,last_balance,mob_no,user_pin) values(?,?,?,?,?)";
 //		String query1 = "commit";
@@ -40,7 +40,7 @@ public class RemovedUsersImpl implements RemovedUsersDao {
 //fetch user:
 
 	public ResultSet fetchremoveusers() throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 		String query = "select * from removedusers";
 		Statement statement = con.createStatement();

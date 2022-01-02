@@ -2,8 +2,7 @@ package com.atm.controller;
 
 import java.io.IOException;
 
-import com.atm.impl.UsernamePasswordImpl;
-
+import com.atm.daoimpl.UsernamePasswordImpl;
 import com.atm.models.UsernamePasswordModel;
 
 import jakarta.servlet.ServletException;

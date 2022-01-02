@@ -1,8 +1,12 @@
 package com.atm.controller;
 
-import com.atm.impl.AtmMoneyManagementImpl;
-import com.atm.impl.UserProfileImpl;
-import com.atm.impl.WithdrawImpl;
+import java.io.IOException;
+
+import com.atm.daoimpl.AtmMoneyManagementImpl;
+import com.atm.daoimpl.UserProfileImpl;
+import com.atm.daoimpl.WithdrawImpl;
+import com.atm.exception.AtmOutOfCashException;
+import com.atm.exception.LowBalanceException;
 import com.atm.models.AtmMoneyManagementModel;
 import com.atm.models.UserProfileModel;
 
@@ -16,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/withdrawserv")
 public class WithdrawController extends HttpServlet {
-	public void service(HttpServletRequest req, HttpServletResponse res) {
+	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		UserProfileImpl userprofileimpl = new UserProfileImpl();
 		WithdrawImpl withdrawimpl = new WithdrawImpl();
 		AtmMoneyManagementImpl atmMoneyManagementimpl = new AtmMoneyManagementImpl();
@@ -59,16 +63,22 @@ public class WithdrawController extends HttpServlet {
 							res.getWriter().println("something went wrong!!");
 						}
 					} else {
-						res.getWriter().println("enter the valid amount!!");
+						throw new LowBalanceException();
 					}
 				} else {
 					res.sendRedirect("Invaliduser.jsp");
 				}
 			} else {
-				res.sendRedirect("NoMoney.jsp");
+				throw new AtmOutOfCashException();
+				
 			}
 
-		} catch (Exception e) {
+		}catch(AtmOutOfCashException e) {
+			res.sendRedirect(e.getMessage());
+		}catch(LowBalanceException e) {
+			res.sendRedirect(e.getMessage());
+		}
+		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

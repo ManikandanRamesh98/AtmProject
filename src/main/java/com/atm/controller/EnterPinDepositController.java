@@ -2,8 +2,8 @@ package com.atm.controller;
 
 import java.io.IOException;
 
-import com.atm.impl.UserProfileImpl;
-
+import com.atm.daoimpl.UserProfileImpl;
+import com.atm.exception.DepositWrongPinException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -27,10 +27,14 @@ public class EnterPinDepositController extends HttpServlet {
 					res.sendRedirect("depserv");
 				} else {
 					session.setAttribute("invaliddeppin", true);
-					res.sendRedirect("Deposit.jsp");
+					throw new DepositWrongPinException();
 				}
 			}
-		} catch (Exception e) {
+		} catch (DepositWrongPinException e) {
+			res.sendRedirect(e.getMessage());
+		}
+		
+		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

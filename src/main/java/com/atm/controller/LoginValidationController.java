@@ -4,8 +4,9 @@ package com.atm.controller;
 
 import java.io.IOException;
 
-import com.atm.impl.LoginDetailsImpl;
-import com.atm.impl.UsernamePasswordImpl;
+import com.atm.daoimpl.LoginDetailsImpl;
+import com.atm.daoimpl.UsernamePasswordImpl;
+import com.atm.exception.InvalidEntriesException;
 import com.atm.models.*;
 
 
@@ -64,10 +65,15 @@ public class LoginValidationController extends HttpServlet {
 		}
 
 		// invalid user redirect:
-
+try {
 		if (!flag) {
-			response.sendRedirect("Invaliduser.jsp");
+/*			response.sendRedirect("Invaliduser.jsp");*/
+			throw new InvalidEntriesException();
 		}
+}catch(InvalidEntriesException e) {
+	String red = e.getMessage();
+	response.sendRedirect(red);
+}
 	}
 
 }

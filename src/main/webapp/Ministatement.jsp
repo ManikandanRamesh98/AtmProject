@@ -1,8 +1,8 @@
-<%@page import="com.atm.impl.UserProfileImpl"%>
+<%@page import="com.atm.daoimpl.UserProfileImpl"%>
 
 
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.atm.impl.MiniStatementImpl"%>
+<%@page import="com.atm.daoimpl.MiniStatementImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"
 	import="com.atm.models.*"%>

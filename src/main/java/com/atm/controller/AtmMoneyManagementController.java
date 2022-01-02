@@ -1,7 +1,7 @@
 package com.atm.controller;
 import java.io.IOException;
 
-import com.atm.impl.AtmMoneyManagementImpl;
+import com.atm.daoimpl.AtmMoneyManagementImpl;
 import com.atm.models.AtmMoneyManagementModel;
 
 import jakarta.servlet.ServletException;

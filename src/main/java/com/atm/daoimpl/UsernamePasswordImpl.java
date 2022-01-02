@@ -1,4 +1,4 @@
-package com.atm.impl;
+package com.atm.daoimpl;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.Types;
 import java.util.Scanner;
 
-import com.atm.connection.Connect;
 import com.atm.models.UsernamePasswordModel;
+import com.atm.util.ConnectionUtil;
 
 public class UsernamePasswordImpl implements com.atm.dao.UsernamePasswordDao {
 	Scanner sc = new Scanner(System.in);
@@ -17,7 +17,7 @@ public class UsernamePasswordImpl implements com.atm.dao.UsernamePasswordDao {
 	public String getrole(UsernamePasswordModel usernamepasspojo) throws Exception {
 
 		String role = null;
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "select * from usernamepassword where username in ? and password in ?";
 //		PreparedStatement st = con.prepareStatement(query);
@@ -40,7 +40,7 @@ public class UsernamePasswordImpl implements com.atm.dao.UsernamePasswordDao {
 
 	// get role1:
 	public String getrole1(UsernamePasswordModel usernamepasspojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 		String query = "select role from usernamepassword where username in ?";
 		PreparedStatement st = con.prepareStatement(query);
@@ -53,7 +53,7 @@ public class UsernamePasswordImpl implements com.atm.dao.UsernamePasswordDao {
 
 	// password change:
 	public int pinchange(UsernamePasswordModel usernamepasspojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "update usernamepassword set password = ? where username in ?";
 //		String query1 = "commit";
@@ -72,7 +72,7 @@ public class UsernamePasswordImpl implements com.atm.dao.UsernamePasswordDao {
 
 	// insert User name password:
 	public int insusernamepass(UsernamePasswordModel usernamepasspojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 		
 		String query = "{call bank.insertusernamepass(?,?,?,?)}";
 		CallableStatement statement = con.prepareCall(query);
@@ -91,7 +91,7 @@ public class UsernamePasswordImpl implements com.atm.dao.UsernamePasswordDao {
 
 	// remove account:
 	public int removeuser(UsernamePasswordModel usernamepasspojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "delete from usernamepassword where username in ?";
 //		String query1 = "commit";

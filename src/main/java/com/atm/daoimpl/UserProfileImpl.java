@@ -1,4 +1,4 @@
-package com.atm.impl;
+package com.atm.daoimpl;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -7,15 +7,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Types;
 
-import com.atm.connection.Connect;
 import com.atm.dao.UserprofileDao;
 import com.atm.models.UserProfileModel;
+import com.atm.util.ConnectionUtil;
 
 public class UserProfileImpl implements UserprofileDao {
 
 	// Get Balance:
 	public int getbal(UserProfileModel userprofilepojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 		String query = "{call bank.getbal(?,?)}";
 //		String query = "select balance from userprofile where username in ?";
@@ -37,7 +37,7 @@ public class UserProfileImpl implements UserprofileDao {
 
 	// update balance:
 	public int insbal(UserProfileModel userprofilepojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "update userprofile set balance = ? where username in ?";
 //		String query1 = "commit";
@@ -59,7 +59,7 @@ public class UserProfileImpl implements UserprofileDao {
 
 	// get Account number:
 	public Long getaccno(UserProfileModel userprofilepojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "select user_acc_no from userprofile where username in ?";
 //		PreparedStatement statement = con.prepareStatement(query);
@@ -80,7 +80,7 @@ public class UserProfileImpl implements UserprofileDao {
 
 	// get user details:
 	public ResultSet getuserdetails(UserProfileModel userprofilepojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 		String query = "select * from userprofile where username in ?";
 		PreparedStatement statement = con.prepareStatement(query);
@@ -92,7 +92,7 @@ public class UserProfileImpl implements UserprofileDao {
 	// insert user profile details:
 
 	public int insuserprofile(UserProfileModel userprofilepojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "insert into userprofile(username,user_acc_no,mob_no,user_pin) values(?,?,?,?)";
 //		String query1 = "commit";
@@ -112,7 +112,7 @@ public class UserProfileImpl implements UserprofileDao {
 
 	// get user details All:
 	public ResultSet getuserdetails() throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 		String query = "select * from userprofile";
 		Statement statement = con.createStatement();
@@ -123,7 +123,7 @@ public class UserProfileImpl implements UserprofileDao {
 
 	// remove account:
 	public int removeuserprof(UserProfileModel userprofilepojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "delete from userprofile where user_acc_no in ? and id in ?";
 //		String query1 = "commit";
@@ -142,7 +142,7 @@ public class UserProfileImpl implements UserprofileDao {
 
 	// get max account:
 	public long getusermaxacc() throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "select max(user_acc_no) from userprofile";
 //		Statement statement = con.createStatement();
@@ -159,7 +159,7 @@ public class UserProfileImpl implements UserprofileDao {
 
 	// get max pin:
 	public int getusermaxpin() throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 //
 //		String query = "select max(user_pin) from userprofile";
 		
@@ -177,7 +177,7 @@ public class UserProfileImpl implements UserprofileDao {
 
 	// get user_pin:
 	public int getuserpin(String username) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "select user_pin from userprofile where username in ?";
 //		PreparedStatement statement = con.prepareStatement(query);
@@ -200,7 +200,7 @@ public class UserProfileImpl implements UserprofileDao {
 	}
 
 	public int moneytransf(UserProfileModel userprofilepojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 //
 //		String query = "select balance from userprofile where username in ? and user_acc_no in ?";
 //		PreparedStatement statement = con.prepareStatement(query);

@@ -1,4 +1,4 @@
-package com.atm.impl;
+package com.atm.daoimpl;
 
 
 import java.sql.CallableStatement;
@@ -6,13 +6,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Types;
 
-import com.atm.connection.Connect;
 import com.atm.models.DepositModel;
+import com.atm.util.ConnectionUtil;
 
 public class DepositImpl implements com.atm.dao.DepositDao {
 	// Insert data in Deposit:
 	public int insdep(DepositModel depositpojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 //
 //		String query = "insert into deposit(user_acc_no,dep_amount,money_transfer) values(?,?,?)";
 //		String query1 = "commit";
@@ -39,7 +39,7 @@ public class DepositImpl implements com.atm.dao.DepositDao {
 
 	// remove account:
 	public int removedep(DepositModel depositpojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "delete from deposit where user_acc_no in ?";
 //		String query1 = "commit";

@@ -2,9 +2,12 @@ package com.atm.controller;
 
 import java.io.IOException;
 import java.sql.ResultSet;
-import com.atm.impl.UserProfileImpl;
-import com.atm.impl.UsernamePasswordImpl;
+
 import com.atm.models.UsernamePasswordModel;
+import com.atm.daoimpl.UserProfileImpl;
+import com.atm.daoimpl.UsernamePasswordImpl;
+import com.atm.exception.MobileNoAlreadyRegException;
+import com.atm.exception.UserNameAlreadyExistException;
 import com.atm.models.UserProfileModel;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -59,13 +62,22 @@ public class RegisterController extends HttpServlet {
 						HttpSession session = req.getSession();
 						session.setAttribute("reguser", username);
 						resp.sendRedirect("Registeruserprofilesucc.jsp");
+					}else {
+						throw new MobileNoAlreadyRegException();
 					}
 				}
 
 			} else {
-				resp.getWriter().println("something went wrong!! try again..");
+				throw new UserNameAlreadyExistException();
 			}
-		} catch (Exception e) {
+		} catch (UserNameAlreadyExistException e) {
+			// TODO: handle exception
+			resp.sendRedirect(e.getMessage());
+		}catch(MobileNoAlreadyRegException e){
+			resp.sendRedirect(e.getMessage());
+		}
+		
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

@@ -1,4 +1,4 @@
-<%@page import="com.atm.impl.RemovedUsersImpl"%>
+<%@page import="com.atm.daoimpl.RemovedUsersImpl"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.atm.models.*"%>
 <%@page import="com.atm.models.RemovedUsersModel"%>

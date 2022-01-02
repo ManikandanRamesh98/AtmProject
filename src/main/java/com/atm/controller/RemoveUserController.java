@@ -3,12 +3,12 @@ package com.atm.controller;
 import java.io.IOException;
 import java.sql.ResultSet;
 
-import com.atm.impl.DepositImpl;
-import com.atm.impl.LoginDetailsImpl;
-import com.atm.impl.RemovedUsersImpl;
-import com.atm.impl.UserProfileImpl;
-import com.atm.impl.UsernamePasswordImpl;
-import com.atm.impl.WithdrawImpl;
+import com.atm.daoimpl.DepositImpl;
+import com.atm.daoimpl.LoginDetailsImpl;
+import com.atm.daoimpl.RemovedUsersImpl;
+import com.atm.daoimpl.UserProfileImpl;
+import com.atm.daoimpl.UsernamePasswordImpl;
+import com.atm.daoimpl.WithdrawImpl;
 import com.atm.models.DepositModel;
 import com.atm.models.LoginDetailsModel;
 

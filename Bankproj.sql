@@ -174,7 +174,7 @@ desc login;
 desc removedusers;
 desc atm_money_management;
 
-
+select * from Alien;
                            
                            
                            

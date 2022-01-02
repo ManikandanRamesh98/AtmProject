@@ -1,7 +1,10 @@
 package com.atm.controller;
 
-import com.atm.impl.DepositImpl;
-import com.atm.impl.UserProfileImpl;
+import java.io.IOException;
+
+import com.atm.daoimpl.DepositImpl;
+import com.atm.daoimpl.UserProfileImpl;
+import com.atm.exception.DepositLimitExceedException;
 import com.atm.models.DepositModel;
 
 import com.atm.models.UserProfileModel;
@@ -15,7 +18,7 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/depserv")
 public class DepositController extends HttpServlet {
-	public void service(HttpServletRequest req, HttpServletResponse res) {
+	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		UserProfileImpl userprofileimpl = new UserProfileImpl();
 		DepositImpl depositimpl = new DepositImpl();
 		HttpSession session = req.getSession();
@@ -50,13 +53,16 @@ public class DepositController extends HttpServlet {
 						res.getWriter().println("Something Went Wrong!!");
 					}
 				} else {
-					res.getWriter().println("Enter The Valid Amount!!");
+					throw new DepositLimitExceedException();
 				}
 			} else {
 				res.sendRedirect("Invaliduser.jsp");
 			}
 
-		} catch (Exception e) {
+		} catch (DepositLimitExceedException e) {
+			res.sendRedirect(e.getMessage());
+		}
+		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

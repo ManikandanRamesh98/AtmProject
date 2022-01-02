@@ -18,15 +18,42 @@ legend {
 fieldset {
 	position: absolute;
 	top: 200px;
-	left: 200px;
+	left: 400px;
 	width: 500px;
 	height: 200px;
+	
 }
+.sbi-logo {
+	margin:50px;	
+	width: 40px;
+	height: 40px;
+	border:100px solid #156dd1;
+	border-radius:50%;
+	position:relative;
+}
+.sbi-logo:before {
+	content: "";
+	margin: 100px;
+	width: 15px;
+	height: 110px;
+	background: #FFF;
+	position: absolute;
+	top: -70px;
+	left: -88px;
+}
+p { font-style:italic; padding-left:100px; }
+
+
+
+
 </style>
 </head>
 <body>
-
+<div class="sbi-logo"></div>
+<p>With you all the way..</p>
+<div class="one">
 	<fieldset>
+
 		<legend>LOGIN</legend>
 		
 		<form action="loginval" id="formlogin">
@@ -40,15 +67,14 @@ fieldset {
 				title="minimum 6 character and special characters allowed"><br>
 			<button id="sub" type="submit">Submit</button>
 			&ensp;&ensp;
-			<button type="reset" id="res">Reset</button>
+			<button type="reset" id="res">Ret</button>
 		</form>
 	</fieldset>
+	</div>
+
 
 </body>
 
-<script type="module" src="bank.js">
 
-</script>
-<script src="banksubbt.js"></script>
 
 </html>

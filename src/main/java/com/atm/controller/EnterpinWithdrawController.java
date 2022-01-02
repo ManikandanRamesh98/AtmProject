@@ -6,7 +6,8 @@ package com.atm.controller;
 
 import java.io.IOException;
 
-import com.atm.impl.UserProfileImpl;
+import com.atm.daoimpl.UserProfileImpl;
+import com.atm.exception.WithdrawWrongPinException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -30,10 +31,14 @@ public class EnterpinWithdrawController extends HttpServlet {
 					res.sendRedirect("withdrawserv");
 				} else {
 					session.setAttribute("invalidpin", true);
-					res.sendRedirect("Withdraw.jsp");
+					throw new WithdrawWrongPinException();
 				}
 			}
-		} catch (Exception e) {
+		} catch(WithdrawWrongPinException e) {
+			res.sendRedirect(e.getMessage());
+		}
+		
+		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

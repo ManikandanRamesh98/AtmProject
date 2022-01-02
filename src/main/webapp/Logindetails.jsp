@@ -1,4 +1,4 @@
-<%@page import="com.atm.impl.LoginDetailsImpl"%>
+<%@page import="com.atm.daoimpl.LoginDetailsImpl"%>
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>

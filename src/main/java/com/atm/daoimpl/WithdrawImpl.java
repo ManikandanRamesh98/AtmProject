@@ -1,20 +1,20 @@
-package com.atm.impl;
+package com.atm.daoimpl;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Types;
 
-import com.atm.connection.Connect;
 import com.atm.dao.WithdrawDao;
 
 import com.atm.models.WithdrawModel;
+import com.atm.util.ConnectionUtil;
 
 public class WithdrawImpl implements WithdrawDao {
 
 	// Insert Withdraw Data:
 	public int inswith(WithdrawModel withdrawpojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "insert into withdraw(user_acc_no,with_amount,money_transfer) values(?,?,?)";
 //		String query1 = "commit";
@@ -39,7 +39,7 @@ public class WithdrawImpl implements WithdrawDao {
 
 	// Remove account:
 	public int removewith(WithdrawModel withdrawpojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "delete from withdraw where user_acc_no in ?";
 //		String query1 = "commit";

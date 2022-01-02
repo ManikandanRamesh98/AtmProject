@@ -1,4 +1,4 @@
-<%@page import="com.atm.impl.UserProfileImpl"%>
+<%@page import="com.atm.daoimpl.UserProfileImpl"%>
 
 <%@page import="com.atm.models.UserProfileModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

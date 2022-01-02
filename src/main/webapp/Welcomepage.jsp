@@ -1,3 +1,4 @@
+<%@page import="com.atm.exception.NotLoggedInException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
 <!DOCTYPE html>
@@ -12,10 +13,13 @@
 
 	<%
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+	try{
 	if (session.getAttribute("user") == null) {
-		response.sendRedirect("Login.html");
+		throw new NotLoggedInException();
 	} else {
 		user = session.getAttribute("user").toString();
+	}}catch(NotLoggedInException e){
+		response.sendRedirect(e.getMessage());
 	}
 	%>
 
@@ -60,8 +64,6 @@ window.addEventListener('load', () =>{
 	},1000);
 	
 });
-
-
 
 </script>
 </html>

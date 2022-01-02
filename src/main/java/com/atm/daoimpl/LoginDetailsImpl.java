@@ -1,4 +1,4 @@
-package com.atm.impl;
+package com.atm.daoimpl;
 
 
 import java.sql.CallableStatement;
@@ -8,16 +8,16 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Types;
 
-import com.atm.connection.Connect;
 import com.atm.dao.LoginDetailsDao;
 import com.atm.models.LoginDetailsModel;
+import com.atm.util.ConnectionUtil;
 
 import jakarta.servlet.http.HttpServlet;
 
 public class LoginDetailsImpl implements LoginDetailsDao {
 	// Remove Account:
 	public int removelogindetail(LoginDetailsModel loginpojo) throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "delete from login where username in ?";
 //		String query1 = "commit";
@@ -39,7 +39,7 @@ public class LoginDetailsImpl implements LoginDetailsDao {
 	// Insert Data in to login table:
 	public int insertdata(LoginDetailsModel loginpojo) throws Exception {
 
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 //		String query = "insert into login(username,role) values(?,?)";
 //		String query1 = "commit";
@@ -66,7 +66,7 @@ public class LoginDetailsImpl implements LoginDetailsDao {
 	
 	//fetch login details:
 	public ResultSet fetchlogin()throws Exception {
-		Connection con = Connect.getConnection();
+		Connection con = ConnectionUtil.getConnection();
 
 		String query = "select * from login order by logged_at desc";
 		Statement statement = con.createStatement();
