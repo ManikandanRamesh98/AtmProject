@@ -9,6 +9,7 @@ import com.atm.daoimpl.RemovedUsersImpl;
 import com.atm.daoimpl.UserProfileImpl;
 import com.atm.daoimpl.UsernamePasswordImpl;
 import com.atm.daoimpl.WithdrawImpl;
+import com.atm.exception.InvalidUsernameAdminException;
 import com.atm.models.DepositModel;
 import com.atm.models.LoginDetailsModel;
 
@@ -86,13 +87,16 @@ public class RemoveUserController extends HttpServlet {
 						if (userrem > 0) {
 							resp.sendRedirect("Userrem.jsp");
 						} else {
-							resp.getWriter().println("Invalid UserName");
+							throw new InvalidUsernameAdminException();
 						}
 					}
 				}
 			}
 
-		} catch (Exception e) {
+		} catch(InvalidUsernameAdminException e) {
+			resp.sendRedirect(e.getMessage());
+		}
+		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

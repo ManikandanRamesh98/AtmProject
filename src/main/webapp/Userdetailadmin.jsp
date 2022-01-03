@@ -1,3 +1,4 @@
+<%@page import="com.atm.exception.InvalidUsernameAdminException"%>
 <%@page import="com.atm.daoimpl.UserProfileImpl"%>
 <%@page import="com.atm.models.UserProfileModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -64,7 +65,10 @@ legend {
 			mobno = rs.getLong(5);
 		}
 	%>
-
+<%
+ResultSet rs1 = userprofiledao.getuserdetails(userprofilepojo);
+try{
+if(rs1.next()){ %>
 	<fieldset id="userdetailfield">
 		<legend>User Details</legend>
 		<label>User Id : <%=" " + id%></label><br>
@@ -74,6 +78,11 @@ legend {
 		<br> <label>Mobile No : <%=" " + mobno%></label><br>
 		<br>
 	</fieldset>
+	<%}else{
+		throw new InvalidUsernameAdminException();
+	}}catch(InvalidUsernameAdminException e){
+	response.sendRedirect(e.getMessage());
+	}%>
 
 
 </body>
