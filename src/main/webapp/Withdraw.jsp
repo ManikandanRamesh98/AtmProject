@@ -8,8 +8,8 @@
 <style>
 #headwith {
 	position: absolute;
-	left: 600px;
-	font-size: 40px;
+	left: 530px;
+	font-size: 45px;
 }
 
 #labwith {
@@ -39,7 +39,7 @@ input {
 form {
 	position: absolute;
 	top: 300px;
-	left: 550px;
+	left: 530px;
 }
 
 button {
@@ -97,6 +97,9 @@ button {
 	}
 </script>
 <script>
+
+
+
 let th = document.getElementById("timehead");
 let time = 30;
 let i;
@@ -114,13 +117,13 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("Login.html");
+			window.location.assign("Logout.jsp");
 		}
 	},1000);
 	
 });
 
-
-
 </script>
+
+
 </html>

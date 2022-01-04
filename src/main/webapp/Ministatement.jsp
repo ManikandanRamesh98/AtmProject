@@ -112,12 +112,11 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("Login.html");
+			window.location.assign("Logout.jsp");
 		}
 	},1000);
 	
 });
-
 
 
 </script>

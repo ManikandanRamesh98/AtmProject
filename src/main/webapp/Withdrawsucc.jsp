@@ -7,10 +7,10 @@
 <title>Withdraw Success</title>
 <style>
 #withsucclab {
-	font-size: 50px;
+	font-size: 60px;
 	position: absolute;
 	top: 180px;
-	left: 260px;
+	left: 130px;
 }
 
 #succhead {
@@ -18,7 +18,7 @@
 	color: yellow;
 	position: absolute;
 	top: 300px;
-	left: 400px;
+	left: 480px;
 }
 </style>
 </head>
@@ -45,8 +45,9 @@
 </body>
 
 <script>
+
 let th = document.getElementById("timehead");
-let time = 30;
+let time = 4;
 let i;
 window.addEventListener('load', () =>{
 	
@@ -67,7 +68,6 @@ window.addEventListener('load', () =>{
 	},1000);
 	
 });
-
 
 
 </script>

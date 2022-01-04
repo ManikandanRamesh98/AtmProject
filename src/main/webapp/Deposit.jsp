@@ -8,8 +8,8 @@
 <style>
 #headwith {
 	position: absolute;
-	left: 600px;
-	font-size: 40px;
+	left: 530px;
+	font-size: 45px;
 }
 
 #labwith {
@@ -17,7 +17,7 @@
 	font-size: 70px;
 	position: absolute;
 	top: 150px;
-	left: 320px;
+	left: 370px;
 }
 
 #invallab {
@@ -39,7 +39,7 @@ input {
 form {
 	position: absolute;
 	top: 300px;
-	left: 550px;
+	left: 530px;
 }
 
 button {
@@ -93,7 +93,7 @@ button {
 
 <script>
 let th = document.getElementById("timehead");
-let time = 30;
+let time = 20;
 let i;
 window.addEventListener('load', () =>{
 	

@@ -72,7 +72,7 @@ input {
 
 <script>
 let th = document.getElementById("timehead");
-let time = 30;
+let time = 80;
 let i;
 window.addEventListener('load', () =>{
 	
@@ -88,7 +88,7 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("Login.html");
+			window.location.assign("Logout.jsp");
 		}
 	},1000);
 	

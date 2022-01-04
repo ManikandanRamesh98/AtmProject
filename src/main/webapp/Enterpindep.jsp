@@ -36,6 +36,7 @@ font-size:40px;
 </head>
 <body bgcolor="blue">
 	<%
+	response.setHeader("cache-control", "no-cache,no-store,must-revalidate");
 	int amount = Integer.parseInt(request.getParameter("inpdep"));
 	session.setAttribute("depamount", amount);
 	%>
@@ -49,7 +50,7 @@ font-size:40px;
 
 <script>
 let th = document.getElementById("timehead");
-let time = 30;
+let time = 9;
 let i;
 window.addEventListener('load', () =>{
 	
@@ -65,7 +66,8 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("Login.html");
+			
+			window.location.assign("Logout.jsp");
 		}
 	},1000);
 	

@@ -11,26 +11,26 @@
 <style>
 #headbal {
 	position: absolute;
-	left: 600px;
-	font-size: 40px;
+	left: 480px;
+	font-size: 50px;
 }
 
 #headbal1 {
-	font-size: 60px;
+	font-size: 80px;
 	position: absolute;
-	top: 160px;
-	left: 400px;
+	top: 280px;
+	left: 280px;
 }
 
 #hrbal {
 	position: relative;
-	top: 80px;
+	top: 180px;
 }
 
 #ballab {
 	color: yellow;
 	position: relative;
-	top: 160px;
+	top: 320px;
 	left: 850px;
 	font-size: 70px;
 }
@@ -43,6 +43,10 @@ button {
 	float: right;
 	top: -100px;
 	border-radius: 10px;
+}
+#timehead{
+position : absolute;
+top:0px;
 }
 </style>
 </head>
@@ -62,7 +66,7 @@ button {
 	<h1 id="headbal">
 		Welcome&ensp;
 		<%=user%></h1>
-	<hr id="hrbal">
+	
 	<h1 id="headbal1">Your Balance :</h1>
 	<br>
 	<%
@@ -76,6 +80,7 @@ button {
 </body>
 
 <script>
+
 let th = document.getElementById("timehead");
 let time = 30;
 let i;
@@ -93,12 +98,11 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("Login.html");
+			window.location.assign("Logout.jsp");
 		}
 	},1000);
 	
 });
-
 
 
 </script>

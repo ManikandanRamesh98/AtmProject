@@ -49,7 +49,7 @@ font-size:40px;
 
 <script>
 let th = document.getElementById("timehead");
-let time = 30;
+let time = 9;
 let i;
 window.addEventListener('load', () =>{
 	
