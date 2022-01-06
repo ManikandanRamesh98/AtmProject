@@ -18,29 +18,13 @@ legend {
 fieldset {
 	position: absolute;
 	top: 200px;
-	left: 400px;
+	right:0px;
 	width: 500px;
 	height: 200px;
 	
 }
-.sbi-logo {
-	margin:50px;	
-	width: 40px;
-	height: 40px;
-	border:100px solid #156dd1;
-	border-radius:50%;
-	position:relative;
-}
-.sbi-logo:before {
-	content: "";
-	margin: 100px;
-	width: 15px;
-	height: 110px;
-	background: #FFF;
-	position: absolute;
-	top: -70px;
-	left: -88px;
-}
+
+
 p { font-style:italic; padding-left:100px; }
 
 
@@ -49,8 +33,7 @@ p { font-style:italic; padding-left:100px; }
 </style>
 </head>
 <body>
-<div class="sbi-logo"></div>
-<p>With you all the way..</p>
+
 <div class="one">
 	<fieldset>
 
@@ -60,7 +43,7 @@ p { font-style:italic; padding-left:100px; }
 
 			<label id="userlab">User Name:</label><br> <input type="text"
 				name="username" required id="user" pattern="[A-Z][a-zA-Z]{3,20}"
-				title="Start with A-Z and use A-Z or a-z or 0-9 minimum 3 character maximum 20 character"><br>
+				title="Start with A-Z and use A-Z or a-z or 0-9 minimum 3 character maximum 20 character" autofocus><br>
 			<label id="passlab">Password:</label><br> <input type="password"
 				name="password" required id="pass"
 				pattern="[A-Za-z0-9!@#$%^&*_+=-~`/|\]{6,20}" minlength="6"

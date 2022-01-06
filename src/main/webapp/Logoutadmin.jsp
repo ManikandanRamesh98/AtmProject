@@ -18,7 +18,7 @@
 	%>
 	<%
 	session.invalidate();
-	response.sendRedirect("Login.html");
+	//response.sendRedirect("Login.html");
 	%>
 </body>
 </html>

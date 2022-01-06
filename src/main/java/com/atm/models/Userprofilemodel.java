@@ -95,7 +95,11 @@ public class UserProfileModel {
 		this.mob_no = mob_no;
 		this.user_pin = user_pin;
 	}
+	public UserProfileModel(int user_pin,String username) {
 
+		this.username = username;
+		this.user_pin = user_pin;
+	}
 	public UserProfileModel(Long acc_no) {
 
 		this.user_acc_no = acc_no;

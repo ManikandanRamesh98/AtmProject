@@ -42,7 +42,7 @@ font-size:40px;
 	%>
 	<h1>Enter Pin</h1>
 	<form action="Enterpindepservlet">
-		<input type="password" name="deppin" id="withpinid" required autofocus>
+		<input type="password" name="deppin" id="withpinid" pattern = "[0-9]{4}" title = "enter your pin 0-9 in length of four" required autofocus>
 
 	</form>
 <h1 id = "timehead">00:00</h1>

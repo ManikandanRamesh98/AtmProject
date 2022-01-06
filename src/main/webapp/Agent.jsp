@@ -9,7 +9,7 @@
 h1{
 position: absolute;
 font-size:70px;
-left:500px;
+left:420px;
 }
 a{
 background-color:yellow;

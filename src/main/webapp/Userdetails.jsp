@@ -69,7 +69,7 @@ legend {
 
 <script>
 let th = document.getElementById("timehead");
-let time = 30;
+let time = 20;
 let i;
 window.addEventListener('load', () =>{
 	

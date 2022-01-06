@@ -150,8 +150,8 @@ insert into atm_money_management(money_deposited,money_balance,agent_name) value
 commit;
 
 update atm_money_management
-set money_balance = 7000
-where id in 41;
+set money_balance = 200
+where id in 84;
 
 select * from atm_money_management;
 select * from usernamepassword;
@@ -176,12 +176,12 @@ desc atm_money_management;
 
 select * from Alien;
                            
+select substr(withdraw_at,1,17)
+from withdraw;
+                           
+select * from userprofile;                   
                            
                            
+  u
                            
-                           
-                           
-                           
-                           
-                           
-                           
+         

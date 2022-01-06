@@ -15,7 +15,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-
 @WebServlet("/depserv")
 public class DepositController extends HttpServlet {
 	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -61,8 +60,7 @@ public class DepositController extends HttpServlet {
 
 		} catch (DepositLimitExceedException e) {
 			res.sendRedirect(e.getMessage());
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

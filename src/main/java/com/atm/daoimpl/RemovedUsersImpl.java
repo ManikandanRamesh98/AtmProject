@@ -42,7 +42,7 @@ public class RemovedUsersImpl implements RemovedUsersDao {
 	public ResultSet fetchremoveusers() throws Exception {
 		Connection con = ConnectionUtil.getConnection();
 
-		String query = "select * from removedusers";
+		String query = "select id,user_acc_no,username,last_balance,mob_no,user_pin,substr(acc_removed_at,1,16) from removedusers order by id desc";
 		Statement statement = con.createStatement();
 
 		ResultSet resultSet = statement.executeQuery(query);

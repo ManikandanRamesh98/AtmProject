@@ -224,5 +224,18 @@ public class UserProfileImpl implements UserprofileDao {
 		int bal = statement.getInt(3);
 		return bal;
 	}
+	
+	//update User Pin:
+	public int updatepin(UserProfileModel userProfileModel) throws Exception {
+		Connection con = ConnectionUtil.getConnection();
+		String query = "update userprofile set user_pin = ? where username in ?";
+		PreparedStatement pStatement = con.prepareStatement(query);
+		pStatement.setInt(1, userProfileModel.getUser_pin());
+		pStatement.setString(2, userProfileModel.getUsername());
+		int res = pStatement.executeUpdate();
+		return res;
+		
+	}
+	
 
 }

@@ -16,22 +16,20 @@ td {
 	color: yellow;
 }
 
-#transamount {
-	position: relative;
-	left: 100px;
-}
 
-#transtime {
-	position: relative;
-	left: 220px;
-}
 
-th {
-	font-size: 30px;
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 20px;
 }
+th{
 
-td {
-	font-size: 20px;
+font-weight:bolder;
+font-size:30px;
+}
+td{
+font-size:20px;
 }
 </style>
 </head>
@@ -55,7 +53,9 @@ String transtype = null;%>
 		Long accno = userprofiledao.getaccno(userprofilepojo);
 		ResultSet rSet = ministatementdao.getministatement(accno);
 	%>
-	<table>
+	
+	
+	<table style="width: 80%; margin-left: 100px;">
 		<tr>
 			<th>Transaction_type</th>
 			<th id="transamount">Transaction</th>
@@ -80,11 +80,11 @@ String transtype = null;%>
 		<tr>
 
 			<td><%=transtype%>
-			<td><br> <br> <br>
+			</td>
 			<td><%=rSet.getString(1)%>
-			<td><br> <br> <br>
+			</td>
 			<td><%=rSet.getString(2)%>
-			<td><br> <br> <br>
+			</td>
 		</tr>
 		<%
 		}
@@ -117,6 +117,7 @@ window.addEventListener('load', () =>{
 	},1000);
 	
 });
+
 
 
 </script>

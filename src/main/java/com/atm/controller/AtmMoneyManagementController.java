@@ -25,7 +25,7 @@ public class AtmMoneyManagementController extends HttpServlet {
 
 			if (eamount >= 2000 && eamount <= 50000) {
 				if (prevbal <= 2000) {
-					AtmMoneyManagementModel atmMoneyManagement = new AtmMoneyManagementModel(eamount, agent);
+					AtmMoneyManagementModel atmMoneyManagement = new AtmMoneyManagementModel(eamount+prevbal, agent);
 					try {
 						int ins = atmMoneyManagementimpl.depositmoney(atmMoneyManagement);
 						if (ins > 0) {

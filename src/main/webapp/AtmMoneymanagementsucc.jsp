@@ -13,6 +13,12 @@ position : absolute;
 top:200px;
 left:220px;
 }
+#timehead{
+position : absolute;
+top:0px;
+left:0px;
+color:black;
+}
 </style>
 </head>
 <body bgcolor = "blue">
@@ -28,5 +34,32 @@ left:220px;
 	long eamount = (long)session.getAttribute("agentdepamount");
 	%>
 	<h1>You Have Successfully Deposited <%= " " +eamount+ " " + agent%></h1>
+<h1 id = "timehead">00:00</h1>
 </body>
+
+<script>
+let th = document.getElementById("timehead");
+let time = 09;
+let i;
+window.addEventListener('load', () =>{
+	
+	 i= setInterval(() => {
+		if(time > 0){
+			if(time >= 10){
+				
+		th.innerHTML = "00 : " + time--;
+		
+			}else{
+				th.style.color = "red";
+				th.innerHTML = "00 : 0" + time--;
+			}
+		}else{
+			clearInterval(i);
+			window.location.assign("Logoutadmin.jsp");
+		}
+	},1000);
+	
+});
+
+</script>
 </html>
