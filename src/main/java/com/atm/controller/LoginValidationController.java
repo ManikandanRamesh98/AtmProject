@@ -4,6 +4,7 @@ package com.atm.controller;
 
 import java.io.IOException;
 
+import com.atm.daoimpl.InvalidPinLockDaoimpl;
 import com.atm.daoimpl.LoginDetailsImpl;
 import com.atm.daoimpl.UsernamePasswordImpl;
 import com.atm.exception.InvalidEntriesException;
@@ -29,17 +30,42 @@ public class LoginValidationController extends HttpServlet {
 		UsernamePasswordImpl userimpl = new UsernamePasswordImpl();
 		LoginDetailsImpl logindetailsimpl = new LoginDetailsImpl();
 		HttpSession session = request.getSession();
-
+		InvalidPinLockDaoimpl invalidPinLockDaoimpl = new InvalidPinLockDaoimpl();
+		InvalidPinLockModel invalidPinLockModel = new InvalidPinLockModel(uname);
 		try {
 			UsernamePasswordModel usernamepassmodel = new UsernamePasswordModel(uname, pass);
 			String role = userimpl.getrole(usernamepassmodel);
 			if (role != null) {
+				
+				
 				if (role.equals("user")) {
+					if(!(invalidPinLockDaoimpl.status(invalidPinLockModel))) {
+					if(session.getAttribute("invalidpinlock") == null) {
+						session.setAttribute("invalidpinlock", 0);
+					}
 					LoginDetailsModel loginmodel = new LoginDetailsModel(uname, role);
 					logindetailsimpl.insertdata(loginmodel);
 					flag = true;
 					session.setAttribute("user", uname);
 					response.sendRedirect("Welcomepage.jsp");
+				}else {
+					int retriveat = invalidPinLockDaoimpl.retriveat(invalidPinLockModel);
+					System.out.println(retriveat + "ret");
+					if(retriveat > 5) {
+						invalidPinLockDaoimpl.deletelock(invalidPinLockModel);
+						if(session.getAttribute("invalidpinlock") == null) {
+							session.setAttribute("invalidpinlock", 0);
+						}
+						LoginDetailsModel loginmodel = new LoginDetailsModel(uname, role);
+						logindetailsimpl.insertdata(loginmodel);
+						flag = true;
+						session.setAttribute("user", uname);
+						response.sendRedirect("Welcomepage.jsp");
+					}else {
+						flag = true;
+						response.getWriter().println("yor account is lockes try after 2 Min!!");
+					}
+				}
 				}
 
 				else if (role.equals("admin")) {

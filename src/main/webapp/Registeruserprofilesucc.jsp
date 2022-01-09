@@ -4,14 +4,28 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<div id="bgBlur"></div>
 <title>Registered Successfully!!</title>
 <style>
 #reghead{
-color : yellow;
+color : #F5DF4D;
 position : absolute;
 top : 200px;
 left : 130px;
 font-size : 60px;
+}
+body{
+
+background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+ #bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.6);
+	height: 625px;
+	width: 1366px;
 }
 
 </style>

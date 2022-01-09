@@ -4,20 +4,29 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<div id="bgBlur"></div>
 <title>Withdraw</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 #headwith {
 	position: absolute;
 	left: 530px;
 	font-size: 45px;
+	color:orange;
 }
 
 #labwith {
-	color: yellow;
+	color: white;
 	font-size: 70px;
 	position: absolute;
 	top: 150px;
 	left: 320px;
+	font-weight: bolder;
 }
 
 #invallab {
@@ -31,9 +40,8 @@
 input {
 	height: 90px;
 	width: 300px;
-	background-color: blue;
+	background-color: rgba(255,255,255,0.7);
 	font-size: 60px;
-	border-color: blue;
 }
 
 form {
@@ -51,9 +59,24 @@ button {
 	border-radius: 10px;
 	top: -280px;
 }
+body{
+background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+#withinp:hover{
+	box-shadow: 0 0 20px white;
+	transition-duration: 0.2s;
+}
+ #bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.6);
+	height: 625px;
+	width: 1366px;
+} 
 </style>
 </head>
-<body bgcolor="blue">
+<body>
 	<%
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 	if (session.getAttribute("invalidpin") != null) {
@@ -82,7 +105,7 @@ button {
 	<label id="labwith">Enter Amount To Withdraw</label>
 	<form action="Enterpin.jsp" id="formwith" autocomplete="off">
 		<br> <input type="text" name="inpwith" id="withinp" required
-			pattern="[1-9][0-9]+[0]" minlength = "3" maxlength="7" title="Enter Valid Amount"
+			pattern="[1-9][0-9]*[0][0]" minlength = "3" maxlength="7" title="Enter multiples of 100"
 			onclick="invalabfn()" autofocus>
 	</form>
 	<form action="Welcomepage.jsp">
@@ -98,10 +121,8 @@ button {
 </script>
 <script>
 
-
-
 let th = document.getElementById("timehead");
-let time = 30;
+let time = 20;
 let i;
 window.addEventListener('load', () =>{
 	
@@ -122,6 +143,7 @@ window.addEventListener('load', () =>{
 	},1000);
 	
 });
+
 
 </script>
 

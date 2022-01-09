@@ -4,13 +4,22 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<div id="bgBlur"></div>
 <title>Withdraw Success</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 #withsucclab {
-	font-size: 60px;
+	font-size: 45px;
 	position: absolute;
 	top: 180px;
-	left: 130px;
+	left: 190px;
+	color : white;
+	font-weight:bolder;
 }
 
 #succhead {
@@ -20,6 +29,18 @@
 	top: 300px;
 	left: 480px;
 }
+body{
+background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+ #bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.7);
+	height: 625px;
+	width: 1366px;
+} 
 </style>
 </head>
 <body bgcolor="blue">
@@ -63,7 +84,7 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("Login.html");
+			window.location.assign("Logout.jsp");
 		}
 	},1000);
 	

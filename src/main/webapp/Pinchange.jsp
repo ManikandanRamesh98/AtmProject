@@ -4,17 +4,25 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<div id="bgBlur"></div>
 <title>Pin change</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 #pinchangehead {
 	font-size: 50px;
 	position: absolute;
 	left: 500px;
+	color: orange;
 }
 
 legend {
 	font-size: 30px;
-	color:yellow;
+	color:#F5DF4D;
 }
 
 fieldset {
@@ -23,19 +31,20 @@ fieldset {
 	width: 300px;
 	left: 500px;
 	height:350px;
+	padding : 20px;
 		
 }
 #subbt{
 position:absolute;
 left:120px;
-top:280px;
+top:210px;
 width:90px;
 height:40px;
 }
 input{
 width:300px;
 height:30px;
-background-color: blue;
+background-color: rgba(255,255,255,0.6);
 }
 #reglab{
 position:absolute;
@@ -51,6 +60,32 @@ background-color: red;
 width:90px;
 height:50px;
 border-radius: 10px;
+}
+body{
+background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+input:hover{
+	box-shadow: 0 0 20px white;
+	transition-duration: 0.2s;
+}
+ #bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.6);
+	height: 625px;
+	width: 1366px;
+}
+#cnfpin{
+position: relative;
+top : 20px;
+}
+h1{
+color:white;
+}
+button:hover{
+	box-shadow: 0 0 20px white;
+	transition-duration: 0.2s;
 }
 </style>
 </head>
@@ -70,17 +105,17 @@ if(session.getAttribute("user") == null){
 		<%=' ' + user %></h1>
 	<fieldset>
 		<legend>Generate New Pin</legend>
-		<h1 id="pinchangehead1">Enter The New Pin</h1>
+		<h1 id="pinchangehead1">Enter The New Pin:</h1>
 		<form action="pinchangeserv" method="post" autocomplete = "off" onsubmit="return cnfpass()">
 			<input type="password" name="pininp" id="pininpid"
 				pattern="[0-9]{4}" 
 				title="enter new pin number 0-9 in length of four" autofocus required onclick = "invalabfn()">
 			<br>
-			<h1>Confirm New Pin</h1><br>
+			<h1 id = "cnfpin">Confirm New Pin :</h1><br>
 			<input type="password" name="pininp" id="pininpid1"
 				pattern="[0-9]{4}" 
 				title="enter new pin number 0-9 in length of four" autofocus required><br>
-			<input type="submit" id = "subbt" ><br>
+			<button type="submit" id = "subbt" >Generate</button><br>
 		</form>
 		<h1 id = "reglab">Pin Must Match!!</h1>
 	</fieldset>
@@ -115,7 +150,7 @@ function cnfpass() {
 	
 	//timeout function:
 	let th = document.getElementById("timehead");
-let time = 50;
+let time = 70;
 let i;
 window.addEventListener('load', () =>{
 	

@@ -4,10 +4,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<div id="bgBlur"></div>
 <title>Pin change Success</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 h1{
-color:yellow;
+color:#F5DF4D;
 font-size:60px;
 position: absolute;
 top:200px;
@@ -20,7 +27,18 @@ left:0px;
 top:0px;
 
 }
+body{
+background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
 
+ #bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.6);
+	height: 625px;
+	width: 1366px;
+}
 </style>
 </head>
 <body bgcolor = "blue">

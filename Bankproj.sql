@@ -179,9 +179,50 @@ select * from Alien;
 select substr(withdraw_at,1,17)
 from withdraw;
                            
-select * from userprofile;                   
+select * from userprofile;                  
                            
                            
-  u
-                           
+   select * from userprofile where mob_no in 9789674835;                        
          
+
+
+
+--account lock table--
+create table invalidpinlock(
+id int generated always as identity(start with 1 increment by 1),
+username varchar2(80) not null,
+acc_lockedat timestamp default current_timestamp,
+acc_retriveat timestamp not null);
+
+select * from invalidpinlock;
+select substr(acc_created_at,13,2)from userprofile;
+
+desc invalidpinlock;
+select current_timestamp-acc_created_at from userprofile;
+commit;
+alter table invalidpinlock drop column acc_retriveat;
+insert into invalidpinlock(username) values('Mani');
+select (current_timestamp-acc_lockedat) from invalidpinlock where username in 'Mani';
+select substr((current_timestamp-acc_lockedat),-12,2) from invalidpinlock where username in 'Mani';
+
+delete
+from invalidpinlock
+where username in 'Mani';
+
+select * from timestampdemo;
+create table timestampdemo(
+times timestamp not null);
+insert into timestampdemo values('12-10-2021 02:03');
+select times + (00000000000002) from timestampdemo;
+
+select * from invalidpinlock;
+
+select substr((current_timestamp),1,14) from dual;
+select substr((current_timestamp),1,14)-substr((times),1,14) from timestampdemo; 
+select substr((current_timestamp-acc_lockedat),-12,2) from invalidpinlock where username in 'Mani';
+
+select current_timestamp-acc_lockedat from invalidpinlock;
+select substr((current_timestamp-acc_lockedat),2,2) from invalidpinlock where username in 'Mani';
+select substr((current_timestamp-acc_lockedat),5,2) from invalidpinlock where username in 'Mani';
+select current_timestamp from dual;
+select substr(current_timestamp,10,2) from dual;

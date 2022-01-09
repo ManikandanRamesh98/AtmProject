@@ -5,11 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>State Bank Of India</title>
-<link rel="stylesheet" href="welcomeuser.css">
-</head>
-<body bgcolor="blue">
-	<%!String user;%>
+<%!String user;%>
 
 	<%
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
@@ -22,6 +18,23 @@
 		response.sendRedirect(e.getMessage());
 	}
 	%>
+		<div id="bgBlur"></div>
+	
+<title>Welcome <%=user %></title>
+<link rel="stylesheet" href="welcomeuser.css">
+<style>
+#invalpin{
+color : red;
+position : relative;
+}
+</style>
+</head>
+<body bgcolor="blue">
+	<%
+	if(session.getAttribute("invalidhomepin") != null){%>
+		<h1 id = "invalpin">Invalid Pin</h1>
+		<%session.removeAttribute("invalidhomepin"); %>
+	<%}%>
 
 
 
@@ -29,7 +42,7 @@
 	<hr>
 	<a href="Withdraw.jsp" id="withdraw" class="atag">Withdraw</a>
 	<a href="Deposit.jsp" id="deposit" class="atag">Deposit</a>
-	<a href="Balance.jsp" id="balance" class="atag">Balance</a>
+	<a href="EnterPinBal.jsp" id="balance" class="atag">Balance</a>
 	<a href="Userdetails.jsp" id="userdetails" class="atag">User
 		Details</a>
 	<a href="Moneytransfer.jsp" id="moneytransfer" class="atag">Money

@@ -16,16 +16,17 @@
 }
 
 label {
-	color: yellow;
+	color: #F5DF4D;
 	font-size: 50px;
 }
 
 legend {
 	font-size: 30px;
-}
+	color:white;
+} 	
 </style>
 </head>
-<body bgcolor="blue">
+<body bgcolor="#2F4F4F">
 	<%!String user;
 	
 	UserProfileImpl userprofiledao = new UserProfileImpl();

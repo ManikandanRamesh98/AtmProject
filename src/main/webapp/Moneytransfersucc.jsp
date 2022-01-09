@@ -29,7 +29,11 @@ background-color:red;
 float:right;
 border-radius:10px;
 }
-
+#timehead{
+position : absolute;
+top : 0px;
+left : 0px;
+}
 </style>
 </head>
 <body bgcolor = "blue">
@@ -51,5 +55,32 @@ userbal = userprofiledao.getbal(userprofilepojo);
 <form action = "Welcomepage.jsp">
 <button type = "submit">Home</button>
 </form>
+<h1 id = "timehead">00:00</h1>
 </body>
+
+<script>
+let th = document.getElementById("timehead");
+let time = 5;
+let i;
+window.addEventListener('load', () =>{
+	
+	 i= setInterval(() => {
+		if(time > 0){
+			if(time >= 10){
+				
+		th.innerHTML = "00 : " + time--;
+		
+			}else{
+				th.style.color = "red";
+				th.innerHTML = "00 : 0" + time--;
+			}
+		}else{
+			clearInterval(i);
+			window.location.assign("Logout.jsp");
+		}
+	},1000);
+	
+});
+
+</script>
 </html>

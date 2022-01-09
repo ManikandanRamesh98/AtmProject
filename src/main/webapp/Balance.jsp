@@ -7,12 +7,20 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<div id="bgBlur">
 <title>Balance</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 #headbal {
 	position: absolute;
 	left: 480px;
 	font-size: 50px;
+	color : orange;
 }
 
 #headbal1 {
@@ -20,6 +28,7 @@
 	position: absolute;
 	top: 280px;
 	left: 280px;
+	color: white;
 }
 
 #hrbal {
@@ -30,7 +39,7 @@
 #ballab {
 	color: yellow;
 	position: relative;
-	top: 320px;
+	top: 270px;
 	left: 850px;
 	font-size: 70px;
 }
@@ -47,6 +56,18 @@ button {
 #timehead{
 position : absolute;
 top:0px;
+}
+body{
+background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+ #bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.6);
+	height: 625px;
+	width: 1366px;
 }
 </style>
 </head>
@@ -82,7 +103,7 @@ top:0px;
 <script>
 
 let th = document.getElementById("timehead");
-let time = 30;
+let time = 10;
 let i;
 window.addEventListener('load', () =>{
 	

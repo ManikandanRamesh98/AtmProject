@@ -3,13 +3,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%!String admin;%>
+	<%
+	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+	if (session.getAttribute("admin") == null) {
+		response.sendRedirect("Login.html");
+	} else {
+		admin = session.getAttribute("admin").toString();
+	}
+	%>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<div id="bgBlur"></div>s
+<title>Welcome <%=admin %></title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
+a{
+color: black;
+}
 #adminlab {
 	font-size: 50px;
 	position: absolute;
 	left: 500px;
+	color : orange;
 }
 
 #adminregus {
@@ -19,7 +39,7 @@
 	top: 110px;
 	border: 3px solid white;
 	border-radius: 10px;
-	background-color: yellow;
+	background-color: rgba(255,255,255,0.5);
 	border-color: white;
 	left: 0px;
 }
@@ -31,7 +51,7 @@
 	top: 210px;
 	border: 3px solid white;
 	border-radius: 10px;
-	background-color: yellow;
+	background-color: rgba(255,255,255,0.5);
 	left: 0px;
 }
 
@@ -42,7 +62,7 @@
 	top: 300px;
 	border: 3px solid white;
 	border-radius: 10px;
-	background-color: yellow;
+	background-color: rgba(255,255,255,0.5);
 	border-color: white;
 	left: 0px;
 }
@@ -65,7 +85,7 @@
 	top: 380px;
 	border: 3px solid white;
 	border-radius: 10px;
-	background-color: yellow;
+	background-color: rgba(255,255,255,0.5);
 	border-color: white;
 	left: 0px;
 }
@@ -77,27 +97,36 @@
 	top: 480px;
 	border: 3px solid white;
 	border-radius: 10px;
-	background-color: yellow;
+	background-color: rgba(255,255,255,0.5);
 	border-color: white;
 	left: 0px;
 }
 #timehead{
 position : relative;
-color : black;
+color : #F5DF4D;
 top : -100px;
+}
+body{
+
+background-image: url("https://techcrunch.com/wp-content/uploads/2018/09/GettyImages-465790437.jpg?w=430&h=230&crop=1");
+background-repeat: no-repeat;
+background-size: cover;
+}
+a:hover{
+	box-shadow: 0 0 20px white;
+	transition-duration: 0.2s;
+	background-color: orange;
+}
+ #bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.6);
+	height: 625px;
+	width: 1366px;
 }
 </style>
 </head>
 <body bgcolor="blue">
-	<%!String admin;%>
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("admin") == null) {
-		response.sendRedirect("Login.html");
-	} else {
-		admin = session.getAttribute("admin").toString();
-	}
-	%>
+	
 	<label id="adminlab">welcome : <%=admin%></label>
 
 	<a href="Register.jsp" id="adminregus">Register New User</a>
@@ -119,7 +148,7 @@ top : -100px;
 
 <script>
 let th = document.getElementById("timehead");
-let time = 30;
+let time = 100;
 let i;
 window.addEventListener('load', () =>{
 	

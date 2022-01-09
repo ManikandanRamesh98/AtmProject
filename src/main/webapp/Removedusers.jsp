@@ -19,12 +19,13 @@ td{
 font-size:30px;
 }
 th{
-color:yellow;
+color:#F5DF4D;
 font-size:30px;
 }
+
 </style>
 </head>
-<body bgcolor="blue">
+<body bgcolor="#2F4F4F">
 	<%!ResultSet rs;%>
 	<%
 	RemovedUsersImpl removedusersdao = new RemovedUsersImpl();

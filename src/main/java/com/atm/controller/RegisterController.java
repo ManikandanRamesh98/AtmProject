@@ -43,7 +43,17 @@ public class RegisterController extends HttpServlet {
 		String password = req.getParameter("passreg");
 		String role = req.getParameter("rolereg");
 		Long mobno = Long.parseLong(req.getParameter("mobnoreg"));
+		UserProfileModel userProfileModel = new UserProfileModel(mobno,"s");
+		UserProfileImpl userProfileImpl2 = new UserProfileImpl();
+		boolean flag = false;
 		try {
+			flag = userProfileImpl2.usermobileexist(userProfileModel);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			if(!flag) {
 			UsernamePasswordModel usernamepassmodel = new UsernamePasswordModel(username, password, role);
 			int ins = userimpl.insusernamepass(usernamepassmodel);
 			if (ins > 0) {
@@ -69,6 +79,9 @@ public class RegisterController extends HttpServlet {
 
 			} else {
 				throw new UserNameAlreadyExistException();
+			}
+			}else {
+				throw new MobileNoAlreadyRegException();
 			}
 		} catch (UserNameAlreadyExistException e) {
 			// TODO: handle exception

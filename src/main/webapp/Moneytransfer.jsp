@@ -4,29 +4,42 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<div id="bgBlur"></div>
 <title>Money Transfer</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 fieldset {
 	width: 500px;
 	border-color: black;
 	position: absolute;
-	top: 190px;
+	top: 90px;
 	left: 400px;
-	height: 260px;
+	height: 400px;
+	padding:20px;
 }
 
 legend {
-	color: yellow;
+	color: #F5DF4D;
 	font-size: 40px;
 }
 
 label {
 	font-size: 30px;
+	color:white;
 }
 
 input {
 	position: absolute;
 	left: 240px;
+	background-color: rgba(255,255,255,0.7);
+	height: 40px;
+	font-size: 217x;
+	font-weight: bolder;
 }
 
 #homebt {
@@ -40,12 +53,42 @@ input {
 
 #formbt {
 	position: relative;
-	float: right;
-	top: 10px;
+	background-color: #0072B5;
+	top: 30px;
 	width: 100px;
 	height: 40px;
-	left: -20px;
+	left: 170px;
 }
+body{
+background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+input:hover{
+	box-shadow: 0 0 20px white;
+	transition-duration: 0.2s;
+}
+ #bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.6);
+	height: 625px;
+	width: 1366px;
+}
+#moneytransfname{
+position: relative;
+
+}
+#moneytransfaccno{
+position: relative;
+}
+#moneytransfamount{
+position: relative;
+}
+button:hover{
+	box-shadow: 0 0 20px white;
+	transition-duration: 0.2s;
+}
+
 </style>
 </head>
 <body bgcolor="blue">
@@ -55,13 +98,13 @@ input {
 	<fieldset>
 		<legend>Money Transfer</legend>
 		<form action="moneytransferserv" method="post">
-			<label>Enter UserName : </label><br> <input type="text"
+			<label>Enter UserName : </label><br> <input type="text" id = "moneytransfname"
 				name="moneytransfname" autofocus><br> <label>Enter
-				UserAccountNo : </label><br> <input type="text" name="moneytransfaccno" pattern = "[0-9]{11}" title = "Enter valid Account no"><br>
-			<label>Enter Amount : </label><br> <input type="text"
+				UserAccountNo : </label><br> <input type="text" id = "moneytransfaccno" name="moneytransfaccno" pattern = "[0-9]{11}" title = "Enter valid Account no"><br>
+			<label>Enter Amount : </label><br> <input type="text" id = "moneytransfamount"
 				name="moneytransfamount" required
-			pattern="[1-9][0-9]+[0]" minlength = "3" maxlength="7" title="Enter Valid Amount"><br>
-			<button type="submit" id="formbt">Submit</button>
+			pattern="[1-9][0-9]*[0][0]" minlength = "3" maxlength="7" title="Enter Valid Amount"><br>
+			<button type="submit" id="formbt">TRANSFER</button>
 		</form>
 	</fieldset>
 	<form action="Welcomepage.jsp">

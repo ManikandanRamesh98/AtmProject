@@ -16,7 +16,7 @@ left:360px;
 
 </style>
 </head>
-<body bgcolor = "blue">
+<body bgcolor = "navy">
 <h1>Invalid Username!!</h1>
 <h2 id = "timehead">00:00</h2>
 </body>

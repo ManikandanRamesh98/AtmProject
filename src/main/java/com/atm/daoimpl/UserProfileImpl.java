@@ -237,5 +237,18 @@ public class UserProfileImpl implements UserprofileDao {
 		
 	}
 	
+	//check usermobile no exist:
+	public boolean usermobileexist(UserProfileModel userProfileModel)throws Exception {
+		Connection con = ConnectionUtil.getConnection();
+		String query = "select * from userprofile where mob_no in ?";
+		PreparedStatement pStatement = con.prepareStatement(query);
+		pStatement.setLong(1, userProfileModel.getMob_no());
+		ResultSet rSet = pStatement.executeQuery();
+		if(rSet.next()) {
+			return true;
+		}
+		return false;
+	}
+	
 
 }

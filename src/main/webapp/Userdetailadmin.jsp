@@ -22,6 +22,7 @@ label {
 
 legend {
 	font-size: 30px;
+	color: white;
 }
 
 #headinval {
@@ -32,7 +33,7 @@ legend {
 }
 </style>
 </head>
-<body bgcolor="blue">
+<body bgcolor="#2F4F4F">
 	<%!String user;
 	
 	UserProfileImpl userprofiledao = new UserProfileImpl();

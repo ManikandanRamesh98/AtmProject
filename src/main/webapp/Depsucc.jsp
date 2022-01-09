@@ -4,13 +4,22 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<div id="bgBlur">
+<title>Deposit Success</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 #withsucclab {
-	font-size: 60px;
+	font-size: 45px;
 	position: absolute;
 	top: 180px;
-	left: 170px;
+	left: 190px;
+	color : white;
+	font-weight:bolder;
 }
 
 #succhead {
@@ -18,8 +27,20 @@
 	color: yellow;
 	position: absolute;
 	top: 300px;
-	left: 430px;
+	left: 480px;
 }
+body{
+background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+ #bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.7);
+	height: 625px;
+	width: 1366px;
+} 
 </style>
 </head>
 <body bgcolor="blue">
@@ -48,7 +69,7 @@
 <script>
 
 let th = document.getElementById("timehead");
-let time = 4;
+let time = 4000;
 let i;
 window.addEventListener('load', () =>{
 	

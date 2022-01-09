@@ -109,7 +109,10 @@ public class UserProfileModel {
 		this.user_acc_no = acc_no;
 		this.id = id;
 	}
+	public UserProfileModel(Long mob_no,String s) {
 
+		this.mob_no = mob_no;
+	}
 	public UserProfileModel(String username, Long user_acc_no) {
 
 		this.username = username;

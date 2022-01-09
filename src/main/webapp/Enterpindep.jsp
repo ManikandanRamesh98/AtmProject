@@ -4,8 +4,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<div id="bgBlur"></div>
+<title>Enter Pin</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 h1 {
 	position: absolute;
 	color: yellow;
@@ -22,16 +29,32 @@ form {
 input {
 	height: 90px;
 	width: 300px;
-	background-color: blue;
+	background-color: rgba(255,255,255,0.7);
 	font-size: 60px;
-	border-color: blue;
-}
+	position : relative;
+	left : 50px;
+} 
 #timehead{
 position : relative;
 left : 0px;
 color : black;
 font-size:40px;
 }
+body{
+background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+#withpinid:hover{
+	box-shadow: 0 0 20px white;
+	transition-duration: 0.2s;
+}
+ #bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.5);
+	height: 625px;
+	width: 1366px;
+} 
 </style>
 </head>
 <body bgcolor="blue">
@@ -50,7 +73,7 @@ font-size:40px;
 
 <script>
 let th = document.getElementById("timehead");
-let time = 9;
+let time = 20;
 let i;
 window.addEventListener('load', () =>{
 	

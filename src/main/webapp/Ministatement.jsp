@@ -8,15 +8,22 @@
 	import="com.atm.models.*"%>
 <!DOCTYPE html>
 <html>
+<div id="bgBlur"></div>
 <head>
 <meta charset="ISO-8859-1">
+
 <title>Mini Statement</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 td {
 	color: yellow;
+	font-weight: bolder;
 }
-
-
 
 table, th, td {
   border: 1px solid black;
@@ -24,16 +31,30 @@ table, th, td {
   padding: 20px;
 }
 th{
-
+color:white;
 font-weight:bolder;
 font-size:30px;
 }
 td{
 font-size:20px;
 }
+body{
+/* background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg"); */
+background-color : #363945;
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+ #bgBlur{
+	position: absolute;
+	/* background-color: rgba(11, 11, 11, 0.5); */
+	height: 625px;
+	width: 1366px;
+}
+
 </style>
 </head>
-<body bgcolor="blue">
+<body >
 	<%!String user;%>
 
 	<%
@@ -54,7 +75,7 @@ String transtype = null;%>
 		ResultSet rSet = ministatementdao.getministatement(accno);
 	%>
 	
-	
+	<div id = "minidiv">
 	<table style="width: 80%; margin-left: 100px;">
 		<tr>
 			<th>Transaction_type</th>
@@ -92,6 +113,7 @@ String transtype = null;%>
 	</table>
 	
 <h1 id = "timehead">00:00</h1>
+</div>
 </body>
 
 <script>

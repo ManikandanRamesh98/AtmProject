@@ -21,6 +21,15 @@ font-size:30px;
 td{
 font-size:20px;
 }
+table{
+background-color: rgba(255,255,255,0.2);
+}
+body{
+background-image: url("https://scontent.fmaa12-2.fna.fbcdn.net/v/t31.18172-8/22051279_1623705757680216_2725610580980024577_o.jpg?_nc_cat=111&ccb=1-5&_nc_sid=9267fe&_nc_ohc=rQNE9RPtZRwAX-mhcc2&_nc_ht=scontent.fmaa12-2.fna&oh=00_AT8DZmZcWuSx5EuS6yKVIyni07maX40Fdj558GuUd-6Ayg&oe=61FBF9C7");
+background-repeat: no-repeat;
+background-size: cover;
+
+}
 </style>
 </head>
 <body bgcolor="blue">

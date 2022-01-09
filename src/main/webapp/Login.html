@@ -4,42 +4,137 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div id="bgBlur"></div>
 <title>Bank</title>
 <link rel="stylesheet" href="Bank.css">
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 label {
-	font-size: 20px;
+	font-size: 30px;
+	position : absolute;
+	top : 10px;
+	padding : 20px;
+}
+#passlab{
+position : absolute;
+top : 120px;
 }
 
-legend {
-	font-size: 30px;
+#user
+{
+position: absolute;
+top:70px;
+right:100px;
+}
+#pass{
+position: absolute;
+top:180px;
+right:100px;
 }
 
 fieldset {
 	position: absolute;
-	top: 200px;
-	right:0px;
+	top: 110px;
+	right:20px;
 	width: 500px;
-	height: 200px;
+	height: 360px;
+	border-color: black;
+}
+input{
+width:350px;
+height:40px;
+border-radius: 5px;
+background-color: black;
+color: white;
+font-size: 30px;
+
+}
+
+#sub{
+position : absolute;
+top: 260px;
+left:100px;
+width:140px;
+height:40px;
+border-radius: 5px;
+}
+#sub:hover{
+background-color:black;
+color:white;
+}
+
+#res{
+position : absolute;
+top: 260px;
+left:280px;
+width:140px;
+height:40px;
+border-radius: 5px;
+}
+#res:hover{
+background-color:black;
+color:white;
+}
+marquee {
+	position :absolute;
+	bottom: 0px;
+	font-size: 20px;
+}
+body{
+	background-image:url("https://scontent.fmaa12-2.fna.fbcdn.net/v/t31.18172-8/22051279_1623705757680216_2725610580980024577_o.jpg?_nc_cat=111&ccb=1-5&_nc_sid=9267fe&_nc_ohc=rQNE9RPtZRwAX-mhcc2&_nc_ht=scontent.fmaa12-2.fna&oh=00_AT8DZmZcWuSx5EuS6yKVIyni07maX40Fdj558GuUd-6Ayg&oe=61FBF9C7");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+#logintxt{
+width:700px;
+font-size: 30px;
+position: absolute;
+top :170px;
+text-align:justify;
+
+}
+body{
+color:white;
+}
+#logger
+{
+font-size:30px;
+  color:black4;
+}
+h3{
+font-size:25px;
+position : absolute;
+top: 40px;
+color:black;
+font-weight: bolder;
+}
+#bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.3);
+	height: 625px;
+	width: 1366px;
+} 
+button:hover{
+	box-shadow: 0 0 20px white;
+	transition-duration: 0.2s;
 	
 }
 
 
-p { font-style:italic; padding-left:100px; }
-
-
-
-
 </style>
 </head>
-<body>
-
+<body >
+<div class="fullbody">
 <div class="one">
 	<fieldset>
-
-		<legend>LOGIN</legend>
+		<legend id="logger">LOGIN</legend>
 		
-		<form action="loginval" id="formlogin">
+		<form action="loginval" id="formlogin" autocomplete="off">
 
 			<label id="userlab">User Name:</label><br> <input type="text"
 				name="username" required id="user" pattern="[A-Z][a-zA-Z]{3,20}"
@@ -54,10 +149,17 @@ p { font-style:italic; padding-left:100px; }
 		</form>
 	</fieldset>
 	</div>
-
-
+	
+<marquee scrollamount="10">For Security Reason kindly change your Password in a circle of 180 days,Contact 18000189786 for help,Stay home and stay safe,Avoid visiting Bank in Pandemic situation,Bank never ask otp/card details be aware of Fraud Calls!!,please dont click any Anonymus link in the name of STATE BANK.</marquee>
+<div id = "logintxt">
+<h3>Be aware of fraudulent emails offering free gifts and rewards. Scammers send these emails to extract money from your account via your personal details. Do not share your bank details with anyone. SBI never asks for your UPI PIN or Card Details.</h3>
+</div>
+</div>
 </body>
+<script type="text/javascript">
 
+
+</script>
 
 
 </html>

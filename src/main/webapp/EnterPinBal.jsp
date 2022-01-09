@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+    pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 }
 h1 {
 	position: absolute;
-	color: #F5DF4D;
+	color: yellow;
 	font-size: 90px;
 	left: 480px;
 }
@@ -25,6 +26,7 @@ form {
 	top: 300px;
 	left: 500px;
 }
+
 input {
 	height: 90px;
 	width: 300px;
@@ -58,13 +60,11 @@ background-size: cover;
 </head>
 <body bgcolor="blue">
 	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	int amount = Integer.parseInt(request.getParameter("inpwith"));
-	session.setAttribute("withamount", amount);
+	response.setHeader("cache-control", "no-cache,no-store,must-revalidate");
 	%>
 	<h1>Enter Pin</h1>
-	<form action="Enterpinservlet">
-		<input type="password" name="withpin" id="withpinid" pattern="[0-9]{4}" title = "enter your pin 0-9 in length of four" required autofocus>
+	<form action="enterpinbalserv">
+		<input type="password" name="balpin" id="withpinid" pattern = "[0-9]{4}" title = "enter your pin 0-9 in length of four" required autofocus>
 
 	</form>
 <h1 id = "timehead">00:00</h1>
@@ -88,6 +88,7 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
+			
 			window.location.assign("Logout.jsp");
 		}
 	},1000);
