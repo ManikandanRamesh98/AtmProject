@@ -63,6 +63,18 @@ background-size: cover;
 	int amount = Integer.parseInt(request.getParameter("inpdep"));
 	session.setAttribute("depamount", amount);
 	%>
+	<%!String user;
+	
+	%>
+
+	<%
+	
+		if (session.getAttribute("user") == null) {
+			response.sendRedirect("index.jsp");
+		} else {
+			user = session.getAttribute("user").toString();
+		}
+	%>
 	<h1>Enter Pin</h1>
 	<form action="Enterpindepservlet">
 		<input type="password" name="deppin" id="withpinid" pattern = "[0-9]{4}" title = "enter your pin 0-9 in length of four" required autofocus>

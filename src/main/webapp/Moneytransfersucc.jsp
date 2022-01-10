@@ -7,8 +7,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<div id="bgBlur"></div>
 <title>Money Transfer Success!!</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 h1{
 position : absolute;
 font-size:60px;
@@ -34,6 +41,21 @@ position : absolute;
 top : 0px;
 left : 0px;
 }
+body{
+background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+ #bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.6);
+	height: 625px;
+	width: 1366px;
+}
+#succhead{
+color:white;
+}
 </style>
 </head>
 <body bgcolor = "blue">
@@ -41,6 +63,14 @@ left : 0px;
 int eamount;
 String user;
 int userbal;%>
+
+
+	<%
+	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+		if (session.getAttribute("user") == null) {
+			response.sendRedirect("index.jsp");
+		} 
+	%>
 <%
 username = session.getAttribute("moneytransfname").toString();
 eamount = (int)session.getAttribute("moneytransfamount");
@@ -50,7 +80,7 @@ UserProfileModel userprofilepojo = new UserProfileModel(user);
 UserProfileImpl userprofiledao = new UserProfileImpl();
 userbal = userprofiledao.getbal(userprofilepojo);
 %>
-<h1>You Have Sucessfully Transfered <%=" " + eamount + " " %> to <%=" " + username %></h1>
+<h1 id = "succhead">You Have Sucessfully Transfered <%=" " + eamount + " " %> to <%=" " + username %></h1>
 <label>Your Balance is <%=" " + userbal %></label>
 <form action = "Welcomepage.jsp">
 <button type = "submit">Home</button>

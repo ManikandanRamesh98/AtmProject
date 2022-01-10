@@ -71,10 +71,10 @@ color: black;
 	text-decoration: none;
 	font-size: 50px;
 	position: absolute;
-	background-color: red;
-	border-color: white;
+	background-color: #CD212A;
+	border-color: black;
 	right: 0px;
-	top: 0px;
+	top: 20px;
 	border-radius: 10px;
 }
 
@@ -126,6 +126,14 @@ a:hover{
 </style>
 </head>
 <body bgcolor="blue">
+<%
+	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+	if (session.getAttribute("admin") != null) {
+		String admin = session.getAttribute("admin").toString();
+	} else {
+		response.sendRedirect("index.jsp");
+	}
+	%>
 	
 	<label id="adminlab">welcome : <%=admin%></label>
 
@@ -164,7 +172,7 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("Login.html");
+			window.location.assign("index.jsp");
 		}
 	},1000);
 	

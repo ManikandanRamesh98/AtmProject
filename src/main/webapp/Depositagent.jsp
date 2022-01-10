@@ -42,7 +42,7 @@ top:80px;
 <%!String agent;%>
 	<%
 	if (session.getAttribute("agent") == null) {
-		response.sendRedirect("Login.html");
+		response.sendRedirect("index.jsp");
 	} else {
 		agent = session.getAttribute("agent").toString();
 	}
@@ -57,5 +57,34 @@ top:80px;
 	<button type = "submit">Deposit</button>
 	</form>
 	</fieldset>
+<h2 id = "timehead">00:00</h2>
 </body>
+
+<script>
+let th = document.getElementById("timehead");
+let time = 5;
+let i;
+window.addEventListener('load', () =>{
+	
+	 i= setInterval(() => {
+		if(time > 0){
+			if(time >= 10){
+				
+		th.innerHTML = "00 : " + time--;
+		
+			}else{
+				th.style.color = "red";
+				th.innerHTML = "00 : 0" + time--;
+			}
+		}else{
+			clearInterval(i);
+			window.location.assign("index.jsp");
+		}
+	},1000);
+	
+});
+
+
+
+</script>
 </html>

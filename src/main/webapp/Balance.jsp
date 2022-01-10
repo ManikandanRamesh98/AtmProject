@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <div id="bgBlur">
 <title>Balance</title>
 <style>
@@ -39,7 +41,7 @@
 #ballab {
 	color: yellow;
 	position: relative;
-	top: 270px;
+	top: 260px;
 	left: 850px;
 	font-size: 70px;
 }
@@ -79,7 +81,7 @@ background-size: cover;
 	<%
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 		if (session.getAttribute("user") == null) {
-			response.sendRedirect("Login.html");
+			response.sendRedirect("index.jsp");
 		} else {
 			user = session.getAttribute("user").toString();
 		}
@@ -95,7 +97,7 @@ background-size: cover;
 	%>
 	<label id="ballab"><%=userProfiledao.getbal(userprofilepojo)%></label>
 	<form action="Welcomepage.jsp">
-		<button type="submit">Home</button>
+		<button type="submit" class="btn btn-danger">Home</button>
 	</form>
 <h1 id = "timehead">00:00</h1>
 </body>

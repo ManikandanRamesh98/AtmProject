@@ -1,9 +1,9 @@
 package com.atm.exception;
 
-public class NotLoggedInException extends Exception{
+public class RefillException extends Exception{
 @Override
 public String getMessage() {
 	// TODO Auto-generated method stub
-	return "index.jsp";
+	return "RefillNoNeed.jsp";
 }
 }

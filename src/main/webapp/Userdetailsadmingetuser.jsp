@@ -80,10 +80,15 @@ button:hover{
 }
 </style>
 </head>
-<body bgcolor="blue">
+<body bgcolor="#363945">
 	<%
-response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-%>
+	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+	if (session.getAttribute("admin") != null) {
+		String admin = session.getAttribute("admin").toString();
+	} else {
+		response.sendRedirect("index.jsp");
+	}
+	%>
 	<fieldset>
 		<legend>User Details : </legend>
 		<form action="Userdetailadmin.jsp">

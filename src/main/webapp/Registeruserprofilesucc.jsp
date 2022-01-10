@@ -35,7 +35,7 @@ background-size: cover;
 	if (session.getAttribute("admin") != null) {
 		String admin = session.getAttribute("admin").toString();
 	} else {
-		response.sendRedirect("Login.html");
+		response.sendRedirect("index.jsp");
 	}
 	%>
 	<%!String reguser;%>

@@ -45,7 +45,16 @@ background-size: cover;
 	<h1>Pin Changed Successfully!!</h1>
 <h1 id = "timehead">00:00</h1>
 </body>
+	<%!String user; %>
 
+	<% 
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+if(session.getAttribute("user") == null){
+	response.sendRedirect("index.jsp");
+}else{
+ user = session.getAttribute("user").toString();
+}
+%>
 <script>
 let th = document.getElementById("timehead");
 let time = 3;
@@ -64,7 +73,7 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("Login.html");
+			window.location.assign("Logout.jsp");
 		}
 	},1000);
 	

@@ -16,6 +16,14 @@ left: 200px;
 </style>
 </head>
 <body bgcolor = "navy">
+<%
+	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+	if (session.getAttribute("admin") != null) {
+		String admin = session.getAttribute("admin").toString();
+	} else {
+		response.sendRedirect("index.jsp");
+	}
+	%>
 <h1>Username Already Exist</h1>
 <h2 id = "timehead">00:00</h2>
 </body>

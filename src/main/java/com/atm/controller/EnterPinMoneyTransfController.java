@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import com.atm.daoimpl.InvalidPinLockDaoimpl;
 import com.atm.daoimpl.UserProfileImpl;
-import com.atm.exception.DepositWrongPinException;
-import com.atm.exception.WithdrawWrongPinException;
 import com.atm.models.InvalidPinLockModel;
 
 import jakarta.servlet.ServletException;
@@ -14,29 +12,28 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-@WebServlet("/Enterpindepservlet")
-public class EnterPinDepositController extends HttpServlet {
-	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+@WebServlet("/Enterpinmoneytransfserv")
+public class EnterPinMoneyTransfController extends HttpServlet{
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String user = session.getAttribute("user").toString();
-		int pin = Integer.parseInt(req.getParameter("deppin"));
+		int pin = Integer.parseInt(req.getParameter("moneytransfpin"));
 		UserProfileImpl userprofileimpl = new UserProfileImpl();
-		InvalidPinLockDaoimpl invalidPinLockDaoimpl = new InvalidPinLockDaoimpl();
+		InvalidPinLockDaoimpl invalidPinLockDaoimpl = new InvalidPinLockDaoimpl(); 
 		try {
 			int userpin = userprofileimpl.getuserpin(user);
 			if (userpin > 0) {
 				if (userpin == pin) {
-					res.sendRedirect("depserv");
-				}  else {
+					res.sendRedirect("Moneytransfer.jsp");
+				} else {
 					int inv = (int)session.getAttribute("invalidpinlock");
 					inv++;
 					if(inv < 3) {
 						session.removeAttribute("invalidpinlock");
 					session.setAttribute("invalidpinlock", inv);
-					session.setAttribute("invaliddeppin", true);
-					throw new DepositWrongPinException();
+					session.setAttribute("invalidhomepin", true);
+					res.sendRedirect("Welcomepage.jsp");
 					}else {
 						InvalidPinLockModel invalidPinLockModel = new InvalidPinLockModel(user);
 						invalidPinLockDaoimpl.insertlock(invalidPinLockModel);
@@ -44,10 +41,7 @@ public class EnterPinDepositController extends HttpServlet {
 					}
 				}
 			}
-		} catch(DepositWrongPinException e) {
-			res.sendRedirect(e.getMessage());
-		}
-			
+		} 
 		
 		catch (Exception e) {
 			// TODO Auto-generated catch block

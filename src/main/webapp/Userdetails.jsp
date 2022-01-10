@@ -40,7 +40,7 @@ legend {
 	<%
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 		if (session.getAttribute("user") == null) {
-			response.sendRedirect("Login.html");
+			response.sendRedirect("index.jsp");
 		} else {
 			user = session.getAttribute("user").toString();
 		}

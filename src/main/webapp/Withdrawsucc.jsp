@@ -48,7 +48,7 @@ background-size: cover;
 
 	<%
 	if (session.getAttribute("user") == null) {
-		response.sendRedirect("Login.html");
+		response.sendRedirect("index.jsp");
 	} else {
 		user = session.getAttribute("user").toString();
 	}

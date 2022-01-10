@@ -1,9 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <div id="bgBlur"></div>
 <title>Bank</title>
 <link rel="stylesheet" href="Bank.css">
@@ -14,8 +18,12 @@
 	box-sizing: border-box;
 	font-family: Arial,Helvetica,sans-serif;	
 }
+legend{
+position: relative;
+left : 160px;
+}
 label {
-	font-size: 30px;
+	font-size: 20px;
 	position : absolute;
 	top : 10px;
 	padding : 20px;
@@ -44,6 +52,7 @@ fieldset {
 	width: 500px;
 	height: 360px;
 	border-color: black;
+	border: none;
 }
 input{
 width:350px;
@@ -58,13 +67,13 @@ font-size: 30px;
 #sub{
 position : absolute;
 top: 260px;
-left:100px;
+left:80px;
 width:140px;
 height:40px;
 border-radius: 5px;
 }
 #sub:hover{
-background-color:black;
+
 color:white;
 }
 
@@ -77,18 +86,20 @@ height:40px;
 border-radius: 5px;
 }
 #res:hover{
-background-color:black;
+
 color:white;
 }
 marquee {
 	position :absolute;
 	bottom: 0px;
 	font-size: 20px;
+	opacity: 0.9;
 }
 body{
 	background-image:url("https://scontent.fmaa12-2.fna.fbcdn.net/v/t31.18172-8/22051279_1623705757680216_2725610580980024577_o.jpg?_nc_cat=111&ccb=1-5&_nc_sid=9267fe&_nc_ohc=rQNE9RPtZRwAX-mhcc2&_nc_ht=scontent.fmaa12-2.fna&oh=00_AT8DZmZcWuSx5EuS6yKVIyni07maX40Fdj558GuUd-6Ayg&oe=61FBF9C7");
 	background-repeat: no-repeat;
 	background-size: 100%;
+	overflow-x:hidden; 
 }
 #logintxt{
 width:700px;
@@ -104,14 +115,15 @@ color:white;
 #logger
 {
 font-size:30px;
-  color:black4;
+  
 }
 h3{
 font-size:25px;
 position : absolute;
 top: 40px;
-color:black;
+color:white;
 font-weight: bolder;
+opacity: 0.7;
 }
 #bgBlur{
 	position: absolute;
@@ -122,19 +134,19 @@ font-weight: bolder;
 button:hover{
 	box-shadow: 0 0 20px white;
 	transition-duration: 0.2s;
-	
 }
 
 
 </style>
 </head>
 <body >
+<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate"); %>
 <div class="fullbody">
 <div class="one">
 	<fieldset>
 		<legend id="logger">LOGIN</legend>
 		
-		<form action="loginval" id="formlogin" autocomplete="off">
+		<form action="loginval" id="formlogin" autocomplete="off" method="post">
 
 			<label id="userlab">User Name:</label><br> <input type="text"
 				name="username" required id="user" pattern="[A-Z][a-zA-Z]{3,20}"
@@ -143,9 +155,9 @@ button:hover{
 				name="password" required id="pass"
 				pattern="[A-Za-z0-9!@#$%^&*_+=-~`/|\]{6,20}" minlength="6"
 				title="minimum 6 character and special characters allowed"><br>
-			<button id="sub" type="submit">Submit</button>
+			<button id="sub" type="submit" class="btn btn-success">Submit</button>
 			&ensp;&ensp;
-			<button type="reset" id="res">Reset</button>
+			<button type="reset" id="res" class="btn btn-danger">Reset</button>
 		</form>
 	</fieldset>
 	</div>

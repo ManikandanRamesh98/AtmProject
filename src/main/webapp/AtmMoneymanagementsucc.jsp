@@ -25,7 +25,7 @@ color:black;
 <%!String agent;%>
 	<%
 	if (session.getAttribute("agent") == null) {
-		response.sendRedirect("Login.html");
+		response.sendRedirect("index.jsp");
 	} else {
 		agent = session.getAttribute("agent").toString();
 	}
@@ -39,7 +39,7 @@ color:black;
 
 <script>
 let th = document.getElementById("timehead");
-let time = 09;
+let time = 9;
 let i;
 window.addEventListener('load', () =>{
 	

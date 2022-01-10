@@ -55,15 +55,17 @@ background-size: cover;
 </style>
 </head>
 <body >
-	<%!String user;%>
+	<%!String user;
+	
+	%>
 
 	<%
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("user") == null) {
-		response.sendRedirect("Login.html");
-	} else {
-		user = session.getAttribute("user").toString();
-	}
+		if (session.getAttribute("user") == null) {
+			response.sendRedirect("index.jsp");
+		} else {
+			user = session.getAttribute("user").toString();
+		}
 	%>
 	<%!MiniStatementImpl ministatementdao = new MiniStatementImpl();
 

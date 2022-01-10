@@ -1,11 +1,12 @@
+<%@page import="com.atm.daoimpl.AtmMoneyManagementImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<div id="bgBlur">
-<title>Deposit Success</title>
+<div id="bgBlur"></div>
+<title>Insert title here</title>
 <style>
 *{
 	margin: 0;
@@ -13,23 +14,8 @@
 	box-sizing: border-box;
 	font-family: Arial,Helvetica,sans-serif;	
 }
-#withsucclab {
-	font-size: 45px;
-	position: absolute;
-	top: 180px;
-	left: 190px;
-	color : white;
-	font-weight:bolder;
-}
-
-#succhead {
-	font-size: 60px;
-	color: yellow;
-	position: absolute;
-	top: 300px;
-	left: 480px;
-}
 body{
+
 background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg");
 background-repeat: no-repeat;
 background-size: cover;
@@ -37,37 +23,48 @@ background-size: cover;
 
  #bgBlur{
 	position: absolute;
-	background-color: rgba(11, 11, 11, 0.7);
+	background-color: rgba(11, 11, 11, 0.6);
 	height: 625px;
 	width: 1366px;
-} 
+}
+h1{
+color:#FFA500;
+position: absolute;
+top:200px;
+left:460px;
+font-size:60px;
+}
+h2{
+color:#CD212A;
+position: absolute;
+top:320px;
+left:390px;
+font-size:60px;
+	}
 </style>
 </head>
-<body bgcolor="blue">
-	<%!String user;%>
+<body>
 
-	<%
-	if (session.getAttribute("user") == null) {
-		response.sendRedirect("index.jsp");
+<%
+AtmMoneyManagementImpl atmMoneyManagementImpl = new AtmMoneyManagementImpl();
+Long prevbal = atmMoneyManagementImpl.previousbal();
+%>
+<%
+	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+	if (session.getAttribute("admin") != null) {
+		String admin = session.getAttribute("admin").toString();
 	} else {
-		user = session.getAttribute("user").toString();
+		response.sendRedirect("index.jsp");
 	}
 	%>
-	<%
-	int succamount = (int) session.getAttribute("depsuccamount");
-	int succbal = (int) session.getAttribute("depsuccbal");
-	%>
-	<label id="withsucclab">You have successfully Deposited amount
-		<%=succamount%></label>
-	<h1 id="succhead">
-		BALANCE:<%=succbal%></h1>
+<h1>No Need to Refill</h1>
+<h2>ATM BALANCE : <%=prevbal %></h2>
 
-
-<h1 id = "timehead">00:00</h1>
 </body>
+<h3 id = "timehead">00:00</h3>
+
 
 <script>
-
 let th = document.getElementById("timehead");
 let time = 4;
 let i;
@@ -90,6 +87,7 @@ window.addEventListener('load', () =>{
 	},1000);
 	
 });
+
 
 
 </script>

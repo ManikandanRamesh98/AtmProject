@@ -24,9 +24,27 @@
 <link rel="stylesheet" href="welcomeuser.css">
 <style>
 #invalpin{
-color : red;
-position : relative;
+color : #F5DF4D;
+position : absolute;
+font-size: 80px;
+top: 300px;
+left:500px;
+font-weight: bolder;
 }
+
+a{
+
+    display: inline-block;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.7s;
+}
+
+a:hover{
+    transform: translateY(-10px);
+}
+
+
 </style>
 </head>
 <body bgcolor="blue">
@@ -43,11 +61,11 @@ position : relative;
 	<a href="Withdraw.jsp" id="withdraw" class="atag">Withdraw</a>
 	<a href="Deposit.jsp" id="deposit" class="atag">Deposit</a>
 	<a href="EnterPinBal.jsp" id="balance" class="atag">Balance</a>
-	<a href="Userdetails.jsp" id="userdetails" class="atag">User
+	<a href="EnterPinuserDetail.jsp" id="userdetails" class="atag">User
 		Details</a>
-	<a href="Moneytransfer.jsp" id="moneytransfer" class="atag">Money
+	<a href="EnterPinMoneyTransf.jsp" id="moneytransfer" class="atag">Money
 		Transfer</a>
-	<a href="Ministatement.jsp" id="ministatement" class="atag">Mini
+	<a href="EnterPinMiniState.jsp" id="ministatement" class="atag">Mini
 		Statement</a>
 	<a href="Pinchange.jsp" id="pinchange" class="atag">Pin Change</a>
 	<a href="Logout.jsp" id="logout" class="atag">Logout</a>

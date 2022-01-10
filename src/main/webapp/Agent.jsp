@@ -42,7 +42,7 @@ left:0px;
 	<%!String agent;%>
 	<%
 	if (session.getAttribute("agent") == null) {
-		response.sendRedirect("Login.html");
+		response.sendRedirect("index.jsp");
 	} else {
 		agent = session.getAttribute("agent").toString();
 	}
@@ -71,7 +71,7 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("Login.html");
+			window.location.assign("index.jsp");
 		}
 	},1000);
 	

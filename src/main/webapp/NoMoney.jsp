@@ -23,6 +23,16 @@ left:400px;
 </style>
 </head>
 <body bgcolor = "blue">
+	<%!String user; %>
+
+	<% 
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+if(session.getAttribute("user") == null){
+	response.sendRedirect("Login.html");
+}else{
+ user = session.getAttribute("user").toString();
+}
+%>
 <h1>Sorry!&#128531;</h1>	
 <h2>ATM OUT OF CASH</h2>
 </body>

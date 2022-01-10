@@ -208,6 +208,7 @@ select substr((current_timestamp-acc_lockedat),-12,2) from invalidpinlock where 
 delete
 from invalidpinlock
 where username in 'Mani';
+commit;
 
 select * from timestampdemo;
 create table timestampdemo(
@@ -226,3 +227,7 @@ select substr((current_timestamp-acc_lockedat),2,2) from invalidpinlock where us
 select substr((current_timestamp-acc_lockedat),5,2) from invalidpinlock where username in 'Mani';
 select current_timestamp from dual;
 select substr(current_timestamp,10,2) from dual;
+
+select * from usernamepassword;
+select * from atm_money_management;
+select * from userprofile;

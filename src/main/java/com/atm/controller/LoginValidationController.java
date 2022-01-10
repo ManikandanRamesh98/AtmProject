@@ -21,7 +21,7 @@ import jakarta.servlet.annotation.WebServlet;
 @WebServlet("/loginval")
 public class LoginValidationController extends HttpServlet {
 
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		String uname = request.getParameter("username");
@@ -51,7 +51,7 @@ public class LoginValidationController extends HttpServlet {
 				}else {
 					int retriveat = invalidPinLockDaoimpl.retriveat(invalidPinLockModel);
 					System.out.println(retriveat + "ret");
-					if(retriveat > 5) {
+					if(retriveat > 2) {
 						invalidPinLockDaoimpl.deletelock(invalidPinLockModel);
 						if(session.getAttribute("invalidpinlock") == null) {
 							session.setAttribute("invalidpinlock", 0);
@@ -63,7 +63,7 @@ public class LoginValidationController extends HttpServlet {
 						response.sendRedirect("Welcomepage.jsp");
 					}else {
 						flag = true;
-						response.getWriter().println("yor account is lockes try after 2 Min!!");
+						response.sendRedirect("InvalidPinMax.jsp");
 					}
 				}
 				}

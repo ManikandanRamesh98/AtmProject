@@ -61,6 +61,19 @@ background-size: cover;
 <body bgcolor="blue">
 	<%
 	response.setHeader("cache-control", "no-cache,no-store,must-revalidate");
+	
+	%>
+	<%!String user;
+	
+	%>
+
+	<%
+	
+		if (session.getAttribute("user") == null) {
+			response.sendRedirect("index.jsp");
+		} else {
+			user = session.getAttribute("user").toString();
+		}
 	%>
 	<h1>Enter Pin</h1>
 	<form action="enterpinbalserv">

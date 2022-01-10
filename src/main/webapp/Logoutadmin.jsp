@@ -11,14 +11,14 @@
 
 	<%
 	if (session.getAttribute("admin") == null) {
-		response.sendRedirect("Login.html");
+		response.sendRedirect("index.jsp");
 	} else {
 		admin = session.getAttribute("admin").toString();
 	}
 	%>
 	<%
 	session.invalidate();
-	response.sendRedirect("Login.html");
+	response.sendRedirect("index.jsp");
 	%>
 </body>
 </html>

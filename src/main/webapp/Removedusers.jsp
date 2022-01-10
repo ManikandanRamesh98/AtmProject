@@ -26,6 +26,14 @@ font-size:30px;
 </style>
 </head>
 <body bgcolor="#2F4F4F">
+<%
+	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+	if (session.getAttribute("admin") != null) {
+		String admin = session.getAttribute("admin").toString();
+	} else {
+		response.sendRedirect("index.jsp");
+	}
+	%>
 	<%!ResultSet rs;%>
 	<%
 	RemovedUsersImpl removedusersdao = new RemovedUsersImpl();

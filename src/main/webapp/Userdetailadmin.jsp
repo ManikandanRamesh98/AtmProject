@@ -49,7 +49,7 @@ legend {
 
 	<%
 	if (session.getAttribute("admin") == null) {
-			response.sendRedirect("Login.html");
+			response.sendRedirect("index.jsp");
 		} else {
 			user = session.getAttribute("admin").toString();
 		}

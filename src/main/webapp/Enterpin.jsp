@@ -57,8 +57,18 @@ background-size: cover;
 </style>
 </head>
 <body bgcolor="blue">
+<%!String user;%>
+
 	<%
 	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+	if (session.getAttribute("user") == null) {
+		response.sendRedirect("index.jsp");
+	} else {
+		user = session.getAttribute("user").toString();
+	}
+	%>
+	<%
+	
 	int amount = Integer.parseInt(request.getParameter("inpwith"));
 	session.setAttribute("withamount", amount);
 	%>
