@@ -94,7 +94,7 @@ button:hover{
 		<form action="Userdetailadmin.jsp">
 			<label>Enter Username : </label><br> <input type="text"
 				name="userdetadmin" pattern="[A-Z][a-zA-Z]{3,20}"
-				title="Start with A-Z and use A-Z or a-z or 0-9 minimum 3 character maximum 20 character" id = "usernameinp">
+				title="Start with A-Z and use A-Z or a-z or 0-9 minimum 3 character maximum 20 character" id = "usernameinp" autofocus>
 			<input type="submit" id = "subid">
 		</form>
 	</fieldset>

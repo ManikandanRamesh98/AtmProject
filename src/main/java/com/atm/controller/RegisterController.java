@@ -25,8 +25,13 @@ public class RegisterController extends HttpServlet {
 		Long accno = 0l;
 		int userpin = 0;
 		try {
+			if(userprofileimpl.getusermaxacc() > 0 && userprofileimpl.getusermaxpin() > 0) {
 			accno = userprofileimpl.getusermaxacc()+1;
 			userpin = userprofileimpl.getusermaxpin()+1;
+			}else {
+				accno = 12345678901l;
+				userpin = 1234;
+			}
 //			System.out.println(accno);
 //			ResultSet rSet1 = userprofileimpl.getusermaxpin();
 //			while (rSet.next()) {

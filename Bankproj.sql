@@ -231,3 +231,7 @@ select substr(current_timestamp,10,2) from dual;
 select * from usernamepassword;
 select * from atm_money_management;
 select * from userprofile;
+select * from withdraw;
+select * from deposit;
+
+select sum(dep_amount) from withdraw where dep_at like '11-01-22%';

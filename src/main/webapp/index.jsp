@@ -21,6 +21,7 @@
 legend{
 position: relative;
 left : 160px;
+top:-50px;
 }
 label {
 	font-size: 20px;
@@ -109,6 +110,10 @@ top :170px;
 text-align:justify;
 
 }
+.form-control
+{
+  width:330px;
+}
 body{
 color:white;
 }
@@ -132,7 +137,7 @@ opacity: 0.7;
 	width: 1366px;
 } 
 button:hover{
-	box-shadow: 0 0 20px white;
+	box-shadow: 0 0 20px blue;
 	transition-duration: 0.2s;
 }
 
@@ -144,15 +149,15 @@ button:hover{
 <div class="fullbody">
 <div class="one">
 	<fieldset>
-		<legend id="logger">LOGIN</legend>
+		<legend id="logger" class="form-label">LOGIN</legend>
 		
 		<form action="loginval" id="formlogin" autocomplete="off" method="post">
 
-			<label id="userlab">User Name:</label><br> <input type="text"
-				name="username" required id="user" pattern="[A-Z][a-zA-Z]{3,20}"
+			<label id="userlab" class="form-label">User Name:</label><br> <input type="text"
+				name="username" class="form-control" required id="user" pattern="[A-Z][a-zA-Z]{3,20}"
 				title="Start with A-Z and use A-Z or a-z or 0-9 minimum 3 character maximum 20 character" autofocus><br>
-			<label id="passlab">Password:</label><br> <input type="password"
-				name="password" required id="pass"
+			<label id="passlab" class="form-label">Password:</label><br> <input type="password"
+				name="password" required id="pass" class="form-control"
 				pattern="[A-Za-z0-9!@#$%^&*_+=-~`/|\]{6,20}" minlength="6"
 				title="minimum 6 character and special characters allowed"><br>
 			<button id="sub" type="submit" class="btn btn-success">Submit</button>

@@ -62,7 +62,7 @@ top:80px;
 
 <script>
 let th = document.getElementById("timehead");
-let time = 5;
+let time = 50;
 let i;
 window.addEventListener('load', () =>{
 	
