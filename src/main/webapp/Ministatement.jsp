@@ -11,29 +11,42 @@
 <div id="bgBlur"></div>
 <head>
 <meta charset="ISO-8859-1">
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Mini Statement</title>
 <style>
 *{
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
 	font-family: Arial,Helvetica,sans-serif;	
 }
 td {
 	color: yellow;
 	font-weight: bolder;
+	text-align:center;
 }
 
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
-  padding: 20px;
+  padding: 20px;`
 }
+table
+{
+ align:center;
+ margin-top:100px;
+}
+
 th{
 color:white;
 font-weight:bolder;
 font-size:30px;
+text-align:center;
+}
+tr:hover
+{
+  background-color:black;
+  color:yellow;
 }
 td{
 font-size:20px;
@@ -44,13 +57,11 @@ background-color : #363945;
 background-repeat: no-repeat;
 background-size: cover;
 }
-
- #bgBlur{
-	position: absolute;
-	/* background-color: rgba(11, 11, 11, 0.5); */
-	height: 625px;
-	width: 1366px;
+#timehead
+{
+ color:red;
 }
+
 
 </style>
 </head>
@@ -77,13 +88,16 @@ String transtype = null;%>
 		ResultSet rSet = ministatementdao.getministatement(accno);
 	%>
 	
+  <div class="container mt-1">	
 	<div id = "minidiv">
-	<table style="width: 80%; margin-left: 100px;">
+	<table class="table table-bordered table-sm">
+	<thead class="table-dark">
 		<tr>
 			<th>Transaction_type</th>
 			<th id="transamount">Transaction</th>
 			<th id="transtime">Transaction Time</th>
 		</tr>
+		</thead>
 		<%
 		while (rSet.next()) {
 		%>
@@ -115,6 +129,7 @@ String transtype = null;%>
 	</table>
 	
 <h1 id = "timehead">00:00</h1>
+</div>
 </div>
 </body>
 

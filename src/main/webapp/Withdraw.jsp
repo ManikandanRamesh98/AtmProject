@@ -34,7 +34,7 @@
 
 #invallab {
 	position: relative;
-	color: red;
+	color: #FF6347;
 	font-size: 60px;
 	top: 250px;
 	left: 520px;
@@ -77,6 +77,18 @@ background-size: cover;
 	height: 625px;
 	width: 1366px;
 } 
+#amountexceed{
+position: absolute;
+color: #FF6347;
+top : 450px;
+left : 420px;
+}
+#remainingWithdraw{
+position: absolute;
+color: #FF6347;
+top : 450px;
+left : 350px;
+}
 </style>
 </head>
 <body>
@@ -86,12 +98,29 @@ background-size: cover;
 		boolean flag = (boolean) session.getAttribute("invalidpin");
 		if (flag) {
 	%>
-	<label id="invallab">Invalid Pin!!</label>
+	<label id="invallab">Invalid Pin</label>
 
 	<%
 	session.removeAttribute("invalidpin");
 	}
 	}
+	%>
+	<!-- amount exceed than 10000 -->
+	<%
+	if(session.getAttribute("amountexceed") != null){%>
+		<h1 id = "amountexceed">Enter Amount Less Than 10000</h1>
+	<% session.removeAttribute("amountexceed");}
+	%>
+	
+	<!-- remaining amount limit-->
+	<%
+	if(session.getAttribute("remainingWithdraw") != null){
+		int remainingAmount = (int)session.getAttribute("remainingWithdraw");
+		
+	%>
+	
+		<h1 id = "remainingWithdraw">Your Remaining Withdraw Limit is <%=remainingAmount %></h1>
+	<% session.removeAttribute("remainingWithdraw");}
 	%>
 	<%!String user;%>
 
@@ -109,7 +138,7 @@ background-size: cover;
 	<form action="Enterpin.jsp" id="formwith" autocomplete="off">
 		<br> <input type="text" name="inpwith" id="withinp" required
 			pattern="[1-9][0-9]*[0][0]" minlength = "3" maxlength="7" title="Enter multiples of 100"
-			onclick="invalabfn()" autofocus>
+			onclick="invalabfn()" onmouseover="amountexceed()" onmouseenter="remainingamount()" autofocus>
 	</form>
 	<form action="Welcomepage.jsp">
 		<button type="submit" class="btn btn-danger">Home</button>
@@ -120,7 +149,17 @@ background-size: cover;
 	function invalabfn() {
 		let invallab = document.getElementById("invallab");
 		invallab.style.visibility = "hidden";
+		
 	}
+	function amountexceed() {
+		let invallab1 = document.getElementById("amountexceed");
+		invallab1.style.visibility = "hidden";
+	}
+	function remainingamount() {
+		let invallab1 = document.getElementById("remainingWithdraw");
+		invallab1.style.visibility = "hidden";
+	}
+	
 </script>
 <script>
 
@@ -133,6 +172,7 @@ window.addEventListener('load', () =>{
 		if(time > 0){
 			if(time >= 10){
 				
+				th.style.color = "#98FB98";
 		th.innerHTML = "00 : " + time--;
 		
 			}else{

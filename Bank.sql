@@ -256,7 +256,8 @@ when others then res := 0;
 end insertdeposit;
 
 
---remove deposit--Deposit 
+--remove deposit--Deposit --
+
 procedure removedeposit(accno in deposit.user_acc_no%type,res out Integer)is
 begin
 delete from deposit where user_acc_no in accno;

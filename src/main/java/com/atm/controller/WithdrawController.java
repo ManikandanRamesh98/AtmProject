@@ -27,15 +27,29 @@ public class WithdrawController extends HttpServlet {
 		HttpSession session = req.getSession();
 		String uname = session.getAttribute("user").toString();
 		int eamount = (int) session.getAttribute("withamount");
-
+		UserProfileModel userprofilemodel4 = new UserProfileModel(uname);
+		Long accno;
+		
 		try {
-			// amount less than atm money:
+			
+			accno = userprofileimpl.getaccno(userprofilemodel4);
+			WithdrawModel withdrawModel = new WithdrawModel();
+			withdrawModel.setUser_acc_no(accno);
+			int withdrawSum = withdrawimpl.checkwithdrawlimit(withdrawModel);
+			int withdrawCheck = 0;
+			//amount should be less than 10000:
+			if(eamount <= 10000) {
+					//withdraw sum should be less than 10000:
+				 withdrawCheck = eamount + withdrawSum;
+			if(withdrawCheck <= 10000) {
+				// amount less than atm money:
 			Long dedbaL = atmMoneyManagementimpl.previousbal();
 			if (eamount <= dedbaL) {
 				UserProfileModel userprofilemodel = new UserProfileModel(uname);
-				if (userprofileimpl.getbal(userprofilemodel) > 0) {
+				if (userprofileimpl.getbal(userprofilemodel) >= 0) {
 					int bal = userprofileimpl.getbal(userprofilemodel);
 					if (eamount <= bal && eamount > 0) {
+						
 						int newbal = bal - eamount;
 						UserProfileModel userprofilemodel2 = new UserProfileModel(uname, newbal);
 						int i = userprofileimpl.insbal(userprofilemodel2);
@@ -62,6 +76,7 @@ public class WithdrawController extends HttpServlet {
 						} else {
 							res.getWriter().println("something went wrong!!");
 						}
+						
 					} else {
 						throw new LowBalanceException();
 					}
@@ -72,6 +87,20 @@ public class WithdrawController extends HttpServlet {
 				throw new AtmOutOfCashException();
 				
 			}
+			}else {
+				int remainingWithdraw = (10000-withdrawSum);
+				if(remainingWithdraw > 0) {
+					session.setAttribute("remainingWithdraw", remainingWithdraw);
+					res.sendRedirect("Withdraw.jsp");
+				}else {
+				res.getWriter().println("your limit exceed!!");
+				}
+			}
+		}else {
+			
+				session.setAttribute("amountexceed", true);
+				res.sendRedirect("Withdraw.jsp");
+		}
 
 		}catch(AtmOutOfCashException e) {
 			res.sendRedirect(e.getMessage());

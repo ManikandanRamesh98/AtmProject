@@ -4,9 +4,12 @@ package com.atm.daoimpl;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Types;
 
 import com.atm.models.DepositModel;
+import com.atm.models.WithdrawModel;
 import com.atm.util.ConnectionUtil;
 
 public class DepositImpl implements com.atm.dao.DepositDao {
@@ -58,4 +61,43 @@ public class DepositImpl implements com.atm.dao.DepositDao {
 		int res = statement.getInt(2);
 		return res;
 	}
+	
+	//check Deposit limit:
+		public int checkwithdrawlimit(DepositModel depositModel) throws Exception {
+			Connection con = ConnectionUtil.getConnection();
+	        String sysdatequery = "select current_timestamp from dual";
+	        String sysdString = null;
+	        Statement statement = con.createStatement();
+	        ResultSet rSet = statement.executeQuery(sysdatequery);
+	        while(rSet.next()) {
+	        	sysdString = rSet.getString(1);
+	        	
+	        }
+	        System.out.println(sysdString);
+	        sysdString = sysdString.substring(2, 10);
+	        System.out.println(sysdString);
+	        String yearString = sysdString.substring(0,2);
+	        System.out.println(yearString);
+	        String monthString = sysdString.substring(3,5);
+	        System.out.println(monthString);
+	        String dayString = sysdString.substring(6,8);
+	        System.out.println(dayString);
+	        String finaldateString = dayString + "-" +monthString + "-" + yearString;
+	        System.out.println(finaldateString);
+	        
+	        
+			String query = "select sum(abs(dep_amount)) from deposit where dep_at like '"+finaldateString+"%' and user_acc_no in ?";
+			PreparedStatement preparedStatement = con.prepareStatement(query);
+	System.out.println(depositModel.getUser_acc_no());
+			preparedStatement.setLong(1, depositModel.getUser_acc_no());
+			ResultSet rSet2 = preparedStatement.executeQuery();
+			int total = -1;
+			while(rSet2.next()) {
+	        	total = rSet2.getInt(1);
+	        	System.out.println(total);
+	        	return total;
+	        }
+			
+			return total;
+		}
 }

@@ -1,58 +1,61 @@
 <%@page import="com.atm.exception.NotLoggedInException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+	pageEncoding="ISO-8859-1" import="com.atm.controller.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <%!String user;%>
 
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	try{
+<%
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+try {
 	if (session.getAttribute("user") == null) {
 		throw new NotLoggedInException();
 	} else {
 		user = session.getAttribute("user").toString();
-	}}catch(NotLoggedInException e){
-		response.sendRedirect(e.getMessage());
 	}
-	%>
-		<div id="bgBlur"></div>
-	
-<title>Welcome <%=user %></title>
+} catch (NotLoggedInException e) {
+	response.sendRedirect(e.getMessage());
+}
+%>
+<div id="bgBlur"></div>
+
+<title>Welcome <%=user%></title>
 <link rel="stylesheet" href="welcomeuser.css">
 <style>
-#invalpin{
-color : #F5DF4D;
-position : absolute;
-font-size: 80px;
-top: 300px;
-left:500px;
-font-weight: bolder;
+#invalpin {
+	color: #F5DF4D;
+	position: absolute;
+	font-size: 80px;
+	top: 300px;
+	left: 500px;
+	font-weight: bolder;
 }
 
-a{
-
-    display: inline-block;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: transform 0.7s;
+a {
+	display: inline-block;
+	box-sizing: border-box;
+	cursor: pointer;
+	transition: transform 0.7s;
 }
 
-a:hover{
-    transform: translateY(-10px);
+a:hover {
+	transform: translateY(-10px);
 }
-
-
 </style>
 </head>
 <body bgcolor="blue">
 	<%
-	if(session.getAttribute("invalidhomepin") != null){%>
-		<h1 id = "invalpin">Invalid Pin</h1>
-		<%session.removeAttribute("invalidhomepin"); %>
-	<%}%>
+	if (session.getAttribute("invalidhomepin") != null) {
+	%>
+	<h1 id="invalpin">Invalid Pin</h1>
+	<%
+	session.removeAttribute("invalidhomepin");
+	%>
+	<%
+	}
+	%>
 
 
 
@@ -69,7 +72,7 @@ a:hover{
 		Statement</a>
 	<a href="Pinchange.jsp" id="pinchange" class="atag">Pin Change</a>
 	<a href="Logout.jsp" id="logout" class="atag">Logout</a>
-	<h1 id = "timehead">00:00</h1>
+	<h1 id="timehead">00:00</h1>
 </body>
 
 <script>
@@ -81,7 +84,7 @@ window.addEventListener('load', () =>{
 	 i= setInterval(() => {
 		if(time > 0){
 			if(time >= 10){
-				
+			
 		th.innerHTML = "00 : " + time--;
 		
 			}else{

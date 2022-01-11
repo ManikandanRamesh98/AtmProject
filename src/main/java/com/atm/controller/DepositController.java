@@ -8,6 +8,7 @@ import com.atm.exception.DepositLimitExceedException;
 import com.atm.models.DepositModel;
 
 import com.atm.models.UserProfileModel;
+import com.atm.models.WithdrawModel;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,10 +24,25 @@ public class DepositController extends HttpServlet {
 		HttpSession session = req.getSession();
 		String uname = session.getAttribute("user").toString();
 		int eamount = (int) session.getAttribute("depamount");
+		
+		UserProfileModel userprofilemodel4 = new UserProfileModel(uname);
+		Long accno;
+		
 		try {
+			
+			accno = userprofileimpl.getaccno(userprofilemodel4);
+			DepositModel depositModel = new DepositModel();
+			depositModel.setUser_acc_no(accno);
+			int depositSum = depositimpl.checkwithdrawlimit(depositModel);
+			int depositCheck = 0;
+			//amount should be less than 10000:
+			if(eamount <= 20000) {
+					//withdraw sum should be less than 10000:
+				 depositCheck = eamount + depositSum;
+			if(depositCheck <= 20000) {
 			UserProfileModel userprofilemodel = new UserProfileModel(uname);
 			// get user balance:
-			if (userprofileimpl.getbal(userprofilemodel) > 0) {
+			if (userprofileimpl.getbal(userprofilemodel) >= 0) {
 				int bal = userprofileimpl.getbal(userprofilemodel);
 				// Amount greater than 0 and less than 30000:
 				if (eamount > 0 && eamount < 30000) {
@@ -56,7 +72,20 @@ public class DepositController extends HttpServlet {
 				}
 			} else {
 				res.sendRedirect("Invaliduser.jsp");
+			}}else {
+				int remainingDeposit = (20000-depositSum);
+				if(remainingDeposit > 0) {
+					session.setAttribute("remainingDeposit", remainingDeposit);
+					res.sendRedirect("Deposit.jsp");
+				}else {
+				res.getWriter().println("your Deposit limit exceed!!");
+				}
 			}
+			}else {
+				
+				session.setAttribute("depamountexceed", true);
+				res.sendRedirect("Deposit.jsp");
+		}
 
 		} catch (DepositLimitExceedException e) {
 			res.sendRedirect(e.getMessage());

@@ -78,6 +78,18 @@ background-size: cover;
 	height: 625px;
 	width: 1366px;
 }
+#amountexceed{
+position: absolute;
+color: #FF6347;
+top : 450px;
+left : 420px;
+}
+#remainingDeposit{
+position: absolute;
+color: #FF6347;
+top : 450px;
+left : 350px;
+}
 </style>
 </head>
 <body bgcolor="blue">
@@ -94,6 +106,25 @@ background-size: cover;
 	}
 	}
 	%>
+	
+	<!-- amount exceed than 20000 -->
+	<%
+	if(session.getAttribute("depamountexceed") != null){%>
+		<h1 id = "amountexceed">Enter Amount Less Than 10000</h1>
+	<% session.removeAttribute("depamountexceed");}
+	%>
+	
+	<!-- remaining deposit amount limit-->
+	<%
+	if(session.getAttribute("remainingDeposit") != null){
+		int remainingAmount = (int)session.getAttribute("remainingDeposit");
+		
+	%>
+	
+		<h1 id = "remainingDeposit">Your Remaining Withdraw Limit is <%=remainingAmount %></h1>
+	<% session.removeAttribute("remainingDeposit");}
+	%>
+	
 	<%!String user;%>
 
 	<%
@@ -110,7 +141,7 @@ background-size: cover;
 	<form action="Enterpindep.jsp" id="formwith" autocomplete="off" >
 		<br> <input type="text" name="inpdep" id="withinp" required
 			pattern="[1-9][0-9]*[0][0]" minlength = "3" maxlength="7" title="Enter Valid Amount"
-			onclick="invalabfn()" autofocus>
+			onclick="invalabfn()" onmouseover="amountexceed()" onmouseenter="remainingamount()" autofocus>
 	</form>
 	<form action="Welcomepage.jsp">
 		<button type="submit" class="btn btn-danger">Home</button>
@@ -149,6 +180,14 @@ window.addEventListener('load', () =>{
 	function invalabfn() {
 		let invallab = document.getElementById("invallab");
 		invallab.style.visibility = "hidden";
+	}
+	function amountexceed() {
+		let invallab1 = document.getElementById("amountexceed");
+		invallab1.style.visibility = "hidden";
+	}
+	function remainingamount() {
+		let invallab1 = document.getElementById("remainingDeposit");
+		invallab1.style.visibility = "hidden";
 	}
 </script>
 </html>

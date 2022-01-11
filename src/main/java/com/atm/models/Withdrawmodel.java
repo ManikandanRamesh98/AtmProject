@@ -51,6 +51,10 @@ public class WithdrawModel {
 		this.withdrawat = withdraw_at;
 	}
 
+	public WithdrawModel() {
+		super();
+	}
+
 	public WithdrawModel(Long user_acc_no, int with_amount) {
 
 		this.useraccno = user_acc_no;

@@ -76,5 +76,10 @@ public class DepositModel {
 		this.depamount = dep_amount;
 this.moneytransfer = moneytransfname;
 	}
+	
+	public DepositModel() {
+
+	
+	}
 
 }

@@ -234,4 +234,12 @@ select * from userprofile;
 select * from withdraw;
 select * from deposit;
 
-select sum(dep_amount) from withdraw where dep_at like '11-01-22%';
+select sum(dep_amount) from deposit where dep_at like '11-01-22%' and user_acc_no in 12345678901;
+select sum(abs(with_amount)) from withdraw where withdraw_at like '11-01-22%' and user_acc_no in 12345678901;
+select sysdate from dual;
+
+select * from removedusers;
+select sysdate from dual;
+select sum(abs(with_amount)) from withdraw where withdraw_at like '11-01-22%' and user_acc_no in 12345678901;
+select sysdate from dual;
+select current_timestamp from dual;
