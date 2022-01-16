@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel = "icon" type = "" href = "Assets/sbi-logo-33234.png">
 <meta charset="ISO-8859-1">
 <title>Agent registered sucessfully</title>
 </head>

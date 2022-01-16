@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel = "icon" type = "" href = "Assets/sbi-logo-33234.png">
 <meta charset="ISO-8859-1">
 <title>Agent History</title>
 <style>
@@ -16,8 +17,11 @@ td{
 font-size:30px;
 }
 th{
-color:yellow;
+color:#F5DF4D;
 font-size:30px;
+}
+body{
+background-color: #0072B5;
 }
 </style>
 </head>

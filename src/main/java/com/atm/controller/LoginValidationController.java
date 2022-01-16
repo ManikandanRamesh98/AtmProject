@@ -41,6 +41,7 @@ public class LoginValidationController extends HttpServlet {
 				if (role.equals("user")) {
 					if(!(invalidPinLockDaoimpl.status(invalidPinLockModel))) {
 					if(session.getAttribute("invalidpinlock") == null) {
+						
 						session.setAttribute("invalidpinlock", 0);
 					}
 					LoginDetailsModel loginmodel = new LoginDetailsModel(uname, role);

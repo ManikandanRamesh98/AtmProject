@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel = "icon" type = "" href = "Assets/sbi-logo-33234.png">
 <meta charset="ISO-8859-1">
 <%!String user;%>
 
@@ -76,6 +77,7 @@ a:hover {
 </body>
 
 <script>
+localStorage.removeItem("invalmax");
 let th = document.getElementById("timehead");
 let time = 30;
 let i;

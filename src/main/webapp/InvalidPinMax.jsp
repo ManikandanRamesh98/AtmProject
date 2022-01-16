@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel = "icon" type = "" href = "Assets/sbi-logo-33234.png">
 <meta charset="ISO-8859-1">
 <div id="bgBlur"></div>
 <title>Insert title here</title>
@@ -49,18 +50,9 @@ font-size : 20px;
 </style>
 </head>
 <body>
-<%!String user;
-	
-	%>
 
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-		if (session.getAttribute("user") == null) {
-			response.sendRedirect("index.jsp");
-		} else {
-			user = session.getAttribute("user").toString();
-		}
-	%>
+
+	
 <h1>Account Is Locked Try After 2 Minutes!!</h1>
 <h2>Contact Branch</h2>
 <h1 id = "timehead">00:00</h1>
@@ -83,8 +75,15 @@ window.addEventListener('load', () =>{
 				th.innerHTML = "00 : 0" + time--;
 			}
 		}else{
+			if(localStorage.getItem("invalmax") == null){
+			localStorage.removeItem("invalmax");
+			localStorage.setItem("invalmax",1);
 			clearInterval(i);
 			window.location.assign("Logout.jsp");
+			}else{
+				clearInterval(i);
+				window.location.assign("index.jsp");
+			}
 		}
 	},1000);
 	

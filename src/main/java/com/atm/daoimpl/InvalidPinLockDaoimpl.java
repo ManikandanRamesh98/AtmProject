@@ -45,6 +45,7 @@ public int deletelock(InvalidPinLockModel invalidPinLockModel) throws Exception 
 	statement.executeUpdate("commit");
 	return res;
 }
+
 //retrive the releasing time:
 public int retriveat(InvalidPinLockModel invalidPinLockModel) throws Exception {
 	Connection con = ConnectionUtil.getConnection();

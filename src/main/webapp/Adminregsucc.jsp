@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel = "icon" type = "" href = "Assets/sbi-logo-33234.png">
 <title>Admin Register</title>
 </head>
 <body>

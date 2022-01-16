@@ -3,9 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel = "icon" type = "" href = "Assets/sbi-logo-33234.png">
 <meta charset="ISO-8859-1">
+<div id="bgBlur"></div>
 <title>Deposit Agent</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 h1{
 position : absolute;
 font-size :40px;
@@ -17,10 +25,11 @@ top:250px;
 left:400px;
 width:550px;
 height:150px;
+padding: 10px;
 }
 legend{
 font-size:30px;
-color:yellow;
+color:#FF6347;
 }
 label{
 font-size:25px;
@@ -35,6 +44,19 @@ button{
 position : absolute;
 left:480px;
 top:80px;
+}
+body{
+
+background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+ #bgBlur{
+	position: absolute;
+	background-color: rgba(11, 11, 11, 0.6);
+	height: 625px;
+	width: 1366px;
 }
 </style>
 </head>
@@ -62,7 +84,7 @@ top:80px;
 
 <script>
 let th = document.getElementById("timehead");
-let time = 50;
+let time = 100;
 let i;
 window.addEventListener('load', () =>{
 	
