@@ -38,6 +38,7 @@ background-size: cover;
 </head>
 <body>
 <%
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 	if (session.getAttribute("admin") != null) {
 		String admin = session.getAttribute("admin").toString();
 	} else {
@@ -48,7 +49,7 @@ background-size: cover;
 <%!
 	String reguser;%>
 	
-	<h1 id = "reghead">
+	<h1 id = reghead>
 		Agent
 		<%=" " + reguser + " "%>
 		Sucessfully Registered!!
