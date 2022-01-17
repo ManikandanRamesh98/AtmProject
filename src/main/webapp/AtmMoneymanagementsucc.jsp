@@ -25,6 +25,7 @@ color:black;
 <body bgcolor = "blue">
 <%!String agent;%>
 	<%
+	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 	if (session.getAttribute("agent") == null) {
 		response.sendRedirect("index.jsp");
 	} else {
@@ -56,7 +57,7 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("Logoutadmin.jsp");
+			window.location.assign("LogOutAgent.jsp");
 		}
 	},1000);
 	

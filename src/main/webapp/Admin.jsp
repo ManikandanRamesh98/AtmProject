@@ -1,41 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import = "com.atm.controller.* "%>
+	pageEncoding="ISO-8859-1" import="com.atm.controller.* "%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel = "icon" type = "" href = "Assets/sbi-logo-33234.png">
+<link rel="icon" type="" href="Assets/sbi-logo-33234.png">
 <%!String admin;%>
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("admin") == null) {
-		response.sendRedirect("index.jsp");
-	} else {
-		admin = session.getAttribute("admin").toString();
-	}
-	%>
+<%
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+if (session.getAttribute("admin") == null) {
+	response.sendRedirect("index.jsp");
+} else {
+	admin = session.getAttribute("admin").toString();
+}
+%>
 <meta charset="ISO-8859-1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<div id="bgBlur"></div>s
-<title>Welcome <%=admin %></title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<div id="bgBlur"></div>
+s
+<title>Welcome <%=admin%></title>
 <style>
-*{
+* {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: Arial,Helvetica,sans-serif;	
+	font-family: Arial, Helvetica, sans-serif;
 }
-a{
-color: black;
+
+a {
+	color: black;
 }
-body{
-overflow-x : hidden; 
+
+body {
+	overflow-x: hidden;
 }
+
 #adminlab {
 	font-size: 50px;
 	position: absolute;
 	left: 500px;
-	color : #FF8C00;
+	color: #FF8C00;
 }
 
 #adminregus {
@@ -43,9 +50,8 @@ overflow-x : hidden;
 	font-size: 50px;
 	position: absolute;
 	top: 110px;
-	
 	border-radius: 5px;
-	background-color: rgba(255,255,255,0.5);
+	background-color: rgba(255, 255, 255, 0.5);
 	border-color: white;
 	left: 0px;
 }
@@ -56,7 +62,7 @@ overflow-x : hidden;
 	position: absolute;
 	top: 280px;
 	border-radius: 5px;
-	background-color: rgba(255,255,255,0.5);
+	background-color: rgba(255, 255, 255, 0.5);
 	left: 0px;
 }
 
@@ -66,7 +72,7 @@ overflow-x : hidden;
 	position: absolute;
 	top: 480px;
 	border-radius: 5px;
-	background-color: rgba(255,255,255,0.5);
+	background-color: rgba(255, 255, 255, 0.5);
 	border-color: white;
 	left: 0px;
 }
@@ -88,7 +94,7 @@ overflow-x : hidden;
 	position: absolute;
 	top: 280px;
 	border-radius: 5px;
-	background-color: rgba(255,255,255,0.5);
+	background-color: rgba(255, 255, 255, 0.5);
 	border-color: white;
 	right: 0px;
 }
@@ -99,28 +105,31 @@ overflow-x : hidden;
 	position: absolute;
 	top: 480px;
 	border-radius: 5px;
-	background-color: rgba(255,255,255,0.5);
+	background-color: rgba(255, 255, 255, 0.5);
 	border-color: white;
 	right: 0px;
 }
-#timehead{
-position : relative;
-color : #F5DF4D;
-top : -100px;
-}
-body{
 
-background-image: url("https://techcrunch.com/wp-content/uploads/2018/09/GettyImages-465790437.jpg?w=430&h=230&crop=1");
-background-repeat: no-repeat;
-background-size: cover;
+#timehead {
+	position: relative;
+	color: #F5DF4D;
+	top: -100px;
 }
 
- #bgBlur{
+body {
+	background-image:
+		url("https://techcrunch.com/wp-content/uploads/2018/09/GettyImages-465790437.jpg?w=430&h=230&crop=1");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#bgBlur {
 	position: absolute;
 	background-color: rgba(11, 11, 11, 0.6);
 	height: 625px;
 	width: 1366px;
 }
+
 a {
 	display: inline-block;
 	box-sizing: border-box;
@@ -133,21 +142,19 @@ a:hover {
 	box-shadow: 0 0 20px white;
 	transition-duration: 0.2s;
 	background-color: orange;
-	
-} 	 
-.left:hover{
-transform: translateX(-10px);
+}
+
+.left:hover {
+	transform: translateX(-10px);
 	box-shadow: 0 0 20px white;
 	transition-duration: 0.2s;
 	background-color: orange;
 }
-
-
 </style>
 </head>
 <body bgcolor="blue">
 
-	
+
 	<label id="adminlab">welcome : <%=admin%></label>
 
 	<a href="Register.jsp" id="adminregus">Register New User</a>
@@ -159,12 +166,15 @@ transform: translateX(-10px);
 	<br>
 	<a href="Userdetailsadmingetuser.jsp" id="adminuserdet">User
 		Details</a>
-	<a href="Logoutadmin.jsp" id="logoutatag" class="btn btn-danger" class = "left">LogOut</a>
+	<a href="Logoutadmin.jsp" id="logoutatag" class="btn btn-danger"
+		class="left">LogOut</a>
 	<br>
-	<a href="Removedusers.jsp" id="removedusers" class = "left">Removed Users List</a>
+	<a href="Removedusers.jsp" id="removedusers" class="left">Removed
+		Users List</a>
 	<br>
-	<a href="Logindetails.jsp" id="logindetails" class = "left">Login Details</a>
-	<h1 id = "timehead">00:00</h1>
+	<a href="Logindetails.jsp" id="logindetails" class="left">Login
+		Details</a>
+	<h1 id="timehead">00:00</h1>
 </body>
 
 <script>

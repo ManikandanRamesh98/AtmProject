@@ -130,19 +130,23 @@ button:hover{
 			<label class="form-label">Enter Username : </label><br> <input type="text"
 				name="userreg" placeholder="Abcd9" class="form-control" pattern="[A-Z][a-zA-Z]{3,20}"
 				title="Start with A-Z and use A-Z or a-z or 0-9 minimum 3 character maximum 20 character"
-				id="userid" required> <label class="form-label">Enter
+				id="userid" required>
+				
+				 <label class="form-label">Enter
 				Password : </label><br> <input type="password" class="form-control" name="passreg"
 				placeholder="abcd@89" pattern="[A-Za-z0-9!@#$%^&*_+=-~`/|\]{6,20}"
 				minlength="6" onclick="invalabfn()"
 				title="minimum 6 character and special characters allowed"
-				id="passid" required><label class="form-label">Confirm
+				id="passid" required>
+				
+				<label class="form-label">Confirm
 				Password : </label><br> <input type="password"  class="form-control" name="cnfpassreg"
 				placeholder="abcd@89" pattern="[A-Za-z0-9!@#$%^&*_+=-~`/|\]{6,20}"
 				minlength="6" onclick="invalabfn()"
 				title="minimum 6 character and special characters allowed"
 				id="cnfpassid" required><label class="form-label">Role
 				: </label><br> <input type="text" name="rolereg" class="form-control" id="roleregid"
-				placeholder="user,admin" pattern="[a-z]{4,5}"
+				placeholder="user,admin,agent" pattern="[a-z]{4,5}"
 				title="use a-z for role" required>
 			<label class="form-label">Mob_no : </label><br> <input type="text" name="mobnoreg"
 				id="mobnoregid" placeholder="mobile number" class="form-control" pattern="[6-9][0-9]{9}"

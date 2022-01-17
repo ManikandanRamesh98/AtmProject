@@ -111,8 +111,8 @@ button:hover{
 		<legend>Money Transfer</legend>
 		<form action="moneytransferserv" method="post">
 			<label>Enter UserName : </label><br> <input type="text" id = "moneytransfname"
-				name="moneytransfname" autofocus><br> <label>Enter
-				UserAccountNo : </label><br> <input type="text" id = "moneytransfaccno" name="moneytransfaccno" pattern = "[0-9]{11}" title = "Enter valid Account no"><br>
+				name="moneytransfname" autofocus required><br> <label>Enter
+				UserAccountNo : </label><br> <input type="text" id = "moneytransfaccno" name="moneytransfaccno" pattern = "[0-9]{11}" title = "Enter valid Account no" required><br>
 			<label>Enter Amount : </label><br> <input type="text" id = "moneytransfamount"
 				name="moneytransfamount" required
 			pattern="[1-9][0-9]*[0][0]" minlength = "3" maxlength="7" title="Enter Valid Amount"><br>

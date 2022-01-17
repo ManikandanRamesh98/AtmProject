@@ -8,6 +8,12 @@
 <div id="bgBlur"></div>
 <title>Registered Successfully!!</title>
 <style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial,Helvetica,sans-serif;	
+}
 #reghead{
 color : #F5DF4D;
 position : absolute;

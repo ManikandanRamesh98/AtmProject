@@ -74,11 +74,21 @@ a:hover {
 #agenthead{
 color: #FF6347;
 }
+
+#logout{
+position: relative;
+top:0px;
+}
+#logout:hover {
+	background-color: red;
+	transform: translateX(10px);
+}
 </style>
 </head>
 <body bgcolor = "blue">
 	<%!String agent;%>
 	<%
+	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 	if (session.getAttribute("agent") == null) {
 		response.sendRedirect("index.jsp");
 	} else {
@@ -89,6 +99,7 @@ color: #FF6347;
 	<%=agent%></h1>
 <a href = "Depositagent.jsp" id = "depagent">Deposit Money To ATM</a><br>
 <a href = "Historyagent.jsp" id = "historyagent">View History</a>
+<a href="LogOutAgent.jsp" id="logout" class="atag">Logout</a>
 <h1 id = "timehead">00:00</h1>
 </body>
 <script>
@@ -109,7 +120,7 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("index.jsp");
+			window.location.assign("LogOutAgent.jsp");
 		}
 	},1000);
 	

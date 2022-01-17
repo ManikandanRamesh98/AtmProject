@@ -18,6 +18,7 @@ h1{
 position : absolute;
 font-size :40px;
 left:550px;
+color:#F5DF4D;
 }
 fieldset{
 position : absolute;
@@ -63,6 +64,7 @@ background-size: cover;
 <body bgcolor = "blue">
 <%!String agent;%>
 	<%
+	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
 	if (session.getAttribute("agent") == null) {
 		response.sendRedirect("index.jsp");
 	} else {
@@ -100,7 +102,7 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("index.jsp");
+			window.location.assign("LogOutAgent.jspw");
 		}
 	},1000);
 	

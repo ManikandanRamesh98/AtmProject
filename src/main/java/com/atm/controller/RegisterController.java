@@ -32,14 +32,7 @@ public class RegisterController extends HttpServlet {
 				accno = 12345678901l;
 				userpin = 1234;
 			}
-//			System.out.println(accno);
-//			ResultSet rSet1 = userprofileimpl.getusermaxpin();
-//			while (rSet.next()) {
-//				accno = rSet.getLong(1) + 1;
-//			}
-//			while (rSet1.next()) {
-//				userpin = rSet1.getInt(1) + 1;
-//			}
+
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -66,7 +59,7 @@ public class RegisterController extends HttpServlet {
 					HttpSession session = req.getSession();
 					session.setAttribute("adminreg", username);
 					resp.sendRedirect("Adminregsucc.jsp");
-				} else if (role.equals("admin")) {
+				} else if (role.equals("agent")) {
 					HttpSession session = req.getSession();
 					session.setAttribute("agentreg", username);
 					resp.sendRedirect("Agentregsucc.jsp");
