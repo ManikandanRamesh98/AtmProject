@@ -92,7 +92,7 @@ background-size: cover;
 		Welcome&ensp;
 		<%=user%></h1>
 	
-	<h1 id="headbal1">Your Balance :</h1>
+	<h1 id="headbal1">Your Balance : </h1>
 	<br>
 	<%
 	UserProfileModel userprofilepojo = new UserProfileModel(user);

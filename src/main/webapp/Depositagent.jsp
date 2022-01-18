@@ -34,6 +34,7 @@ color:#FF6347;
 }
 label{
 font-size:25px;
+color: white;
 }
 input{
 position : absolute;
@@ -58,6 +59,9 @@ background-size: cover;
 	background-color: rgba(11, 11, 11, 0.6);
 	height: 625px;
 	width: 1366px;
+}
+#timehead{
+color:white;
 }
 </style>
 </head>
@@ -102,7 +106,7 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("LogOutAgent.jspw");
+			window.location.assign("LogOutAgent.jsp");
 		}
 	},1000);
 	
