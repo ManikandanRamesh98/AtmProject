@@ -26,7 +26,9 @@ background-color: #0072B5;
 </style>
 </head>
 <body>
-<%!String agent;%>
+<%!String agent;
+String transdatetime;
+%>
 	<%
 	if (session.getAttribute("agent") == null) {
 			response.sendRedirect("Login.html");
@@ -52,13 +54,21 @@ background-color: #0072B5;
 		<%
 		while (rs.next()) {
 		%>
+<%
+		String transactiontime = rs.getString(4).substring(9,11);
+		if(transactiontime.matches("[1-9][0-9]")){
+			transdatetime = rs.getString(4);
+		}else{
+			transdatetime = rs.getString(4).substring(0,13);
+		}
 
+				%>
 
 		<tr>
 			<td><%=rs.getString(1)%></td>
 			<td><%=rs.getString(2)%></td>
 			<td><%=rs.getString(3)%></td>
-			<td><%=rs.getString(4)%></td>
+			<td><%=transdatetime%></td>
 			<td><%=rs.getString(5)%></td>
 		</tr>
 		<%

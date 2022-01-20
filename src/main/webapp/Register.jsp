@@ -73,7 +73,7 @@ legend
 #regbt{
 position : absolute;
 top: 460px;
-left:100px;
+left:180px;
 width:140px;
 height:40px;
 border-radius: 5px;
@@ -86,7 +86,7 @@ color:white;
 #resbt{
 position : absolute;
 top: 460px;
-left:260px;
+left:330px;
 width:140px;
 height:40px;
 border-radius: 5px;
@@ -126,7 +126,7 @@ button:hover{
 		<legend>Register User</legend>
 
 		<form action="registersucc" method="post" id="regform"
-			onsubmit="return cnfpass()" autocomplete="off">
+			onsubmit="return cnfpass()" autocomplete="off" class = "was-validated">
 			<label class="form-label">Enter Username : </label><br> <input type="text"
 				name="userreg" placeholder="Abcd9" class="form-control" pattern="[A-Z][a-zA-Z]{3,20}"
 				title="Start with A-Z and use A-Z or a-z or 0-9 minimum 3 character maximum 20 character"

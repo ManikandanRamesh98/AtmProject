@@ -38,7 +38,7 @@
 	color: #FF6347;
 	font-size: 60px;
 	top: 250px;
-	left: 520px;
+	left: 540px;
 }
 
 input {

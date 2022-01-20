@@ -6,7 +6,7 @@
 <div id="bgBlur"></div>
 <link rel = "icon" type = "" href = "Assets/sbi-logo-33234.png">
 <meta charset="ISO-8859-1">
-<title>Deposit Limit Exceed</title>
+<title>Atm Refill</title>
 <style type="text/css">
 *{
 	margin: 0;
@@ -17,8 +17,8 @@
 #reghead{
 color : #F5DF4D;
 position : absolute;
-top : 200px;
-left : 400px;
+top : 300px;
+left : 450px;
 font-size : 60px;
 }
 body{
@@ -37,18 +37,7 @@ background-size: cover;
 </style>
 </head>
 <body>
-<%!String user;%>
-
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("user") == null) {
-		response.sendRedirect("index.jsp");
-	} else {
-		user = session.getAttribute("user").toString();
-	}
-	%>
-<h1 id = "reghead">Deposit limit Exceed!!!</h1>
-
+<h1 id = "reghead">No Need To Refill</h1>
 <h1 id = "timehead">00:00</h1>
 </body>
 <script>
@@ -69,7 +58,7 @@ window.addEventListener('load', () =>{
 			}
 		}else{
 			clearInterval(i);
-			window.location.assign("Logout.jsp");
+			window.location.assign("Agent.jsp");
 		}
 	},1000);
 	

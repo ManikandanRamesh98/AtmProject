@@ -81,7 +81,9 @@ background-size: cover;
 	<%!MiniStatementImpl ministatementdao = new MiniStatementImpl();
 
 UserProfileImpl userprofiledao = new UserProfileImpl(); 
-String transtype = null;%>
+String transtype = null;
+String transdatetime;
+%>
 	<%
 	UserProfileModel userprofilepojo = new UserProfileModel(user);
 		Long accno = userprofiledao.getaccno(userprofilepojo);
@@ -114,13 +116,22 @@ String transtype = null;%>
 			}
 		}
 		%>
+		<%
+		String transactiontime = rSet.getString(2).substring(9,11);
+		if(transactiontime.matches("[1-9][0-9]")){
+			transdatetime = rSet.getString(2);
+		}else{
+			transdatetime = rSet.getString(2).substring(0,13);
+		}
+
+				%>
 		<tr>
 
 			<td><%=transtype%>
 			</td>
 			<td><%=rSet.getString(1)%>
 			</td>
-			<td><%=rSet.getString(2)%>
+			<td><%=transdatetime%>
 			</td>
 		</tr>
 		<%

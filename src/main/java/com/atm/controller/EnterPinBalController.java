@@ -25,11 +25,13 @@ public class EnterPinBalController extends HttpServlet{
 		UserProfileImpl userprofileimpl = new UserProfileImpl();
 		InvalidPinLockDaoimpl invalidPinLockDaoimpl = new InvalidPinLockDaoimpl(); 
 		try {
+		//fetch user pin from table:
 			int userpin = userprofileimpl.getuserpin(user);
 			if (userpin > 0) {
 				if (userpin == pin) {
 					res.sendRedirect("Balance.jsp");
 				} else {
+					//invalid pin section:
 					int inv = (int)session.getAttribute("invalidpinlock");
 					inv++;
 					if(inv < 3) {
@@ -38,7 +40,9 @@ public class EnterPinBalController extends HttpServlet{
 					session.setAttribute("invalidhomepin", true);
 					res.sendRedirect("Welcomepage.jsp");
 					}else {
+						//invalid pin entry more than three time:
 						InvalidPinLockModel invalidPinLockModel = new InvalidPinLockModel(user);
+						//insert data in invalidpinlock table:
 						invalidPinLockDaoimpl.insertlock(invalidPinLockModel);
 						res.sendRedirect("InvalidPinMax.jsp");
 					}

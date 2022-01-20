@@ -24,68 +24,70 @@ public class DepositController extends HttpServlet {
 		HttpSession session = req.getSession();
 		String uname = session.getAttribute("user").toString();
 		int eamount = (int) session.getAttribute("depamount");
-		
-		UserProfileModel userprofilemodel4 = new UserProfileModel(uname);
+
+		UserProfileModel userprofilemodelaccno = new UserProfileModel(uname);
 		Long accno;
-		
+
 		try {
-			
-			accno = userprofileimpl.getaccno(userprofilemodel4);
+//get acc no:
+			accno = userprofileimpl.getaccno(userprofilemodelaccno);
 			DepositModel depositModel = new DepositModel();
 			depositModel.setUser_acc_no(accno);
+			//check withdraw limit:
 			int depositSum = depositimpl.checkwithdrawlimit(depositModel);
 			int depositCheck = 0;
-			//amount should be less than 10000:
-			if(eamount <= 20000) {
-					//withdraw sum should be less than 10000:
-				 depositCheck = eamount + depositSum;
-			if(depositCheck <= 20000) {
-			UserProfileModel userprofilemodel = new UserProfileModel(uname);
-			// get user balance:
-			if (userprofileimpl.getbal(userprofilemodel) >= 0) {
-				int bal = userprofileimpl.getbal(userprofilemodel);
-				// Amount greater than 0 and less than 30000:
-				if (eamount > 0 && eamount < 30000) {
-					int newbal = bal + eamount;
-					UserProfileModel userprofilemodel2 = new UserProfileModel(uname, newbal);
-					// update New Balance:
-					int updatebal = userprofileimpl.insbal(userprofilemodel2);
-					if (updatebal > 0) {
-						// Get User Account Number:
-						UserProfileModel userprofilemodel3 = new UserProfileModel(uname);
-						Long acc = userprofileimpl.getaccno(userprofilemodel3);
-						if (acc > 0) {
-							// Insert in Deposit table:
-							DepositModel depositmodel = new DepositModel(acc, eamount);
-							depositimpl.insdep(depositmodel);
-							session.setAttribute("depsuccamount", eamount);
-							session.setAttribute("depsuccbal", newbal);
-							res.sendRedirect("Depsucc.jsp");
+			// amount should be less than 20000:
+			if (eamount <= 20000) {
+				// deposit sum should be less than 20000:
+				depositCheck = eamount + depositSum;
+				if (depositCheck <= 20000) {
+					UserProfileModel userprofilemodel = new UserProfileModel(uname);
+					// get user balance:
+					if (userprofileimpl.getbal(userprofilemodel) >= 0) {
+						int bal = userprofileimpl.getbal(userprofilemodel);
+						// Amount greater than 0 and less than 20000:
+						if (eamount > 0 && eamount < 20000) {
+							int newbal = bal + eamount;
+							UserProfileModel userprofilemodel2 = new UserProfileModel(uname, newbal);
+							// update New Balance:
+							int updatebal = userprofileimpl.insbal(userprofilemodel2);
+							if (updatebal > 0) {
+								// Get User Account Number:
+								UserProfileModel userprofilemodel3 = new UserProfileModel(uname);
+								Long acc = userprofileimpl.getaccno(userprofilemodel3);
+								if (acc > 0) {
+									// Insert data in Deposit table:
+									DepositModel depositmodel = new DepositModel(acc, eamount);
+									depositimpl.insdep(depositmodel);
+									session.setAttribute("depsuccamount", eamount);
+									session.setAttribute("depsuccbal", newbal);
+									res.sendRedirect("Depsucc.jsp");
+								} else {
+									res.getWriter().println("Cant Get User Account No!!");
+								}
+							} else {
+								res.getWriter().println("Something Went Wrong!!");
+							}
 						} else {
-							res.getWriter().println("Cant Get User Account No!!");
+							throw new DepositLimitExceedException();
 						}
 					} else {
-						res.getWriter().println("Something Went Wrong!!");
+						res.sendRedirect("Invaliduser.jsp");
 					}
 				} else {
-					throw new DepositLimitExceedException();
+					int remainingDeposit = (20000 - depositSum);
+					if (remainingDeposit > 0) {
+						session.setAttribute("remainingDeposit", remainingDeposit);
+						res.sendRedirect("Deposit.jsp");
+					} else {
+						res.sendRedirect("DepositLimitExceed.jsp");
+					}
 				}
 			} else {
-				res.sendRedirect("Invaliduser.jsp");
-			}}else {
-				int remainingDeposit = (20000-depositSum);
-				if(remainingDeposit > 0) {
-					session.setAttribute("remainingDeposit", remainingDeposit);
-					res.sendRedirect("Deposit.jsp");
-				}else {
-				res.getWriter().println("your Deposit limit exceed!!");
-				}
-			}
-			}else {
-				
+
 				session.setAttribute("depamountexceed", true);
 				res.sendRedirect("Deposit.jsp");
-		}
+			}
 
 		} catch (DepositLimitExceedException e) {
 			res.sendRedirect(e.getMessage());

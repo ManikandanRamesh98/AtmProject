@@ -36,10 +36,10 @@
 
 #invallab {
 	position: relative;
-	color: red;
+	color: #FF6347;
 	font-size: 60px;
 	top: 250px;
-	left: 520px;
+	left: 540px;
 }
 
 input {
@@ -101,7 +101,7 @@ left : 350px;
 		boolean flag = (boolean) session.getAttribute("invaliddeppin");
 		if (flag) {
 	%>
-	<label id="invallab">Invalid Pin!!</label>
+	<label id="invallab">Invalid Pin</label>
 
 	<%
 	session.removeAttribute("invaliddeppin");

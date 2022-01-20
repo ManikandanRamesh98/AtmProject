@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.jar.Manifest;
 
 import com.atm.models.InvalidPinLockModel;
 import com.atm.util.ConnectionUtil;
@@ -49,8 +50,11 @@ public int deletelock(InvalidPinLockModel invalidPinLockModel) throws Exception 
 //retrive the releasing time:
 public int retriveat(InvalidPinLockModel invalidPinLockModel) throws Exception {
 	Connection con = ConnectionUtil.getConnection();
+	//calculate minutes:
 	String query = "select substr((current_timestamp-acc_lockedat),-12,2) from invalidpinlock where username in ?";
+	//calculate days:
 	String datequery = "select substr((current_timestamp-acc_lockedat),2,2) from invalidpinlock where username in ?";
+	//calculate hours:
 	String hoursqueryString = "select substr((current_timestamp-acc_lockedat),5,2) from invalidpinlock where username in ?";
 	int date = 0;
 	int hours = 0; 
@@ -70,6 +74,7 @@ public int retriveat(InvalidPinLockModel invalidPinLockModel) throws Exception {
 		 date = Integer.parseInt(ret.substring(1));
 		
 		}else {
+			
 		 date = Integer.parseInt(rSet1.getString(1));
 		}
 	}

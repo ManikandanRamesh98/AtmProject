@@ -153,7 +153,7 @@ button:hover{
 	<fieldset>
 		<legend id="logger" class="form-label">LOGIN</legend>
 		
-		<form action="loginval" id="formlogin" autocomplete="off" method="post">
+		<form action="loginval" id="formlogin" autocomplete="off" method="post" class = "was-validated">
 
 			<label id="userlab" class="form-label">User Name:</label><br> <input type="text"
 				name="username" class="form-control" required id="user" pattern="[A-Z][a-zA-Z]{3,20}"

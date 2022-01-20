@@ -35,10 +35,11 @@ public class LoginValidationController extends HttpServlet {
 		try {
 			UsernamePasswordModel usernamepassmodel = new UsernamePasswordModel(uname, pass);
 			String role = userimpl.getrole(usernamepassmodel);
+			//check if user Exsist:
 			if (role != null) {
 				
-				
 				if (role.equals("user")) {
+					//check the user in invalid pin lock table:
 					if(!(invalidPinLockDaoimpl.status(invalidPinLockModel))) {
 					if(session.getAttribute("invalidpinlock") == null) {
 						
@@ -50,6 +51,7 @@ public class LoginValidationController extends HttpServlet {
 					session.setAttribute("user", uname);
 					response.sendRedirect("Welcomepage.jsp");
 				}else {
+					//fetch retriveat minutes:
 					int retriveat = invalidPinLockDaoimpl.retriveat(invalidPinLockModel);
 					System.out.println(retriveat + "ret");
 					if(retriveat > 2) {

@@ -31,11 +31,12 @@ public class MoneyTransferController extends HttpServlet {
 		HttpSession session = req.getSession();
 		String user = session.getAttribute("user").toString();
 		try {
+			//fetch sender balance:
 			int bal = userprofileimpl.moneytransf(userprofilemodel);
 			if (bal >= 0) {
 				UserProfileModel userprofilemodel1 = new UserProfileModel(user);
 				int userbal = userprofileimpl.getbal(userprofilemodel1);
-				System.out.println(userbal);
+				
 				if (eamount <= userbal && eamount > 0 && eamount <= 30000) {
 					int withamount = userbal - eamount;
 					UserProfileModel userprofilemodel2 = new UserProfileModel(user, withamount);
@@ -45,8 +46,10 @@ public class MoneyTransferController extends HttpServlet {
 						WithdrawModel withdrawmodel = new WithdrawModel(useraccountno, -eamount, username);
 						int inswithuser = withdrawimpl.inswith(withdrawmodel);
 						if (inswithuser > 0) {
+							//fetch receiver balance:
 							UserProfileModel userprofilemodel3 = new UserProfileModel(username);
 							int userbal2 = userprofileimpl.getbal(userprofilemodel3);
+							//add received amount:
 							int depamount = userbal2 + eamount;
 							UserProfileModel userprofilemodel4 = new UserProfileModel(username, depamount);
 							int upduserbal2 = userprofileimpl.insbal(userprofilemodel4);

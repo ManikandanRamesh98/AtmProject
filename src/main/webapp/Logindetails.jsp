@@ -37,11 +37,14 @@ background-color: rgba(255,255,255,0.2);
 		response.sendRedirect("index.jsp");
 	}
 	%>
-	<%!ResultSet rs;%>
+	<%!ResultSet rs;
+	String transdatetime;
+	%>
 	<%
 	LoginDetailsImpl logindetailsdao = new LoginDetailsImpl();
 		rs = logindetailsdao.fetchlogin();
 	%>
+	
 	<table style="width: 80%; margin-left: 100px;">
 		<tr>
 			<th>Id</th>
@@ -52,12 +55,20 @@ background-color: rgba(255,255,255,0.2);
 		<%
 		while (rs.next()) {
 		%>
+<%
+		String transactiontime = rs.getString(3).substring(9,11);
+		if(transactiontime.matches("[1-9][0-9]")){
+			transdatetime = rs.getString(3);
+		}else{
+			transdatetime = rs.getString(3).substring(0,13);
+		}
 
+				%>
 
 		<tr>
 			<td><%=rs.getString(1)%></td>
 			<td><%=rs.getString(2)%></td>
-			<td><%=rs.getString(3)%></td>
+			<td><%=transdatetime%></td>
 			<td><%=rs.getString(4)%></td>
 			
 		</tr>

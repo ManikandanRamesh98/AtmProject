@@ -68,7 +68,7 @@ public class LoginDetailsImpl implements LoginDetailsDao {
 	public ResultSet fetchlogin()throws Exception {
 		Connection con = ConnectionUtil.getConnection();
 
-		String query = "select id,username,substr(logged_at,1,16),role from login order by logged_at desc";
+		String query = "select id,username,substr(logged_at,1,14),role from login order by logged_at desc";
 		Statement statement = con.createStatement();
 		ResultSet rSet = statement.executeQuery(query);
 		

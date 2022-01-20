@@ -39,7 +39,7 @@ public class AtmMoneyManagementImpl implements AtmMoneyManagementDao{
 	//History Agent:
 	public ResultSet history() throws Exception {
 		Connection con = ConnectionUtil.getConnection();
-		String query = "select id,money_deposited,money_balance,substr(deposited_at,1,16),agent_name from atm_money_management order by id desc";
+		String query = "select id,money_deposited,money_balance,substr(deposited_at,1,14),agent_name from atm_money_management order by id desc";
 		Statement statement = con.createStatement();
 		ResultSet res = statement.executeQuery(query);
 				return res;

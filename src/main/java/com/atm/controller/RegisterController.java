@@ -25,10 +25,10 @@ public class RegisterController extends HttpServlet {
 		Long accno = 0l;
 		int userpin = 0;
 		try {
-			if(userprofileimpl.getusermaxacc() > 0 && userprofileimpl.getusermaxpin() > 0) {
-			accno = userprofileimpl.getusermaxacc()+1;
-			userpin = userprofileimpl.getusermaxpin()+1;
-			}else {
+			if (userprofileimpl.getusermaxacc() > 0 && userprofileimpl.getusermaxpin() > 0) {
+				accno = userprofileimpl.getusermaxacc() + 1;
+				userpin = userprofileimpl.getusermaxpin() + 1;
+			} else {
 				accno = 12345678901l;
 				userpin = 1234;
 			}
@@ -41,7 +41,7 @@ public class RegisterController extends HttpServlet {
 		String password = req.getParameter("passreg");
 		String role = req.getParameter("rolereg");
 		Long mobno = Long.parseLong(req.getParameter("mobnoreg"));
-		UserProfileModel userProfileModel = new UserProfileModel(mobno,"s");
+		UserProfileModel userProfileModel = new UserProfileModel(mobno, "s");
 		UserProfileImpl userProfileImpl2 = new UserProfileImpl();
 		boolean flag = false;
 		try {
@@ -51,43 +51,43 @@ public class RegisterController extends HttpServlet {
 			e1.printStackTrace();
 		}
 		try {
-			if(!flag) {
-			UsernamePasswordModel usernamepassmodel = new UsernamePasswordModel(username, password, role);
-			int ins = userimpl.insusernamepass(usernamepassmodel);
-			if (ins > 0) {
-				if (role.equals("admin")) {
-					HttpSession session = req.getSession();
-					session.setAttribute("adminreg", username);
-					resp.sendRedirect("Adminregsucc.jsp");
-				} else if (role.equals("agent")) {
-					HttpSession session = req.getSession();
-					session.setAttribute("agentreg", username);
-					resp.sendRedirect("Agentregsucc.jsp");
-				} else {
-					UserProfileModel userprofilemodel = new UserProfileModel(username, accno, mobno, userpin);
-					int profins = userprofileimpl.insuserprofile(userprofilemodel);
-					if (profins > 0) {
+			if (!flag) {
+				UsernamePasswordModel usernamepassmodel = new UsernamePasswordModel(username, password, role);
+				int ins = userimpl.insusernamepass(usernamepassmodel);
+				if (ins > 0) {
+					if (role.equals("admin")) {
 						HttpSession session = req.getSession();
-						session.setAttribute("reguser", username);
-						resp.sendRedirect("Registeruserprofilesucc.jsp");
-					}else {
-						throw new MobileNoAlreadyRegException();
+						session.setAttribute("adminreg", username);
+						resp.sendRedirect("Adminregsucc.jsp");
+					} else if (role.equals("agent")) {
+						HttpSession session = req.getSession();
+						session.setAttribute("agentreg", username);
+						resp.sendRedirect("Agentregsucc.jsp");
+					} else {
+						UserProfileModel userprofilemodel = new UserProfileModel(username, accno, mobno, userpin);
+						int profins = userprofileimpl.insuserprofile(userprofilemodel);
+						if (profins > 0) {
+							HttpSession session = req.getSession();
+							session.setAttribute("reguser", username);
+							resp.sendRedirect("Registeruserprofilesucc.jsp");
+						} else {
+							throw new MobileNoAlreadyRegException();
+						}
 					}
-				}
 
+				} else {
+					throw new UserNameAlreadyExistException();
+				}
 			} else {
-				throw new UserNameAlreadyExistException();
-			}
-			}else {
 				throw new MobileNoAlreadyRegException();
 			}
 		} catch (UserNameAlreadyExistException e) {
 			// TODO: handle exception
 			resp.sendRedirect(e.getMessage());
-		}catch(MobileNoAlreadyRegException e){
+		} catch (MobileNoAlreadyRegException e) {
 			resp.sendRedirect(e.getMessage());
 		}
-		
+
 		catch (Exception e) {
 			e.printStackTrace();
 		}
