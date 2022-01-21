@@ -91,7 +91,7 @@ userbal = userprofiledao.getbal(userprofilepojo);
 
 <script>
 let th = document.getElementById("timehead");
-let time = 5;
+let time = 10;
 let i;
 window.addEventListener('load', () =>{
 	

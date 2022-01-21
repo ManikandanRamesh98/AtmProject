@@ -112,7 +112,7 @@ left : 350px;
 	<!-- amount exceed than 20000 -->
 	<%
 	if(session.getAttribute("depamountexceed") != null){%>
-		<h1 id = "amountexceed">Enter Amount Less Than 10000</h1>
+		<h1 id = "amountexceed">Enter Amount Less Than 20000</h1>
 	<% session.removeAttribute("depamountexceed");}
 	%>
 	
