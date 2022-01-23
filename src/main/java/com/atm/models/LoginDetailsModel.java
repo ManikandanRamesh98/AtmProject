@@ -5,14 +5,14 @@ import java.util.Objects;
 public class LoginDetailsModel {
 	private int id;
 	private String username;
-	private String logged_at;
+	private String loggedat;
 	private String role;
 
-	public LoginDetailsModel(int id, String username, String logged_at, String role) {
+	public LoginDetailsModel(int id, String username, String loggedat, String role) {
 
 		this.id = id;
 		this.username = username;
-		this.logged_at = logged_at;
+		this.loggedat = loggedat;
 		this.role = role;
 	}
 
@@ -41,12 +41,12 @@ public class LoginDetailsModel {
 		this.username = username;
 	}
 
-	public String getLogged_at() {
-		return logged_at;
+	public String getLoggedat() {
+		return loggedat;
 	}
 
-	public void setLogged_at(String logged_at) {
-		this.logged_at = logged_at;
+	public void setLoggedat(String loggedat) {
+		this.loggedat = loggedat;
 	}
 
 	public String getRole() {
@@ -59,12 +59,12 @@ public class LoginDetailsModel {
 
 	@Override
 	public String toString() {
-		return "Loginpojo [Id=" + id + ", username=" + username + ", logged_at=" + logged_at + ", Role=" + role + "]";
+		return "Loginpojo [Id=" + id + ", username=" + username + ", logged_at=" + loggedat + ", Role=" + role + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, role, logged_at, username);
+		return Objects.hash(id, role, loggedat, username);
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class LoginDetailsModel {
 		if (getClass() != obj.getClass())
 			return false;
 		LoginDetailsModel other = (LoginDetailsModel) obj;
-		return id == other.id && Objects.equals(role, other.role) && Objects.equals(logged_at, other.logged_at)
+		return id == other.id && Objects.equals(role, other.role) && Objects.equals(loggedat, other.loggedat)
 				&& Objects.equals(username, other.username);
 	}
 

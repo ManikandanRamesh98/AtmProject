@@ -3,14 +3,16 @@ package com.atm.controller;
 import java.io.IOException;
 
 import com.atm.daoimpl.AtmMoneyManagementImpl;
+import com.atm.daoimpl.TransActionsImpl;
 import com.atm.daoimpl.UserProfileImpl;
-import com.atm.daoimpl.WithdrawImpl;
+
 import com.atm.exception.AtmOutOfCashException;
 import com.atm.exception.LowBalanceException;
 import com.atm.models.AtmMoneyManagementModel;
+import com.atm.models.TransActionsModel;
 import com.atm.models.UserProfileModel;
 
-import com.atm.models.WithdrawModel;
+
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,8 +23,10 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/withdrawserv")
 public class WithdrawController extends HttpServlet {
 	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		TransActionsModel transActionsModel = new TransActionsModel();
+		TransActionsImpl transActionsImpl = new TransActionsImpl(); 
 		UserProfileImpl userprofileimpl = new UserProfileImpl();
-		WithdrawImpl withdrawimpl = new WithdrawImpl();
+		
 		AtmMoneyManagementImpl atmMoneyManagementimpl = new AtmMoneyManagementImpl();
 		HttpSession session = req.getSession();
 		String uname = session.getAttribute("user").toString();
@@ -33,9 +37,10 @@ public class WithdrawController extends HttpServlet {
 		try {
 
 			accno = userprofileimpl.getaccno(userprofilemodel4);
-			WithdrawModel withdrawModel = new WithdrawModel();
-			withdrawModel.setUser_acc_no(accno);
-			int withdrawSum = withdrawimpl.checkwithdrawlimit(withdrawModel);
+			
+			//
+			transActionsModel.setUserAccnoLong(accno);
+			int withdrawSum = transActionsImpl.checkwithdrawlimit(transActionsModel);
 			int withdrawCheck = 0;
 			// amount should be less than 10000:
 			if (eamount <= 10000) {
@@ -56,9 +61,10 @@ public class WithdrawController extends HttpServlet {
 								if (i > 0) {
 									UserProfileModel userprofilemodel3 = new UserProfileModel(uname, newbal);
 									Long acc = userprofileimpl.getaccno(userprofilemodel3);
-									if (acc > 0) {
-										WithdrawModel withdrawmodel = new WithdrawModel(acc, -eamount);
-										withdrawimpl.inswith(withdrawmodel);
+										transActionsModel.setUserAccnoLong(acc);
+										transActionsModel.setTransActionAmount(-eamount);
+										transActionsModel.setTransActionType("withdraw");
+										transActionsImpl.insertTransAction(transActionsModel);
 										session.setAttribute("withamount", eamount);
 										session.setAttribute("withbal", newbal);
 										// Atm money management:
@@ -71,9 +77,6 @@ public class WithdrawController extends HttpServlet {
 										} else {
 											res.getWriter().println("something went wrong!!");
 										}
-									} else {
-										System.out.println("cant get useracc");
-									}
 								} else {
 									res.getWriter().println("something went wrong!!");
 								}
@@ -108,7 +111,6 @@ public class WithdrawController extends HttpServlet {
 		} catch (LowBalanceException e) {
 			res.sendRedirect(e.getMessage());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

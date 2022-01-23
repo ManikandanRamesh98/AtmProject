@@ -18,7 +18,6 @@ import jakarta.servlet.http.HttpSession;
 public class PinChangeController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		UserProfileImpl userProfileImpl = new UserProfileImpl();
 		
 		int pin = Integer.parseInt(req.getParameter("pininp"));
@@ -29,7 +28,6 @@ public class PinChangeController extends HttpServlet {
 			UserProfileModel userProfileModel = new UserProfileModel(pin,user);
 			i = userProfileImpl.updatepin(userProfileModel);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (i > 0) {

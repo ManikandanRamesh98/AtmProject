@@ -26,7 +26,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse res) throws Se
 		int userpin = userprofileimpl.getuserpin(user);
 		if (userpin > 0) {
 			if (userpin == pin) {
-				res.sendRedirect("Ministatement.jsp");
+				res.sendRedirect("minisateserv");
 			} else {
 				int inv = (int)session.getAttribute("invalidpinlock");
 				inv++;
@@ -45,7 +45,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse res) throws Se
 	} 
 	
 	catch (Exception e) {
-		// TODO Auto-generated catch block
+
 		e.printStackTrace();
 	}
 }

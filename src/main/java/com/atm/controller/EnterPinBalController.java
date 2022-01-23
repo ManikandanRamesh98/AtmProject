@@ -29,7 +29,7 @@ public class EnterPinBalController extends HttpServlet{
 			int userpin = userprofileimpl.getuserpin(user);
 			if (userpin > 0) {
 				if (userpin == pin) {
-					res.sendRedirect("Balance.jsp");
+					res.sendRedirect("balanceservlet");
 				} else {
 					//invalid pin section:
 					int inv = (int)session.getAttribute("invalidpinlock");
@@ -51,7 +51,7 @@ public class EnterPinBalController extends HttpServlet{
 		} 
 		
 		catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}

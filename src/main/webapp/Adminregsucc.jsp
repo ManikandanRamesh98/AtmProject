@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+	<%
+	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+	%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,20 +41,13 @@ background-size: cover;
 <title>Admin Register</title>
 </head>
 <body>
-	<%!String user;
-	String reguser;%>
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("admin") != null) {
-		user = session.getAttribute("admin").toString();
-	} else {
-		response.sendRedirect("index.jsp");
-	}
-	reguser = session.getAttribute("adminreg").toString();
-	%>
+	<c:if test="${admin == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
+	
 	<h1 id = "reghead">
-		Admin
-		<%=" " + reguser + " "%>
+		Admin &ensp;
+		${adminreg} &ensp;
 		Sucessfully Registered!!
 	</h1>
 <h2 id = "timehead">00:00</h2>

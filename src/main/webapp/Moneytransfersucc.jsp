@@ -1,8 +1,9 @@
 <%@page import="com.atm.daoimpl.UserProfileImpl"%>
-
 <%@page import="com.atm.models.UserProfileModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,29 +61,12 @@ color:white;
 </style>
 </head>
 <body bgcolor = "blue">
-<%!String username;
-int eamount;
-String user;
-int userbal;%>
+<c:if test="${user == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
 
-
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-		if (session.getAttribute("user") == null) {
-			response.sendRedirect("index.jsp");
-		} 
-	%>
-<%
-username = session.getAttribute("moneytransfname").toString();
-eamount = (int)session.getAttribute("moneytransfamount");
-user = session.getAttribute("user").toString();
-UserProfileModel userprofilepojo = new UserProfileModel(user);
-
-UserProfileImpl userprofiledao = new UserProfileImpl();
-userbal = userprofiledao.getbal(userprofilepojo);
-%>
-<h1 id = "succhead">You Have Sucessfully Transfered <%=" " + eamount + " " %> to <%=" " + username %></h1>
-<label>Your Balance is <%=" " + userbal %></label>
+<h1 id = "succhead">You Have Successfully Transfered ${moneytransfamount} to ${moneytransfname}</h1>
+<label>Your Balance is ${userbalint}</label>
 <form action = "Welcomepage.jsp">
 <button type = "submit">Home</button>
 </form>

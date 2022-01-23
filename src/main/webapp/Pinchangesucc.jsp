@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,19 +45,13 @@ background-size: cover;
 </style>
 </head>
 <body bgcolor = "blue">
+<c:if test="${user == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
 	<h1>Pin Changed Successfully!!</h1>
 <h1 id = "timehead">00:00</h1>
 </body>
-	<%!String user; %>
-
-	<% 
-response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-if(session.getAttribute("user") == null){
-	response.sendRedirect("index.jsp");
-}else{
- user = session.getAttribute("user").toString();
-}
-%>
+	
 <script>
 let th = document.getElementById("timehead");
 let time = 3;

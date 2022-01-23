@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+    <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,16 +29,9 @@ font-size: 38px;
 </style>
 </head>
 <body bgcolor = "blue">
-	<%!String user; %>
-
-	<% 
-response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-if(session.getAttribute("user") == null){
-	response.sendRedirect("Login.html");
-}else{
- user = session.getAttribute("user").toString();
-}
-%>
+<c:if test="${user == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
 <h1>Sorry!&#128531;</h1>	
 <h2>ATM OUT OF CASH</h2>
 <label id = "timehead">00:00</label>

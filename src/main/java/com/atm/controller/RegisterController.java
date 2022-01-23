@@ -34,7 +34,6 @@ public class RegisterController extends HttpServlet {
 			}
 
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		String username = req.getParameter("userreg");
@@ -47,7 +46,6 @@ public class RegisterController extends HttpServlet {
 		try {
 			flag = userProfileImpl2.usermobileexist(userProfileModel);
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
@@ -82,12 +80,10 @@ public class RegisterController extends HttpServlet {
 				throw new MobileNoAlreadyRegException();
 			}
 		} catch (UserNameAlreadyExistException e) {
-			// TODO: handle exception
 			resp.sendRedirect(e.getMessage());
 		} catch (MobileNoAlreadyRegException e) {
 			resp.sendRedirect(e.getMessage());
 		}
-
 		catch (Exception e) {
 			e.printStackTrace();
 		}

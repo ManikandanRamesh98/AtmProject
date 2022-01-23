@@ -2,6 +2,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,57 +26,33 @@ font-size:20px;
 }
 table{
 background-color: rgba(255,255,255,0.2);
+width: 80%;
+margin-left: 100px;
 }
 
 </style>
 </head>
 <body bgcolor=" #363945">
-<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("admin") != null) {
-		String admin = session.getAttribute("admin").toString();
-	} else {
-		response.sendRedirect("index.jsp");
-	}
-	%>
-	<%!ResultSet rs;
-	String transdatetime;
-	%>
-	<%
-	LoginDetailsImpl logindetailsdao = new LoginDetailsImpl();
-		rs = logindetailsdao.fetchlogin();
-	%>
+<c:if test="${admin == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
 	
-	<table style="width: 80%; margin-left: 100px;">
+	<table>
 		<tr>
 			<th>Id</th>
 			<th>UserName</th>
 			<th>Logged at</th>
 			<th>Role</th>
 		</tr>
-		<%
-		while (rs.next()) {
-		%>
-<%
-		String transactiontime = rs.getString(3).substring(9,11);
-		if(transactiontime.matches("[1-9][0-9]")){
-			transdatetime = rs.getString(3);
-		}else{
-			transdatetime = rs.getString(3).substring(0,13);
-		}
-
-				%>
-
+		
+		<c:forEach items="${logindetailsobj}" var="l">
 		<tr>
-			<td><%=rs.getString(1)%></td>
-			<td><%=rs.getString(2)%></td>
-			<td><%=transdatetime%></td>
-			<td><%=rs.getString(4)%></td>
-			
+			<td>${l.id}</td>
+			<td>${l.username}</td>
+			<td>${l.loggedat}</td>
+			<td>${l.role}</td>
 		</tr>
-		<%
-		}
-		%>
+		</c:forEach>
 	</table>
 </body>
 </html>

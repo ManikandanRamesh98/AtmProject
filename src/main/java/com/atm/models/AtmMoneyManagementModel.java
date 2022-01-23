@@ -55,6 +55,10 @@ public class AtmMoneyManagementModel {
 		this.depositedat = depositedat;
 		this.agentname = agentname;
 	}
+	public AtmMoneyManagementModel() {
+
+		
+	}
 
 	@Override
 	public String toString() {

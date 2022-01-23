@@ -8,4 +8,7 @@ public interface DepositDao {
 
 	// remove account:
 	public int removedep(DepositModel depositpojo) throws Exception;
+	
+	//check Deposit limit:
+			public int checkwithdrawlimit(DepositModel depositModel) throws Exception;
 }

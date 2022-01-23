@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,21 +40,41 @@ background-size: cover;
 </style>
 </head>
 <body bgcolor = "blue">
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("admin") != null) {
-		String admin = session.getAttribute("admin").toString();
-	} else {
-		response.sendRedirect("index.jsp");
-	}
-	%>
-	<%!String reguser;%>
-	<%
-	reguser = session.getAttribute("reguser").toString();
-	%>
+	<c:if test="${admin == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
+	
 	<h1 id = "reghead">
-		User
-		<%=" " + reguser + " "%>Registered Successfully!!
+		User ${reguser} Registered Successfully!!
 	</h1>
+<label id = "timehead">00:00</label>
 </body>
+<script>
+
+let th = document.getElementById("timehead");
+let time = 5;
+let i;
+window.addEventListener('load', () =>{
+	
+	 i= setInterval(() => {
+		if(time > 0){
+			if(time >= 10){
+				
+				th.style.color = "#98FB98";
+		th.innerHTML = "00 : " + time--;
+		
+			}else{
+				th.style.color = "red";
+				th.innerHTML = "00 : 0" + time--;
+			}
+		}else{
+			clearInterval(i);
+			window.location.assign("Admin.jsp");
+		}
+	},1000);
+	
+});
+
+
+</script>
 </html>

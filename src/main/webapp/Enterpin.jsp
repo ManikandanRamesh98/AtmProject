@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,21 +60,11 @@ background-size: cover;
 </style>
 </head>
 <body bgcolor="blue">
-<%!String user;%>
-
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("user") == null) {
-		response.sendRedirect("index.jsp");
-	} else {
-		user = session.getAttribute("user").toString();
-	}
-	%>
-	<%
-	
-	int amount = Integer.parseInt(request.getParameter("inpwith"));
-	session.setAttribute("withamount", amount);
-	%>
+<c:if test="${user == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
+	<%int amount = Integer.parseInt(request.getParameter("inpwith"));
+	session.setAttribute("withamount", amount);%>
 	<h1>Enter Pin</h1>
 	<form action="Enterpinservlet">
 		<input type="password" name="withpin" id="withpinid" pattern="[0-9]{4}" title = "enter your pin 0-9 in length of four" required autofocus>

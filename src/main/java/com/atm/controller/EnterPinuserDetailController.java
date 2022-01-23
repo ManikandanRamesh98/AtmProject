@@ -45,7 +45,6 @@ protected void doPost(HttpServletRequest req, HttpServletResponse res) throws Se
 	} 
 	
 	catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 }

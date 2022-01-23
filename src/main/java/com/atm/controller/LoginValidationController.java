@@ -20,10 +20,10 @@ import jakarta.servlet.annotation.WebServlet;
 
 @WebServlet("/loginval")
 public class LoginValidationController extends HttpServlet {
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+		
 		String uname = request.getParameter("username");
 		String pass = request.getParameter("password");
 		boolean flag = false;
@@ -35,9 +35,8 @@ public class LoginValidationController extends HttpServlet {
 		try {
 			UsernamePasswordModel usernamepassmodel = new UsernamePasswordModel(uname, pass);
 			String role = userimpl.getrole(usernamepassmodel);
-			//check if user Exsist:
+			//check if user:
 			if (role != null) {
-				
 				if (role.equals("user")) {
 					//check the user in invalid pin lock table:
 					if(!(invalidPinLockDaoimpl.status(invalidPinLockModel))) {
@@ -51,7 +50,7 @@ public class LoginValidationController extends HttpServlet {
 					session.setAttribute("user", uname);
 					response.sendRedirect("Welcomepage.jsp");
 				}else {
-					//fetch retriveat minutes:
+					//fetch minutes:
 					int retriveat = invalidPinLockDaoimpl.retriveat(invalidPinLockModel);
 					System.out.println(retriveat + "ret");
 					if(retriveat > 2) {
@@ -74,14 +73,12 @@ public class LoginValidationController extends HttpServlet {
 				else if (role.equals("admin")) {
 					LoginDetailsModel loginmodel = new LoginDetailsModel(uname, role);
 					logindetailsimpl.insertdata(loginmodel);
-					System.out.println("this is admin");
 					flag = true;
 					session.setAttribute("admin", uname);
 					response.sendRedirect("Admin.jsp");
 				}else if(role.equals("agent")) {
 					LoginDetailsModel loginmodel = new LoginDetailsModel(uname, role);
 					logindetailsimpl.insertdata(loginmodel);
-					System.out.println("this is agent");
 					flag = true;
 					session.setAttribute("agent", uname);
 					response.sendRedirect("Agent.jsp");
@@ -89,19 +86,23 @@ public class LoginValidationController extends HttpServlet {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
 		// invalid user redirect:
 try {
 		if (!flag) {
-/*			response.sendRedirect("Invaliduser.jsp");*/
+
 			throw new InvalidEntriesException();
 		}
 }catch(InvalidEntriesException e) {
 	String red = e.getMessage();
-	response.sendRedirect(red);
+	try {
+		response.sendRedirect(red);
+	} catch (IOException e1) {
+		e1.printStackTrace();
+	}
 }
 	}
 

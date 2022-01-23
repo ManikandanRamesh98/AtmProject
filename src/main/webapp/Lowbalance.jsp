@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,18 +27,12 @@ left:0px;
 </style>
 </head>
 <body bgcolor = "blue">
-<%!String user;
-	
-	%>
 
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-		if (session.getAttribute("user") == null) {
-			response.sendRedirect("index.jsp");
-		} else {
-			user = session.getAttribute("user").toString();
-		}
-	%>
+<c:if test="${user == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
+
+	
 <h1>Low Balance!!!
 &#128531;
 </h1>

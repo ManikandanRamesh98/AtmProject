@@ -1,6 +1,8 @@
 <%@page import="com.atm.daoimpl.AtmMoneyManagementImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import = "java.sql.*" import = "com.atm.controller.*"%>
+    <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,23 +27,12 @@ background-color: #0072B5;
 }
 </style>
 </head>
-<body>
-<%!String agent;
-String transdatetime;
-%>
-	<%
-	if (session.getAttribute("agent") == null) {
-			response.sendRedirect("Login.html");
-		} else {
-			agent = session.getAttribute("agent").toString();
-		}
-	%>
+
 	<body bgcolor="blue">
-	<%!ResultSet rs;%>
-	<%
-	AtmMoneyManagementImpl atmMoneyManagementimpl = new AtmMoneyManagementImpl();
-			rs = atmMoneyManagementimpl.history();
-	%>
+	<c:if test="${agent == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
+	
 	<table style="width: 80%; margin-left: 100px;">
 		<tr>
 			<th>Id</th>
@@ -51,29 +42,15 @@ String transdatetime;
 			<th>Agent Name</th>
 		
 		</tr>
-		<%
-		while (rs.next()) {
-		%>
-<%
-		String transactiontime = rs.getString(4).substring(9,11);
-		if(transactiontime.matches("[1-9][0-9]")){
-			transdatetime = rs.getString(4);
-		}else{
-			transdatetime = rs.getString(4).substring(0,13);
-		}
-
-				%>
-
+		<c:forEach items="${agenthistoryobj}" var="h">
 		<tr>
-			<td><%=rs.getString(1)%></td>
-			<td><%=rs.getString(2)%></td>
-			<td><%=rs.getString(3)%></td>
-			<td><%=transdatetime%></td>
-			<td><%=rs.getString(5)%></td>
+			<td>${h.id}</td>
+			<td>${h.moneydeposited}</td>
+			<td>${h.moneybalance}</td>
+			<td>${h.depositedat}</td>
+			<td>${h.agentname}</td>
 		</tr>
-		<%
-		}
-		%>
+		</c:forEach>
 	</table>
 </body>
 </body>

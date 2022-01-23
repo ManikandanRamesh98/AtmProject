@@ -2,7 +2,7 @@ package com.atm.controller;
 
 import com.atm.daoimpl.*;
 import com.atm.models.DepositModel;
-
+import com.atm.models.TransActionsModel;
 import com.atm.models.UserProfileModel;
 
 import com.atm.models.WithdrawModel;
@@ -23,11 +23,12 @@ public class MoneyTransferController extends HttpServlet {
 		String username = req.getParameter("moneytransfname");
 		Long accountno = Long.parseLong(req.getParameter("moneytransfaccno"));
 		int eamount = Integer.parseInt(req.getParameter("moneytransfamount"));
-
+		
+TransActionsModel transActionsModel = new TransActionsModel();
+		TransActionsImpl transActionsImpl = new TransActionsImpl();
 		UserProfileModel userprofilemodel = new UserProfileModel(username, accountno);
 		UserProfileImpl userprofileimpl = new UserProfileImpl();
-		WithdrawImpl withdrawimpl = new WithdrawImpl();
-		DepositImpl depositimpl = new DepositImpl();
+		
 		HttpSession session = req.getSession();
 		String user = session.getAttribute("user").toString();
 		try {
@@ -40,12 +41,15 @@ public class MoneyTransferController extends HttpServlet {
 				if (eamount <= userbal && eamount > 0 && eamount <= 30000) {
 					int withamount = userbal - eamount;
 					UserProfileModel userprofilemodel2 = new UserProfileModel(user, withamount);
-					int upduserbal = userprofileimpl.insbal(userprofilemodel2);
-					if (upduserbal > 0) {
+					userprofileimpl.insbal(userprofilemodel2);
 						Long useraccountno = userprofileimpl.getaccno(userprofilemodel1);
-						WithdrawModel withdrawmodel = new WithdrawModel(useraccountno, -eamount, username);
-						int inswithuser = withdrawimpl.inswith(withdrawmodel);
-						if (inswithuser > 0) {
+						
+						transActionsModel.setUserAccnoLong(useraccountno);
+						transActionsModel.setTransActionAmount(-eamount);
+						transActionsModel.setTransActionType("withdraw");
+						transActionsModel.setMoneyTransfer("Money Transfer To" + username);
+						transActionsImpl.insertTransAction(transActionsModel);
+						
 							//fetch receiver balance:
 							UserProfileModel userprofilemodel3 = new UserProfileModel(username);
 							int userbal2 = userprofileimpl.getbal(userprofilemodel3);
@@ -54,23 +58,26 @@ public class MoneyTransferController extends HttpServlet {
 							UserProfileModel userprofilemodel4 = new UserProfileModel(username, depamount);
 							int upduserbal2 = userprofileimpl.insbal(userprofilemodel4);
 							if (upduserbal2 > 0) {
-								DepositModel depositmodel = new DepositModel(accountno, eamount, user);
-								int insdepuser2 = depositimpl.insdep(depositmodel);
-								if (insdepuser2 > 0) {
+								
+								transActionsModel.setUserAccnoLong(accountno);
+								transActionsModel.setTransActionAmount(eamount);
+								transActionsModel.setTransActionType("deposit");
+								transActionsModel.setMoneyTransfer("Money Transfer From" + user);
+								int insdepuser = transActionsImpl.insertTransAction(transActionsModel);
+								if (insdepuser > 0) {
 									session.setAttribute("moneytransfname", username);
 									session.setAttribute("moneytransfamount", eamount);
+									UserProfileModel userprofilepojo = new UserProfileModel(user);
+									UserProfileImpl userprofiledao = new UserProfileImpl();
+									int userbal3 = userprofiledao.getbal(userprofilepojo);
+									session.setAttribute("userbalint", userbal3);
 									resp.sendRedirect("Moneytransfersucc.jsp");
 								}
 
 							} else {
 								resp.getWriter().println("Something Went Wrong Try again Later!!!");
 							}
-						} else {
-							resp.getWriter().println("Something Went Wrong Try again Later!!!");
-						}
-					} else {
-						resp.getWriter().println("Something Went Wrong Try again Later!!!");
-					}
+					
 				} else {
 					resp.getWriter().println("Enter Valid Amount!!!");
 				}
@@ -78,7 +85,6 @@ public class MoneyTransferController extends HttpServlet {
 				resp.getWriter().println("Invalid Username or Password!!!");
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

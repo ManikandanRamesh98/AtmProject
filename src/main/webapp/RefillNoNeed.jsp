@@ -1,6 +1,8 @@
 <%@page import="com.atm.daoimpl.AtmMoneyManagementImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,24 +47,15 @@ font-size:60px;
 </style>
 </head>
 <body>
+<c:if test="${agent == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
 
-<%
-AtmMoneyManagementImpl atmMoneyManagementImpl = new AtmMoneyManagementImpl();
-Long prevbal = atmMoneyManagementImpl.previousbal();
-%>
-<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("admin") != null) {
-		String admin = session.getAttribute("admin").toString();
-	} else {
-		response.sendRedirect("index.jsp");
-	}
-	%>
 <h1>No Need to Refill</h1>
-<h2>ATM BALANCE : <%=prevbal %></h2>
+
 
 </body>
-<h3 id = "timehead">00:00</h3>
+<h2 id = "timehead">00:00</h2>
 
 
 <script>

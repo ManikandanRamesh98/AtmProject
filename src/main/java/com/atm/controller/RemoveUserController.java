@@ -38,7 +38,6 @@ public class RemoveUserController extends HttpServlet {
 		UserProfileImpl userprofileimpl = new UserProfileImpl();
 		RemovedUsersImpl removedusersimpl = new RemovedUsersImpl();
 		UsernamePasswordImpl userimpl = new UsernamePasswordImpl();
-		HttpSession session = req.getSession();
 		String user = req.getParameter("remusername");
 		int id = Integer.parseInt(req.getParameter("remuserid"));
 		Long accno = -1l;
@@ -46,7 +45,6 @@ public class RemoveUserController extends HttpServlet {
 			UserProfileModel userprofilemodel = new UserProfileModel(user);
 			accno = userprofileimpl.getaccno(userprofilemodel);
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
@@ -96,7 +94,6 @@ public class RemoveUserController extends HttpServlet {
 		} catch (InvalidUsernameAdminException e) {
 			resp.sendRedirect(e.getMessage());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

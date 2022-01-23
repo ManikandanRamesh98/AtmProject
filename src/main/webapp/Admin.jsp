@@ -1,18 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.atm.controller.* "%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="icon" type="" href="Assets/sbi-logo-33234.png">
-<%!String admin;%>
-<%
-response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-if (session.getAttribute("admin") == null) {
-	response.sendRedirect("index.jsp");
-} else {
-	admin = session.getAttribute("admin").toString();
-}
-%>
+
 <meta charset="ISO-8859-1">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -20,8 +13,10 @@ if (session.getAttribute("admin") == null) {
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <div id="bgBlur"></div>
-s
-<title>Welcome <%=admin%></title>
+<c:if test="${admin == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
+<title>Welcome ${admin}</title>
 <style>
 * {
 	margin: 0;
@@ -155,7 +150,7 @@ a:hover {
 <body bgcolor="blue">
 
 
-	<label id="adminlab">welcome : <%=admin%></label>
+	<label id="adminlab">welcome : ${admin}</label>
 
 	<a href="Register.jsp" id="adminregus">Register New User</a>
 	<br>
@@ -172,7 +167,7 @@ a:hover {
 	<a href="Removedusers.jsp" id="removedusers" class="left">Removed
 		Users List</a>
 	<br>
-	<a href="Logindetails.jsp" id="logindetails" class="left">Login
+	<a href="logindetailsservlet" id="logindetails" class="left">Login
 		Details</a>
 	<h1 id="timehead">00:00</h1>
 </body>

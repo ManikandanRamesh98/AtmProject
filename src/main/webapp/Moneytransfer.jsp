@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,18 +97,10 @@ button:hover{
 </style>
 </head>
 <body bgcolor="blue">
-	<%!String user;
-	
-	%>
+	<c:if test="${user == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
 
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-		if (session.getAttribute("user") == null) {
-			response.sendRedirect("index.jsp");
-		} else {
-			user = session.getAttribute("user").toString();
-		}
-	%>
 	<fieldset>
 		<legend>Money Transfer</legend>
 		<form action="moneytransferserv" method="post">

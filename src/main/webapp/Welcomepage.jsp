@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.atm.controller.*"%>
 <!DOCTYPE html>
-<html>
+<html lang="eng">
 <head>
 <link rel = "icon" type = "" href = "Assets/sbi-logo-33234.png">
 <meta charset="ISO-8859-1">
@@ -46,7 +46,7 @@ a:hover {
 }
 </style>
 </head>
-<body bgcolor="blue">
+<body>
 	<%
 	if (session.getAttribute("invalidhomepin") != null) {
 	%>
@@ -57,9 +57,6 @@ a:hover {
 	<%
 	}
 	%>
-
-
-
 	<marquee id="welmar" scrollamount="20">STATE BANK OF INDIA</marquee>
 	<hr>
 	<a href="Withdraw.jsp" id="withdraw" class="atag">Withdraw</a>

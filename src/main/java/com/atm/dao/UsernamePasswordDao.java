@@ -6,9 +6,6 @@ public interface UsernamePasswordDao {
 	// get role:
 	public String getrole(UsernamePasswordModel usernamepasspojo) throws Exception;
 
-	// get role1:
-	public String getrole1(UsernamePasswordModel usernamepasspojo) throws Exception;
-
 	// password change:
 	public int pinchange(UsernamePasswordModel usernamepasspojo) throws Exception;
 

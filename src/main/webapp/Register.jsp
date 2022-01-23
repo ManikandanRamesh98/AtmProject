@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,21 +115,16 @@ button:hover{
 </style>
 </head>
 <body bgcolor="grey">
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("admin") != null) {
-		String admin = session.getAttribute("admin").toString();
-	} else {
-		response.sendRedirect("index.jsp");
-	}
-	%>
+	<c:if test="${admin == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
 <div class="container mt-1">
 	<fieldset id="fieldreg">
 		<legend>Register User</legend>
 
 		<form action="registersucc" method="post" id="regform"
 			onsubmit="return cnfpass()" autocomplete="off" class = "was-validated">
-			<label class="form-label">Enter Username : </label><br> <input type="text"
+			<label class="form-label">Enter User Name : </label><br> <input type="text"
 				name="userreg" placeholder="Abcd9" class="form-control" pattern="[A-Z][a-zA-Z]{3,20}"
 				title="Start with A-Z and use A-Z or a-z or 0-9 minimum 3 character maximum 20 character"
 				id="userid" required>

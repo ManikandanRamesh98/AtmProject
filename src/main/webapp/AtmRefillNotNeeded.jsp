@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,6 +38,9 @@ background-size: cover;
 </style>
 </head>
 <body>
+<c:if test="${agent == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
 <h1 id = "reghead">No Need To Refill</h1>
 <h1 id = "timehead">00:00</h1>
 </body>

@@ -1,6 +1,7 @@
 package com.atm.dao;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 import com.atm.models.LoginDetailsModel;
 
@@ -12,5 +13,5 @@ public interface LoginDetailsDao {
 	public int insertdata(LoginDetailsModel loginpojo) throws Exception;
 	
 	//fetch login details:
-		public ResultSet fetchlogin()throws Exception;
+		public List<LoginDetailsModel> fetchlogin()throws Exception;
 }

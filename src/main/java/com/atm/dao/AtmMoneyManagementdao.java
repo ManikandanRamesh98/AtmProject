@@ -1,13 +1,18 @@
 package com.atm.dao;
 
-import java.sql.ResultSet;
+
+import java.sql.SQLException;
+import java.util.List;
 
 import com.atm.models.AtmMoneyManagementModel;
 
 public interface AtmMoneyManagementDao {
 	//Deposit money Agent:
-	public int depositmoney(AtmMoneyManagementModel atmMoneyManagement) throws Exception;
+	public int depositmoney(AtmMoneyManagementModel atmMoneyManagement) throws SQLException;
 	
 	//History money Deposited Agent:
-	public ResultSet history() throws Exception;
+	public List<AtmMoneyManagementModel> history() throws SQLException;
+	
+	//previous balance:
+	public Long previousbal() throws SQLException ;
 }

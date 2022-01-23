@@ -53,7 +53,6 @@ public class EnterpinWithdrawController extends HttpServlet {
 		}
 		
 		catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

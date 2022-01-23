@@ -44,7 +44,7 @@ public class EnterPinMoneyTransfController extends HttpServlet{
 		} 
 		
 		catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}

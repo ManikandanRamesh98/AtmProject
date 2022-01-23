@@ -1,11 +1,11 @@
 <%@page import="com.atm.daoimpl.UserProfileImpl"%>
-
-
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.atm.daoimpl.MiniStatementImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import = "com.atm.controller.*"
-	import="com.atm.models.*"%>
+	import="com.atm.models.*" isELIgnored="false"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 <!DOCTYPE html>
 <html>
 <div id="bgBlur"></div>
@@ -52,7 +52,7 @@ td{
 font-size:20px;
 }
 body{
-/* background-image: url("https://resize.indiatvnews.com/en/resize/newbucket/715_-/2020/03/sbi-atm-card-1584194515.jpg"); */
+
 background-color : #363945;
 background-repeat: no-repeat;
 background-size: cover;
@@ -61,34 +61,12 @@ background-size: cover;
 {
  color:red;
 }
-
-
 </style>
 </head>
 <body >
-	<%!String user;
-	
-	%>
-
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-		if (session.getAttribute("user") == null) {
-			response.sendRedirect("index.jsp");
-		} else {
-			user = session.getAttribute("user").toString();
-		}
-	%>
-	<%!MiniStatementImpl ministatementdao = new MiniStatementImpl();
-
-UserProfileImpl userprofiledao = new UserProfileImpl(); 
-String transtype = null;
-String transdatetime;
-%>
-	<%
-	UserProfileModel userprofilepojo = new UserProfileModel(user);
-		Long accno = userprofiledao.getaccno(userprofilepojo);
-		ResultSet rSet = ministatementdao.getministatement(accno);
-	%>
+	<c:if test="${user == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
 	
   <div class="container mt-1">	
 	<div id = "minidiv">
@@ -100,43 +78,13 @@ String transdatetime;
 			<th id="transtime">Transaction Time</th>
 		</tr>
 		</thead>
-		<%
-		while (rSet.next()) {
-		%>
-		<%
-		if (Integer.parseInt(rSet.getString(1)) > 0) {
-			transtype = "Deposit";
-			if(rSet.getString(3) != null){
-				transtype = "Money Transfer From " + rSet.getString(3);
-			}
-		} else {
-			transtype = "Withdraw";
-			if(rSet.getString(3) != null){
-				transtype = "Money Transfer To " + rSet.getString(3);
-			}
-		}
-		%>
-		<%
-		String transactiontime = rSet.getString(2).substring(9,11);
-		if(transactiontime.matches("[1-9][0-9]")){
-			transdatetime = rSet.getString(2);
-		}else{
-			transdatetime = rSet.getString(2).substring(0,13);
-		}
-
-				%>
+		<c:forEach items="${ministatementjspobj}" var = "m">
 		<tr>
-
-			<td><%=transtype%>
-			</td>
-			<td><%=rSet.getString(1)%>
-			</td>
-			<td><%=transdatetime%>
-			</td>
-		</tr>
-		<%
-		}
-		%>
+		<td>${m.transActionType}</td>
+		<td>${m.transActionAmount}</td>
+		<td>${m.transActionAt}</td>
+			</tr>
+		</c:forEach>
 	</table>
 	
 <h1 id = "timehead">00:00</h1>

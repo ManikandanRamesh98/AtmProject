@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import = "com.atm.controller.*"%>
+    <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,17 +68,11 @@ color:white;
 </style>
 </head>
 <body bgcolor = "blue">
-<%!String agent;%>
-	<%
-	response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-	if (session.getAttribute("agent") == null) {
-		response.sendRedirect("index.jsp");
-	} else {
-		agent = session.getAttribute("agent").toString();
-	}
-	%>
-	<h1>welcome :
-	<%=agent%></h1>
+<c:if test="${agent == null}">
+	<c:redirect url="index.jsp"></c:redirect>
+	</c:if>
+	
+	<h1>welcome : ${agent}</h1>
 	<fieldset>
 	<legend>REFILL</legend>
 	<form action = "depagentserv" method = "post">
